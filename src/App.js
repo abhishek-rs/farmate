@@ -6,6 +6,7 @@ import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import { logout } from './firebaseHelpers/auth'
 import { firebaseAuth } from './config/constants'
+import './App.css'
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
   return (
@@ -59,7 +60,7 @@ export default class App extends Component {
           <nav className="navbar navbar-default navbar-static-top">
             <div className="container">
               <div className="navbar-header">
-                <Link to="/" className="navbar-brand">Farmate</Link>
+                <Link to="/dashboard" className="navbar-brand">Farmate</Link>
               </div>
               <ul className="nav navbar-nav pull-right">
                 <li>

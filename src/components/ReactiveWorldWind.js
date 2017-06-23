@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../styles/ReactiveWorldWind.css';
 export default class ReactiveWorldWind extends Component {
     
     componentDidMount(){
@@ -16,9 +16,11 @@ export default class ReactiveWorldWind extends Component {
 
     render(){
         return(
-            <canvas id="canvasOne" width="1024" height="768">
+            <div id="ww">
+            <canvas id="canvasOne">
                 Your browser does not support HTML5 Canvas.
             </canvas>
+            </div>
         )
     }
 }
