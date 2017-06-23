@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
 export default class WeatherAgain extends Component {
   constructor(props) {
@@ -15,7 +14,7 @@ componentDidMount() {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
     var th = this;
-    this.serverRequest =
+  /*  this.serverRequest =
       axios.get(`https://api.darksky.net/forecast/60fbca80e3ea637d16165b32680026d7/42.3601,-71.0589?units=auto`)
         .then(result => {
           th.setState({
@@ -30,7 +29,8 @@ componentDidMount() {
           loading: false,
           error: err
         });
-      });
+      }); 
+      */
   };
   function error() {
     console.log( 'geolocation error' )

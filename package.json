@@ -6,7 +6,6 @@
     "react-scripts": "1.0.7"
   },
   "dependencies": {
-    "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "firebase": "^4.1.2",
     "jquery": "^3.2.1",
