@@ -1,3 +1,7 @@
+
+/*global event*/
+/*eslint no-restricted-globals: [1]*/
+
 import React, { Component } from 'react'
 import { login, resetPassword } from '../firebaseHelpers/auth'
 
@@ -39,7 +43,7 @@ export default class Login extends Component {
             <div className="alert alert-danger" role="alert">
               <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
               <span className="sr-only">Error:</span>
-              &nbsp;{this.state.loginMessage} <a href="#" onClick={this.resetPassword} className="alert-link">Forgot Password?</a>
+              &nbsp;{this.state.loginMessage} <a onClick={this.resetPassword} className="alert-link">Forgot Password?</a>
             </div>
           }
           <button type="submit" className="btn btn-primary">Login</button>

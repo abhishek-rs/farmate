@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import * as firebase from "firebase";
 import { usersRef, firebaseAuth } from './config/constants.js';
-import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import { Route, BrowserRouter, Link, Redirect, Switch } from 'react-router-dom'
 import Login from './components/Login'
@@ -11,18 +10,6 @@ import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import WeatherAgain from './components/WeatherAgain'
 import { logout } from './firebaseHelpers/auth'
-import { firebaseAuth } from './config/constants'
-
-class App extends Component {
-users=[];
-
-constructor(){
-  super();
-  this.state = Object.assign({
-      items: []
-    });
-}
-
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
   return (
@@ -34,40 +21,42 @@ function PrivateRoute ({component: Component, authed, ...rest}) {
     />
   )
 }
+
+function PublicRoute ({component: Component, authed, ...rest}) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => authed === false
+        ? <Component {...props} />
+        : <Redirect to='/dashboard' />}
+    />
+  )
 }
 
-componentWillMount() {
-  
-  /* var config = {
-    apiKey: "AIzaSyDbWlGG-aqzoePURjVEbAWeOVjXrqNXI_I",
-    authDomain: "farmate-f4c81.firebaseapp.com",
-    databaseURL: "https://farmate-f4c81.firebaseio.com",
-    projectId: "farmate-f4c81",
-    storageBucket: "farmate-f4c81.appspot.com",
-    messagingSenderId: "48710733747"
-  };
-  firebase.initializeApp(config);
-*/
- // this.firebaseRef = firebase.database().ref("users");
-  usersRef.on("child_added", function(dataSnapshot) {
-    this.items=[];
-    this.items.push(dataSnapshot.val());
-    this.setState({
-      items: this.items
-    });
-  }.bind(this));
-}
-
-render() {
-
-    const { items } = this.state;
-    
-    console.log(items);
-    items.map( i => this.users.push(i.crop_type + '\n'));
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Welcome to Farmate</h2>
+export default class App extends Component {
+  state = {
+    authed: false,
+    loading: true,
+  }
+  componentDidMount () {
+    this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({
+          authed: true,
+          loading: false,
+        })
+      } else {
+        this.setState({
+          authed: false,
+          loading: false
+        })
+      }
+    })
+  }
+  componentWillUnmount () {
+    this.removeListener()
+  }
+  render() {
     return this.state.loading === true ? <h1>Loading</h1> : (
       <BrowserRouter>
         <div>
@@ -105,14 +94,8 @@ render() {
               </Switch>
             </div>
           </div>
-
         </div>
-        <p className="App-intro">
-          {this.users}
-        </p>
-      </div>
+      </BrowserRouter>
     );
   }
 }
-
-export default App;

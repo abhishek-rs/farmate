@@ -1,22 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-
 export default class WeatherAgain extends Component {
-
-
-constructor(props) {
-    	super(props);
-
+  constructor(props) {
+    super(props);
     this.state = {
       daily: null
     };
   }
 
-
 componentDidMount() {
  if (navigator.geolocation){
-
   function success(position) {
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -47,12 +41,8 @@ componentDidMount() {
 render() {
     return (
       <div>
-         
-          
           <p> Something daily={this.state.daily} </p>
-        
       </div>
-    
   ) 
 }
 
