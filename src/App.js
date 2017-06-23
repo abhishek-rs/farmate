@@ -8,7 +8,7 @@ import { Route, BrowserRouter, Link, Redirect, Switch } from 'react-router-dom'
 import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
-import WeatherAgain from './components/WeatherAgain'
+import Weather from './components/Weather'
 import { logout } from './firebaseHelpers/auth'
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
@@ -88,8 +88,8 @@ export default class App extends Component {
                 <Route path='/' exact component={Login} />
                 <PublicRoute authed={this.state.authed} path='/login' component={Login} />
                 <PublicRoute authed={this.state.authed} path='/register' component={Register} />
+                <PrivateRoute authed={this.state.authed} path='/weather' component={Weather} />
                 <PrivateRoute authed={this.state.authed} path='/dashboard' component={Dashboard} />
-                <PublicRoute authed={this.state.authed} path='/weather' component={WeatherAgain} />
                 <Route render={() => <h3>No Match</h3>} />
               </Switch>
             </div>

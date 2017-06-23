@@ -1,62 +1,57 @@
 import React, { Component } from 'react'
-import $ from 'jquery';
-
+import Request from 'superagent';
 
 export default class Weather extends Component {
-            
-        	//getInitialState: function (json){
 
-				//longitude = json.coord.lon;
-				//latitude = json.coord.lat;
-
-				//navigator.geolocation.getCurrentPosition(function(pos){
-  				//console.log(pos)
-				//});
-
-	constructor(props) {
-    	super(props);
-
-    	this.state = {currentWeather: []};
+	constructor() {
+			super();
+    	this.state = Object.assign({
+				latitude: null,
+				longitude: null,
+				currentWeather: {
+					temperature: null
+				}
+			});
+		
+			this.getPosition = this.getPosition.bind(this);
+			this.getCurrentWeather = this.getCurrentWeather.bind(this);
+    	window.navigator.geolocation.getCurrentPosition(this.getPosition);
   }
 
-  	componentDidMount() {
-    	this.Weather();
-  }
+	getPosition(position){
+		this.setState({
+			latitude: position.coords.latitude,
+			longitude: position.coords.longitude
+		});
+		this.getCurrentWeather();
+	}
 
-  	Weather() {
-    	return $.getJSON('https://api.darksky.net/forecast/60fbca80e3ea637d16165b32680026d7/42.3601,-71.0589/')
-      	.then((data) => {
-        this.setState({ currentWeather: data.currently });
-      });
-  }
+	getCurrentWeather(){
+		let baseUrl = 'https://api.darksky.net/forecast/60fbca80e3ea637d16165b32680026d7/';
+		var that = this;
+		Request.get(baseUrl + this.state.latitude + "," + this.state.longitude)
+				.set('Access-Control-Allow-Origin', '*')
+				.set('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS')
+				.set('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token')
+				.end(function(err, res){
+					if(err) 
+						console.log(err);
+					else{
+						that.setState({
+							currentWeather: res.body.currently
+						})
+					}
+   		});
+		}
 
-			// componentDidMount() {
-
-           // $.getJSON( "https://api.darksky.net/forecast/60fbca80e3ea637d16165b32680026d7/42.3601,-71.0589", function(error, response, body) {
-              // if(!error && response.statusCode ==200){
-     			//	var currentWeather = JSON.parse(body); //this is KEY
-     			//	console.log(currentWeather["currently"]["summary"]);
-     			//}
-
-				
-				//});
-
-                //var myObject = JSON.parse(myjsonstring);     
-      //  }
-//Dark sky 
-//key: 60fbca80e3ea637d16165b32680026d7
-//"https://api.darksky.net/forecast/60fbca80e3ea637d16165b32680026d7" + latitude + ',' + longitude when I can get latitude dio cane
-
+  
+			
 render() {
-    const weatherNow = this.state.currentWeather.map((item, i) => {
-      return <div>
-        <h1>{item.summary}</h1>
-      </div>
-    });
-
-    return <div id="layout-content" className="layout-content-wrapper">
-      <div className="weather-display">{ weatherNow }</div>
-    </div>
+	const { latitude, longitude, currentWeather } = this.state;
+	console.log(currentWeather);
+  return (
+      <div>Helllo weather {latitude} {longitude} {currentWeather.temperature}</div>
+    );
   }
 }
 
