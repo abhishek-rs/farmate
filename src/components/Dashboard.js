@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { usersRef, firebaseAuth } from '../config/constants.js';
+import { usersRef } from '../config/constants.js';
 import ReactiveWorldWind from './ReactiveWorldWind.js';
 
 export default class Dashboard extends Component {

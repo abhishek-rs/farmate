@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 export default class ReactiveWorldWind extends Component {
-    constructor(){
-        super();
-    }
-
+    
     componentDidMount(){
         const WorldWind = window.WorldWind;
         var wwd = new WorldWind.WorldWindow("canvasOne");
