@@ -2,7 +2,9 @@
   "name": "farmate",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/abhishek-rs/farmate/",
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.0.2",
     "react-scripts": "1.0.7",
@@ -25,9 +27,14 @@
     "watch": "rerun-script",
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "watches": {
-        "start": [ "./src/*.css", "./src/**/*.css" ]
+    "start": [
+      "./src/*.css",
+      "./src/**/*.css"
+    ]
   }
 }
