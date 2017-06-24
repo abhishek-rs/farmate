@@ -10,8 +10,6 @@ import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import Weather from './components/Weather'
 import { logout } from './firebaseHelpers/auth'
-import { firebaseAuth } from './config/constants'
-import './App.css'
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
   return (
@@ -91,6 +89,7 @@ export default class App extends Component {
                 <PublicRoute authed={this.state.authed} path='/farmate/login' component={Login} />
                 <PublicRoute authed={this.state.authed} path='/farmate/register' component={Register} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/dashboard' component={Dashboard} />
+                <PrivateRoute authed={this.state.authed} path='/farmate/weather' component={Weather} />
                 <Route render={() => <Redirect to='/farmate/dashboard'/>}/>
               </Switch>
             </div>
