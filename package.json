@@ -2,7 +2,7 @@
   "name": "farmate",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/abhishek-rs/farmate/",
+  "homepage": "https://abhishek-rs.github.io/farmate/",
   "devDependencies": {
     "gh-pages": "^1.0.0",
     "node-sass-chokidar": "0.0.3",

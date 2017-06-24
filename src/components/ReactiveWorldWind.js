@@ -5,7 +5,6 @@ const WorldWind = window.WorldWind;
 export default class ReactiveWorldWind extends Component {
     constructor(props){
         super(props);
-        var wwd, coords;
         this.state = Object.assign({
             pathPositions: []
         })
@@ -18,16 +17,13 @@ export default class ReactiveWorldWind extends Component {
         this.wwd.addLayer(new WorldWind.BMNGOneImageLayer());
         this.wwd.addLayer(new WorldWind.BingAerialWithLabelsLayer());
         var clickRecognizer= new WorldWind.ClickRecognizer(this.wwd, this.handlePick);
-        
         var tapRecognizer = new WorldWind.TapRecognizer(this.wwd, this.handlePick);
         this.wwd.addLayer(new WorldWind.CompassLayer());
         this.coords = new WorldWind.CoordinatesDisplayLayer(this.wwd);
         this.wwd.addLayer(this.coords);
-        console.log(this.coords);
     }
 
     handlePick(event){
-        console.log(this.wwd);
         let position = new WorldWind.Position(this.coords.terrainPosition.latitude, this.coords.terrainPosition.longitude, this.coords.terrainPosition.altitude);
         let paths = this.state.pathPositions.slice();
         paths.push(position);
