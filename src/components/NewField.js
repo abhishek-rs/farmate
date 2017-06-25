@@ -4,26 +4,63 @@ import '../styles/NewField.css'
 import {Chart} from 'react-d3-core'
 import {LineChart} from 'react-d3-basic'
 import {InputText} from 'primereact/components/inputtext/InputText'
+import ReactiveWorldWind from './ReactiveWorldWind'
 
 export default class NewField extends Component {
 
 constructor(){
     super();
+    this.makeArrayOf = this.makeArrayOf.bind(this);
     this.state = Object.assign({
         formdata : {
-
-        }
-    })
+            name: "",
+            HP: 0,
+            soiltype: 0,
+            area: 0,
+            croptype: "rice",
+            dike_height:0,
+            irrigation_today: "",
+            lat_shape: [],
+            long_shape: [],
+            lat_center: 0,
+            long_center: 0,
+            owner_id: "",
+            IR_rec: 0,
+            month_irrigation: 0,
+            month_transplant: 0,
+            year_irrigation: 0,
+            year_transplant: 0,
+            DP_list: this.makeArrayOf(0, 30),
+            IR_rec_list: this.makeArrayOf(0, 30),
+            ET_list: this.makeArrayOf(0, 30),
+            HP_list: this.makeArrayOf(0, 30),
+            IR_list: this.makeArrayOf(0, 30),
+            RF_list: this.makeArrayOf(0, 30),
+            RO_list: this.makeArrayOf(0, 30),
+            desired_depth_chart: this.makeArrayOf(7, 30),
+            critical_depth_chart: this.makeArrayOf(3, 30),
+        },
+        dataEntered: false,
+    });
     this.renderChart = this.renderChart.bind(this);
 }
 
 componentDidMount(){
-    this.renderChart();
+  //  this.renderChart('desired-depth-chart');
 }
 
-renderChart(){
-    var chartData = [
-    {
+makeArrayOf(value, length) {
+  var arr = [], i = length;
+  while (i--) {
+    arr[i] = value;
+  }
+  return arr;
+}
+
+
+renderChart(chartData, doc){
+    var adaptedChartData = [
+ /*   {
         "name": "Darron Weissnat IV",
         "BMI": 20.72,
         "age": 39,
@@ -67,7 +104,7 @@ renderChart(){
         "city": "South Eldredtown",
         "married": false,
         "index": 4
-    }
+    }*/
     ]; 
 
     var width = 700;
@@ -105,14 +142,19 @@ ReactDOM.render(
         x={x}
       />
     
-, document.getElementById('chart'));
+, document.getElementById(doc));
 
 }
 
 render(){
     return (
         <div id="new-field">
-            <div id="chart"></div>
+            <ReactiveWorldWind />
+            <div id="inputs">
+                <div id="form"></div>
+                <div id="desired-depth-chart"></div>
+                <div id="critical-depth-chart"></div>
+            </div>
         </div>
     )
 }
