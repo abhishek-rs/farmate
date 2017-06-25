@@ -34,6 +34,7 @@ export default class Dashboard extends Component {
               <div id="globe-holder">
                 <ReactiveWorldWind></ReactiveWorldWind>
               </div>
+              <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
             </div> 
         )
     }
