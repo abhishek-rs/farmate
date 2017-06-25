@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom'
 import '../styles/NewField.css'
 import {Chart} from 'react-d3-core'
 import {LineChart} from 'react-d3-basic'
+import {InputText} from 'primereact/components/inputtext/InputText'
 
 export default class NewField extends Component {
 
 constructor(){
     super();
+    this.state = Object.assign({
+        formdata : {
+
+        }
+    })
     this.renderChart = this.renderChart.bind(this);
 }
 
@@ -70,7 +76,7 @@ renderChart(){
     var title = "User sample";
     var chartSeries = [
       {
-        field: 'BMI',
+        field: 'Minimum',
         name: 'BMI',
         color: '#445555',
         style: {
@@ -105,7 +111,9 @@ ReactDOM.render(
 
 render(){
     return (
-        <div id="chart"></div>
+        <div id="new-field">
+            <div id="chart"></div>
+        </div>
     )
 }
 
