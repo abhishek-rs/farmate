@@ -1,0 +1,23 @@
+#dashboard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    text-align: center;
+    
+    .intro{
+        text-align: center;
+        align-self: center;
+    }
+
+    #globe-holder{
+        width: 70%;
+        align-content: center;
+        justify-content: center;
+        height: 100vh;
+        display: flex;
+        align-self: center;
+    }
+
+}

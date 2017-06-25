@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { usersRef } from '../config/constants.js';
 import ReactiveWorldWind from './ReactiveWorldWind.js';
+import '../styles/Dashboard.css';
 
 export default class Dashboard extends Component {
     users=[];
@@ -26,12 +27,13 @@ export default class Dashboard extends Component {
         const { items } = this.state;
         items.map( i => this.users.push(i.crop_type + '\n'));
         return (
-            <div>
-              Logged in successfully.
-              <p className="App-intro">
+            <div id="dashboard">
+              <p className="intro">
                   {this.users}
               </p>
-              <ReactiveWorldWind></ReactiveWorldWind>
+              <div id="globe-holder">
+                <ReactiveWorldWind></ReactiveWorldWind>
+              </div>
             </div> 
         )
     }
