@@ -9,15 +9,32 @@
     .intro{
         text-align: center;
         align-self: center;
+        color: white;
     }
 
     #globe-holder{
-        width: 70%;
+        width: 100%;
         align-content: center;
         justify-content: center;
         height: 100vh;
         display: flex;
         align-self: center;
     }
+    #weather-holder{
+        width: 80%;
+        align-content: center;
+        justify-content: center;
+        height: 60vh;
+        display: flex;
+        align-self: center;
+        padding: 0px;
+        box-shadow: 10px 10px 5px black;
+       background: #16222A;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3A6073, #16222A);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3A6073, #16222A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+    }
+   
 
 }

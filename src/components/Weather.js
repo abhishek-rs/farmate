@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import Request from 'superagent';
 import ReactAnimatedWeather from 'react-animated-weather'
+import '../styles/Weather.css'
 import ReactDOM from 'react-dom'
 
 const defaults = {
   		icon: 'CLEAR_DAY',
-  		color: 'goldenrod',
-  		size: 512,
+  		color: 'white',
+  		size: 200,
   		animate: true
 		};
 
@@ -57,12 +58,12 @@ getCurrentWeather(){
 		
 		
 	if( that.state.currentWeather.icon ){
-		var small1 = that.state.currentWeather.icon.split('-')[0].toUpperCase();
-		var small2 = that.state.currentWeather.icon.split('-')[1].toUpperCase();
-		var smallsolution = [];
-		smallsolution.push(small1, small2);
-		that.realSolution = smallsolution.join('_');
-			console.log(that.realSolution); 
+		var iconResponse1 = that.state.currentWeather.icon.split('-')[0].toUpperCase();
+		var iconResponse2 = that.state.currentWeather.icon.split('-')[1].toUpperCase();
+		var iconResponseSolution = [];
+		iconResponseSolution.push(iconResponse1, iconResponse2);
+		that.iconResponseSolutionFinal = iconResponseSolution.join('_');
+			console.log(that.iconResponseSolutionFinal); 
 		that.setState({
 			iconDefined: true
 		});
@@ -72,7 +73,7 @@ getCurrentWeather(){
 	ReactDOM.render(
 		<ReactAnimatedWeather
 		  
-			icon={that.realSolution}
+			icon={that.iconResponseSolutionFinal}
    		 
 			color={defaults.color}
    		 
@@ -90,22 +91,26 @@ getCurrentWeather(){
 render() {
 	const { latitude, longitude, currentWeather } = this.state;
   return (
-      <div id= "">
-		 <div> 
-			Temperature {currentWeather.temperature} 
+    <div id = "weatherWidget" >
+		 <div id="summaryWeather">
+			<h2> {currentWeather.summary} </h2>
 		</div>
 		<div id="icon">
 			
 		</div>
-		<div>
-			Humidity {currentWeather.humidity}
+		<div id = "temperature"> 
+			<h4> Temperature {currentWeather.temperature} °</h4>
 		</div>
-		<div>
-			Wind Speed {currentWeather.windSpeed}
+		
+		<div id="humidity">
+			<h4> Humidity {currentWeather.humidity} </h4>
+		</div>
+		<div id="windSpeed">
+			<h4> Wind Speed {currentWeather.windSpeed}  m/s </h4>
 		</div>
 
 		  
-		  </div>
+	</div>
     );
   }
 }

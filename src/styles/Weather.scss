@@ -1,4 +1,28 @@
-#animated-icon {
-    width: 220; 
-    height: 220;
+#weatherWidget {
+    height: 500px;
+    width: 100%;
+    align-content: center;
+    align-self: center;
+    padding: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    text-shadow: 3px 4px 5px #000;
+    color: #b6c3d8;
+}
+#temperature {
+margin-bottom: 20px;
+margin-top: 20px;
+}
+#humidity {
+
+margin-bottom: 20px;
+}
+
+#windSpeed {
+margin-bottom: 20px;
+}
+#summaryWeather{
+margin-bottom: 40px;
+color: white;
 }
