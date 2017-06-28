@@ -4,7 +4,11 @@ import '../styles/NewField.css'
 import {Chart} from 'react-d3-core'
 import {LineChart} from 'react-d3-basic'
 import {InputText} from 'primereact/components/inputtext/InputText'
+import {Slider} from 'primereact/components/slider/Slider';
 import ReactiveWorldWind from './ReactiveWorldWind'
+import ReactTooltip from 'react-tooltip'
+import {Calendar} from 'primereact/components/calendar/Calendar'
+import {SelectButton} from 'primereact/components/selectbutton/SelectButton'
 
 export default class NewField extends Component {
 
@@ -42,7 +46,36 @@ constructor(){
         },
         dataEntered: false,
     });
+    this.soil_options = [
+         {
+             id:0, 
+             label:'Fine sand',
+             value:'0',
+            },
+            {
+             id:1, 
+             label:'1',
+             value:'1',
+            },
+            {
+             id:2, 
+             label:'2',
+             value:'2',
+            }, 
+            {
+             id:3, 
+             label:'3',
+             value:'3',
+            },
+            {
+             id:4, 
+             label:'Clay',
+             value:'4',
+            },
+    ];
     this.renderChart = this.renderChart.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 }
 
 componentDidMount(){
@@ -57,6 +90,18 @@ makeArrayOf(value, length) {
   return arr;
 }
 
+handleChange(e, attribute){
+    if(attribute == "soiltype" || attribute == "date_transplant" || attribute == "date_irrigation")
+        console.log(e.value, attribute);
+    else
+        console.log(e.target.value, attribute);
+    
+}
+
+handleSubmit(e) {
+    alert('A name was submitted: ' + this.state.value);
+    e.preventDefault();
+}
 
 renderChart(chartData, doc){
     var adaptedChartData = [
@@ -149,9 +194,37 @@ ReactDOM.render(
 render(){
     return (
         <div id="new-field">
-            <ReactiveWorldWind />
+            <ReactTooltip />
+            <div id="input-ww">
+                <ReactiveWorldWind />
+            </div>
             <div id="inputs">
-                <div id="form"></div>
+                <form id="new-form" onSubmit={this.handleSubmit}>
+                    
+                    <p data-tip="Naming your farm will make it easy to identify later">Name of field</p>
+                    <InputText name="name" onChange={(e) => this.handleChange(e, 'name')}/>
+                    
+                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area</p> 
+                    <InputText name="area" type="number" onChange={(e) => this.handleChange(e, 'area')}/>
+                    
+                    <p data-tip="We need to know the initial water level in the field to base the calculations on">Water level(in cms)</p>
+                    <InputText name="HP" type="number" onChange={(e) => this.handleChange(e, 'HP')}/>
+                    
+                    <p data-tip="Quantity in liters">Amount irrigated today</p>
+                    <InputText name="IR_rec" type="number" onChange={ (e) => this.handleChange(e, 'IR_rec')}/>
+                    
+                    <p data-tip="Soil type based on grain size. Ranging from (0) fine sand to (5) solid clay.">Soil type</p>
+                    <SelectButton key="id" options={this.soil_options} onChange={(e) => this.handleChange(e, 'soiltype')}></SelectButton>
+                    
+                    <p data-tip="When was the crop planted?">Plantation date</p>
+                    <Calendar tabindex="0" onChange={(e) => this.handleChange(e, 'date_transplant')}></Calendar>
+    
+                    <p data-tip="When was the last irrigation done?">Last irrigation date</p>
+                    <Calendar tabindex="0" onChange={(e) => this.handleChange(e, 'date_irrigation')}></Calendar>
+    
+                    <br />
+                    <input type="submit" value="Submit" />
+                </form>
                 <div id="desired-depth-chart"></div>
                 <div id="critical-depth-chart"></div>
             </div>

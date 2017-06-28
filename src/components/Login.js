@@ -1,7 +1,4 @@
 
-/*global event*/
-/*eslint no-restricted-globals: [1]*/
-
 import React, { Component } from 'react'
 import { login, resetPassword } from '../firebaseHelpers/auth'
 
