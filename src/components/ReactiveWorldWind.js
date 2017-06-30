@@ -6,10 +6,22 @@ export default class ReactiveWorldWind extends Component {
     constructor(props){
         super(props);
         this.state = Object.assign({
-            pathPositions: []
+            pathPositions: [],
+            isDrawEnabled: props.isDrawEnabled,
+            currentLatitude: null,
+            currentLongitude: null,
         })
+        this.lat_shape = props.lat_shape;
+        this.long_shape = props.long_shape;
+        this.getPosition = this.getPosition.bind(this);
         this.handlePick = this.handlePick.bind(this);
+    }
 
+    getPosition(position){
+	    this.setState({
+		    currentLatitude: position.coords.latitude,
+		    currentLongitude: position.coords.longitude
+        });
     }
 
     componentDidMount(){
@@ -20,15 +32,26 @@ export default class ReactiveWorldWind extends Component {
         var tapRecognizer = new WorldWind.TapRecognizer(this.wwd, this.handlePick);
         this.wwd.addLayer(new WorldWind.CompassLayer());
         this.coords = new WorldWind.CoordinatesDisplayLayer(this.wwd);
-        this.wwd.addLayer(this.coords);
+        window.navigator.geolocation.getCurrentPosition(this.getPosition);
+        this.wwd.goTo(new WorldWind.Location(this.state.currentLatitude, this.state.currentLongitude));
+        console.log(this.state.currentLatitude,this.state.currentLongitude);
+        //this.wwd.addLayer(this.coords);
+    }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            isDrawEnabled: nextProps.isDrawEnabled
+        })
     }
 
     handlePick(event){
-        let position = new WorldWind.Position(this.coords.terrainPosition.latitude, this.coords.terrainPosition.longitude, this.coords.terrainPosition.altitude);
-        let paths = this.state.pathPositions.slice();
-        paths.push(position);
-        this.setState({ pathPositions: paths })
-
+        console.log(this.state.isDrawEnabled);
+        if(this.state.isDrawEnabled){
+            let position = new WorldWind.Position(this.coords.terrainPosition.latitude, this.coords.terrainPosition.longitude, this.coords.terrainPosition.altitude);
+            let paths = this.state.pathPositions.slice();
+            paths.push(position);
+            this.setState({ pathPositions: paths })
+        }
         var path = new WorldWind.Path(this.state.pathPositions, null);
         path.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
         path.followTerrain = true;

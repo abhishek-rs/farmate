@@ -23,7 +23,7 @@ constructor(){
             area: 0,
             croptype: "rice",
             dike_height:0,
-            irrigation_today: "",
+            irrigation_today: 0,
             lat_shape: [],
             long_shape: [],
             lat_center: 0,
@@ -45,9 +45,10 @@ constructor(){
             critical_depth_chart: this.makeArrayOf(3, 30),
         },
         dataEntered: false,
+        isEditable: false,
     });
     this.soil_options = [
-         {
+            {
              id:0, 
              label:'Fine sand',
              value:'0',
@@ -75,6 +76,7 @@ constructor(){
     ];
     this.renderChart = this.renderChart.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.startDrawing = this.startDrawing.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 }
 
@@ -101,6 +103,12 @@ handleChange(e, attribute){
 handleSubmit(e) {
     alert('A name was submitted: ' + this.state.value);
     e.preventDefault();
+}
+
+startDrawing(e){
+    this.setState({
+        isEditable: true
+    });
 }
 
 renderChart(chartData, doc){
@@ -196,25 +204,31 @@ render(){
         <div id="new-field">
             <ReactTooltip />
             <div id="input-ww">
-                <ReactiveWorldWind />
+                <ReactiveWorldWind isDrawEnabled={this.state.isEditable} lat_shape={this.state.formdata.lat_shape} long_shape={this.state.formdata.long_shape}/>
             </div>
             <div id="inputs">
                 <form id="new-form" onSubmit={this.handleSubmit}>
                     
                     <p data-tip="Naming your farm will make it easy to identify later">Name of field</p>
-                    <InputText name="name" onChange={(e) => this.handleChange(e, 'name')}/>
+                    <InputText value={this.state.formdata.name} name="name" onChange={(e) => this.handleChange(e, 'name')}/>
                     
                     <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area</p> 
-                    <InputText name="area" type="number" onChange={(e) => this.handleChange(e, 'area')}/>
+                    <InputText name="area" type="number" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
+
+                    <p data-tip="Height of dikes built around the farm, if there are none please enter 0">Dike Height (cms): </p> 
+                    <InputText name="dike_height" type="number" value={this.state.formdata.dike_height} onChange={(e) => this.handleChange(e, 'area')}/>
                     
                     <p data-tip="We need to know the initial water level in the field to base the calculations on">Water level(in cms)</p>
-                    <InputText name="HP" type="number" onChange={(e) => this.handleChange(e, 'HP')}/>
+                    <InputText name="HP" type="number" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')}/>
                     
                     <p data-tip="Quantity in liters">Amount irrigated today</p>
-                    <InputText name="IR_rec" type="number" onChange={ (e) => this.handleChange(e, 'IR_rec')}/>
+                    <InputText name="IR_rec" type="number" value={this.state.formdata.IR_rec} onChange={ (e) => this.handleChange(e, 'IR_rec')}/>
                     
                     <p data-tip="Soil type based on grain size. Ranging from (0) fine sand to (5) solid clay.">Soil type</p>
-                    <SelectButton key="id" options={this.soil_options} onChange={(e) => this.handleChange(e, 'soiltype')}></SelectButton>
+                    <SelectButton key="id" options={this.soil_options} value={this.soil_options[this.state.formdata.soiltype].label} onChange={(e) => this.handleChange(e, 'soiltype')}></SelectButton>
+
+                    <p data-tip="Rice is the only type available now">Crop type</p>
+                    <InputText name="crop_type" value="Rice" type="string" readOnly="true"/>
                     
                     <p data-tip="When was the crop planted?">Plantation date</p>
                     <Calendar tabindex="0" onChange={(e) => this.handleChange(e, 'date_transplant')}></Calendar>
@@ -223,7 +237,10 @@ render(){
                     <Calendar tabindex="0" onChange={(e) => this.handleChange(e, 'date_irrigation')}></Calendar>
     
                     <br />
-                    <input type="submit" value="Submit" />
+                    <br />
+
+                    <input className="btn btn-info" value="Draw my field" onClick={this.startDrawing} />                
+                    <input className="btn btn-success" type="submit" value="Submit" />
                 </form>
                 <div id="desired-depth-chart"></div>
                 <div id="critical-depth-chart"></div>
