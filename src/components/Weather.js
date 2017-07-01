@@ -3,6 +3,7 @@ import Request from 'superagent';
 import ReactAnimatedWeather from 'react-animated-weather'
 import '../styles/Weather.css'
 import ReactDOM from 'react-dom'
+import NodeGeocoder from 'node-geocoder'
 
 const defaults = {
   		icon: 'CLEAR_DAY',
@@ -10,17 +11,39 @@ const defaults = {
   		size: 200,
   		animate: true
 		};
-
-export default class Weather extends Component {
-
+const iconBridge = {
+	'clear-day': 'CLEAR_DAY',
+	'clear-night': 'CLEAR_NIGHT',
+	'partly-cloudy-day': 'PARTLY_CLOUDY_DAY',
+	'partly-cloudy-night': 'PARTLY_CLOUDY_NIGHT',
+	'cloudy': 'CLOUDY',
+	'rain': 'RAIN',
+	'sleet': 'SLEET',
+	'snow': 'SNOW',
+	'wind': 'WIND',
+	'fog': 'FOG'
+};
+var options = {
+  provider: 'google',
+ 
+  // Optional depending on the providers 
+  httpAdapter: 'https', // Default 
+  apiKey: 'AIzaSyAKo7k6M3oKrYokVUchKVFcfFu6CPdLPas', // for Mapquest, OpenCage, Google Premier 
+  formatter: null         // 'gpx', 'string', ... 
+};
+ 
+var geocoder = NodeGeocoder(options);
+export default class Weather extends Component { 
 	
 constructor() {
 	super();
 
-	var realSolution="";
+	var iconResponse = "";
 	this.state = Object.assign({
 			latitude: null,
 			longitude: null,
+			city: null,
+			country: null,
 			currentWeather: {
 				temperature: null,
 				icon: "",
@@ -38,8 +61,25 @@ getPosition(position){
 		latitude: position.coords.latitude,
 		longitude: position.coords.longitude
 	});
+	
 	this.getCurrentWeather();
+	this.getCity();
 }
+
+getCity(){
+geocoder.reverse({lat:this.state.latitude, lon:this.state.longitude}).then( res =>
+	 this.setState({
+		 city: res[0].city,
+		 country: res[0].country
+	 })
+)
+
+
+//console.log(this.state.city);
+
+}
+
+
 
 getCurrentWeather(){
 	let baseUrl = 'https://api.darksky.net/forecast/60fbca80e3ea637d16165b32680026d7/';
@@ -55,25 +95,19 @@ getCurrentWeather(){
 				that.setState({
 					currentWeather: res.body.currently
 			});
-		
-		
-	if( that.state.currentWeather.icon ){
-		var iconResponse1 = that.state.currentWeather.icon.split('-')[0].toUpperCase();
-		var iconResponse2 = that.state.currentWeather.icon.split('-')[1].toUpperCase();
-		var iconResponseSolution = [];
-		iconResponseSolution.push(iconResponse1, iconResponse2);
-		that.iconResponseSolutionFinal = iconResponseSolution.join('_');
-			console.log(that.iconResponseSolutionFinal); 
-		that.setState({
+		console.log(res.body.currently);
+
+		that.iconResponse = iconBridge[that.state.currentWeather.icon];
+
+
+that.setState({
 			iconDefined: true
 		});
-	}
-
 	if (that.state.iconDefined) {
 	ReactDOM.render(
 		<ReactAnimatedWeather
 		  
-			icon={that.iconResponseSolutionFinal}
+			icon={that.iconResponse}
    		 
 			color={defaults.color}
    		 
@@ -89,11 +123,12 @@ getCurrentWeather(){
 }
 			
 render() {
-	const { latitude, longitude, currentWeather } = this.state;
+	const { latitude, longitude, currentWeather, city, country } = this.state;
   return (
     <div id = "weatherWidget" >
 		 <div id="summaryWeather">
 			<h2> {currentWeather.summary} </h2>
+			<h4> {city}, {country}</h4>
 		</div>
 		<div id="icon">
 			
