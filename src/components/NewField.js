@@ -9,6 +9,9 @@ import ReactiveWorldWind from './ReactiveWorldWind'
 import ReactTooltip from 'react-tooltip'
 import {Calendar} from 'primereact/components/calendar/Calendar'
 import {SelectButton} from 'primereact/components/selectbutton/SelectButton'
+import {Dialog} from 'primereact/components/dialog/Dialog';
+import { getUserId } from '../firebaseHelpers/auth'
+import { dataRef } from '../config/constants.js';
 
 export default class NewField extends Component {
 
@@ -26,9 +29,10 @@ constructor(){
             irrigation_today: 0,
             lat_shape: [],
             long_shape: [],
+            alt_shape: [],
             lat_center: 0,
             long_center: 0,
-            owner_id: "",
+            owner_id: getUserId(),
             IR_rec: 0,
             month_irrigation: 0,
             month_transplant: 0,
@@ -46,6 +50,7 @@ constructor(){
         },
         dataEntered: false,
         isEditable: false,
+        doneDrawing: false,
     });
     this.soil_options = [
             {
@@ -78,6 +83,8 @@ constructor(){
     this.handleChange = this.handleChange.bind(this);
     this.startDrawing = this.startDrawing.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearDrawing = this.clearDrawing.bind(this);
+    this.finishDrawing = this.finishDrawing.bind(this);
 }
 
 componentDidMount(){
@@ -93,21 +100,65 @@ makeArrayOf(value, length) {
 }
 
 handleChange(e, attribute){
-    if(attribute == "soiltype" || attribute == "date_transplant" || attribute == "date_irrigation")
-        console.log(e.value, attribute);
+    let formdata = this.state.formdata;
+    if(attribute == "soiltype"){
+        formdata[attribute] = e.value;
+    }
+    else if(attribute == "date_transplant"){
+        formdata.month_transplant = e.value.getMonth();
+        formdata.year_transplant = e.value.getFullYear();            
+    }
+    else if(attribute == "date_irrigation"){
+        formdata.month_irrigation = e.value.getMonth();
+        formdata.year_irrigation = e.value.getFullYear();            
+    }
     else
-        console.log(e.target.value, attribute);
+        formdata[attribute]=e.target.value;
     
+    this.setState({
+        formdata: formdata
+    });
+
 }
 
 handleSubmit(e) {
-    alert('A name was submitted: ' + this.state.value);
-    e.preventDefault();
+    let formdata = this.state.formdata;
+    formdata.lat_center = formdata.lat_shape[0];
+    formdata.long_center = formdata.long_shape[0];
+    formdata.irrigation_today = formdata.IR_rec; 
+    
+    let newPostKey = dataRef.push().key;
+    let updates = {};
+    updates[newPostKey] = formdata;
+    dataRef.update(updates);
+    this.props.history.push('/dashboard');
 }
 
 startDrawing(e){
     this.setState({
         isEditable: true
+    });
+}
+
+clearDrawing(){
+    let formdata = this.state.formdata;
+    formdata.lat_shape = [];
+    formdata.long_shape = [];
+    formdata.alt_shape = [];
+    this.setState({
+        formdata: formdata
+    });
+}
+
+finishDrawing(){
+    let formdata = this.state.formdata;
+    formdata.lat_shape.push(formdata.lat_shape[0]);
+    formdata.long_shape.push(formdata.long_shape[0]);
+    formdata.alt_shape.push(formdata.alt_shape[0]);
+    this.setState({
+        formdata: formdata,
+        doneDrawing: true, 
+        isEditable: false
     });
 }
 
@@ -204,8 +255,12 @@ render(){
         <div id="new-field">
             <ReactTooltip />
             <div id="input-ww">
-                <ReactiveWorldWind isDrawEnabled={this.state.isEditable} lat_shape={this.state.formdata.lat_shape} long_shape={this.state.formdata.long_shape}/>
+                <ReactiveWorldWind isDrawEnabled={this.state.isEditable} lat_shape={this.state.formdata.lat_shape} long_shape={this.state.formdata.long_shape} alt_shape={this.state.formdata.alt_shape}/>
             </div>
+            <Dialog header="How to plot your field" visible={this.state.dialogVisible} width="350px" modal={true}>
+                Start by plotting the first end point of your field and continue by clicking on the next end point, till you are reach the end. You do not need to reconnect the starting and the end point, our app will do that for you. Click 'Done drawing' to finish. You can hit 'Clear' to restart your drawing at any point.   
+            </Dialog>
+
             <div id="inputs">
                 <form id="new-form" onSubmit={this.handleSubmit}>
                     
@@ -216,7 +271,7 @@ render(){
                     <InputText name="area" type="number" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
 
                     <p data-tip="Height of dikes built around the farm, if there are none please enter 0">Dike Height (cms): </p> 
-                    <InputText name="dike_height" type="number" value={this.state.formdata.dike_height} onChange={(e) => this.handleChange(e, 'area')}/>
+                    <InputText name="dike_height" type="number" value={this.state.formdata.dike_height} onChange={(e) => this.handleChange(e, 'dike_height')}/>
                     
                     <p data-tip="We need to know the initial water level in the field to base the calculations on">Water level(in cms)</p>
                     <InputText name="HP" type="number" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')}/>
@@ -239,8 +294,17 @@ render(){
                     <br />
                     <br />
 
-                    <input className="btn btn-info" value="Draw my field" onClick={this.startDrawing} />                
-                    <input className="btn btn-success" type="submit" value="Submit" />
+                    { !this.state.isEditable 
+                                        ? <input className="btn btn-info" disabled={this.state.doneDrawing} value="Draw my field" onClick={this.startDrawing} /> 
+                                        :  !this.state.doneDrawing
+                                        ? <input className="btn btn-info" value="Finish Drawing" onClick={this.finishDrawing} /> : null }
+
+                    { this.state.isEditable && !this.state.doneDrawing ? <input className="btn btn-danger" value="Clear drawing" onClick={this.clearDrawing} /> : null }
+                   
+                    <br />
+                    <br />
+                    <input className="btn btn-success" disabled={!this.state.doneDrawing} onClick={this.handleSubmit} value="Submit" />
+
                 </form>
                 <div id="desired-depth-chart"></div>
                 <div id="critical-depth-chart"></div>

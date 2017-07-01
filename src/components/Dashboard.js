@@ -41,7 +41,7 @@ export default class Dashboard extends Component {
               </Col>
               <Col xs={12} sm={8} lg={6}>
                     <div id="globe-holder">
-                     <ReactiveWorldWind></ReactiveWorldWind>
+                     <ReactiveWorldWind isDrawEnabled="false" lat_shape={[]} long_shape={[]} alt_shape={[]}></ReactiveWorldWind>
                     </div>
                 </Col>
             <Col xs={12} sm={1} lg={1} lgOffset={10}>
