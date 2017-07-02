@@ -22,9 +22,9 @@ constructor(){
         formdata : {
             name: "",
             HP: 0,
-            soiltype: 0,
+            soil_type: 0,
             area: 0,
-            croptype: "rice",
+            crop_type: "rice",
             dike_height:0,
             lat_shape: [],
             long_shape: [],
@@ -46,11 +46,11 @@ constructor(){
             IR_list: this.makeArrayOf(0, 30),
             RF_list: this.makeArrayOf(0, 30),
             RO_list: this.makeArrayOf(0, 30),
-            HP_pre_list: this.makeArrayOf(0, 6),
-            ET_pre_list: this.makeArrayOf(0, 6),
-            RF_pre_list: this.makeArrayOf(0, 6),
-            DP_pre_list: this.makeArrayOf(0, 6), 
-            RO_pre_list: this.makeArrayOf(0, 6),
+            HP_pre_list: this.makeArrayOf(0, 5),
+            ET_pre_list: this.makeArrayOf(0, 5),
+            RF_pre_list: this.makeArrayOf(0, 5),
+            DP_pre_list: this.makeArrayOf(0, 5), 
+            RO_pre_list: this.makeArrayOf(0, 5),
             desired_depth_chart: this.makeArrayOf(7, 30),
             critical_depth_chart: this.makeArrayOf(3, 30),
         },
@@ -107,7 +107,7 @@ makeArrayOf(value, length) {
 
 handleChange(e, attribute){
     let formdata = this.state.formdata;
-    if(attribute == "soiltype"){
+    if(attribute == "soil_type"){
         formdata[attribute] = e.value;
     }
     else if(attribute == "date_transplant"){
@@ -132,7 +132,7 @@ handleSubmit(e) {
     let formdata = this.state.formdata;
     formdata.lat_center = formdata.lat_shape[0];
     formdata.long_center = formdata.long_shape[0]; 
-    formdata.HP = formdata.HP * 0.01 * formdata.area * 1000;
+//    formdata.HP = formdata.HP * 0.01 * formdata.area * 1000;
     formdata.HP_list[29] = formdata.HP;
     let newPostKey = dataRef.push().key;
     let updates = {};
@@ -284,7 +284,7 @@ render(){
                     <InputText name="HP" type="number" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')}/>
                     
                     <p data-tip="Soil type based on grain size. Ranging from (0) fine sand to (5) solid clay.">Soil type</p>
-                    <SelectButton key="id" options={this.soil_options} value={this.soil_options[this.state.formdata.soiltype].label} onChange={(e) => this.handleChange(e, 'soiltype')}></SelectButton>
+                    <SelectButton key="id" options={this.soil_options} value={this.soil_options[this.state.formdata.soil_type].label} onChange={(e) => this.handleChange(e, 'soil_type')}></SelectButton>
 
                     <p data-tip="Rice is the only type available now">Crop type</p>
                     <InputText name="crop_type" value="Rice" type="string" readOnly="true"/>

@@ -22,6 +22,8 @@ export default class ReactiveWorldWind extends Component {
 	    this.setState({
 		    currentLatitude: position.coords.latitude,
 		    currentLongitude: position.coords.longitude
+        }, ()=> {
+            this.wwd.goTo(new WorldWind.Position(this.state.currentLatitude, this.state.currentLongitude, 5000))    
         });
     }
 
@@ -38,8 +40,6 @@ export default class ReactiveWorldWind extends Component {
         this.wwd.addLayer(new WorldWind.ViewControlsLayer(this.wwd));
         this.coords = new WorldWind.CoordinatesDisplayLayer(this.wwd);
         window.navigator.geolocation.getCurrentPosition(this.getPosition);
-        this.wwd.goTo(new WorldWind.Location(this.state.currentLatitude, this.state.currentLongitude));
-        console.log(this.state.currentLatitude,this.state.currentLongitude);
         //this.wwd.addLayer(this.coords);
     }
 
