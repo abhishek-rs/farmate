@@ -81,7 +81,7 @@ export default class ReactiveWorldWind extends Component {
             pathPositions.push(position);
         }
         var paths = new WorldWind.Path(pathPositions, null);
-        paths.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+        paths.altitudeMode = WorldWind.CLAMP_TO_GROUND;
         paths.followTerrain = true;
         paths.extrude = true;
         paths.useSurfaceShapeFor2D = true; 
