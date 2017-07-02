@@ -1,8 +1,8 @@
 #dashboard{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
     width: 100%;
     text-align: center;
     
@@ -14,26 +14,33 @@
 
     #globe-holder{
         width: 100%;
+        position: fixed;
         align-content: center;
         justify-content: center;
-        height: 100vh;
+        height: 130vh;
         display: flex;
         align-self: center;
     }
-    #weather-holder{
-        width: 80%;
-        align-content: center;
-        justify-content: center;
-        height: 60vh;
-        display: flex;
-        align-self: center;
-        padding: 0px;
-        box-shadow: 10px 10px 5px black;
-       background: #16222A;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #3A6073, #16222A);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #3A6073, #16222A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+    #right-panel{
+        align-self: right;
+        float: right;
+        margin-right: 20px;
+        z-index: 100;
+        width: 30%;
+        height: 80vh;
+        padding: 20px;
+        background: rgba(6, 13, 79, 0.78);
+    }
 
+    #left-panel{
+        z-index: 100;
+        width: 30%;
+        height: 80vh;
+        padding: 10px;
+        margin-left: 20px;
+        align-self: left;
+        background: rgba(6, 13, 79, 0.78);
     }
    
 

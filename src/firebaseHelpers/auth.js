@@ -17,6 +17,10 @@ export function resetPassword (email) {
   return firebaseAuth().sendPasswordResetEmail(email)
 }
 
+export function getUserId(){
+  return firebaseAuth().currentUser.uid;
+}
+
 export function saveUser (user) {
   return usersRef.child(`${user.uid}/info`)
     .set({
