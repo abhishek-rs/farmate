@@ -27,7 +27,7 @@ export default class Dashboard extends Component {
   
     render () {
         const { items } = this.state;
-        items.map( i => this.users.push(i.crop_type + '\n'));
+        items.map( i => this.users.push(i.name + '\n'));
         return (
             <div id="dashboard">
               <p className="intro">

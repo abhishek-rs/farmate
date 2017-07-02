@@ -26,7 +26,6 @@ constructor(){
             area: 0,
             croptype: "rice",
             dike_height:0,
-            irrigation_today: 0,
             lat_shape: [],
             long_shape: [],
             alt_shape: [],
@@ -34,6 +33,8 @@ constructor(){
             long_center: 0,
             owner_id: getUserId(),
             IR_rec: 0,
+            day_irrigation: 0,
+            day_transplant: 0,
             month_irrigation: 0,
             month_transplant: 0,
             year_irrigation: 0,
@@ -45,6 +46,11 @@ constructor(){
             IR_list: this.makeArrayOf(0, 30),
             RF_list: this.makeArrayOf(0, 30),
             RO_list: this.makeArrayOf(0, 30),
+            HP_pre_list: this.makeArrayOf(0, 6),
+            ET_pre_list: this.makeArrayOf(0, 6),
+            RF_pre_list: this.makeArrayOf(0, 6),
+            DP_pre_list: this.makeArrayOf(0, 6), 
+            RO_pre_list: this.makeArrayOf(0, 6),
             desired_depth_chart: this.makeArrayOf(7, 30),
             critical_depth_chart: this.makeArrayOf(3, 30),
         },
@@ -55,7 +61,7 @@ constructor(){
     this.soil_options = [
             {
              id:0, 
-             label:'Fine sand',
+             label:'Clay',
              value:'0',
             },
             {
@@ -75,7 +81,7 @@ constructor(){
             },
             {
              id:4, 
-             label:'Clay',
+             label:'Fine Sand',
              value:'4',
             },
     ];
@@ -105,10 +111,12 @@ handleChange(e, attribute){
         formdata[attribute] = e.value;
     }
     else if(attribute == "date_transplant"){
+        formdata.day_transplant = e.value.getDate();
         formdata.month_transplant = e.value.getMonth();
         formdata.year_transplant = e.value.getFullYear();            
     }
     else if(attribute == "date_irrigation"){
+        formdata.day_irrigation = e.value.getDate();
         formdata.month_irrigation = e.value.getMonth();
         formdata.year_irrigation = e.value.getFullYear();            
     }
@@ -118,15 +126,14 @@ handleChange(e, attribute){
     this.setState({
         formdata: formdata
     });
-
 }
 
 handleSubmit(e) {
     let formdata = this.state.formdata;
     formdata.lat_center = formdata.lat_shape[0];
-    formdata.long_center = formdata.long_shape[0];
-    formdata.irrigation_today = formdata.IR_rec; 
-    
+    formdata.long_center = formdata.long_shape[0]; 
+    formdata.HP = formdata.HP * 0.01 * formdata.area * 1000;
+    formdata.HP_list[29] = formdata.HP;
     let newPostKey = dataRef.push().key;
     let updates = {};
     updates[newPostKey] = formdata;
@@ -267,7 +274,7 @@ render(){
                     <p data-tip="Naming your farm will make it easy to identify later">Name of field</p>
                     <InputText value={this.state.formdata.name} name="name" onChange={(e) => this.handleChange(e, 'name')}/>
                     
-                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area</p> 
+                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in sq. mts)</p> 
                     <InputText name="area" type="number" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
 
                     <p data-tip="Height of dikes built around the farm, if there are none please enter 0">Dike Height (cms): </p> 
@@ -275,9 +282,6 @@ render(){
                     
                     <p data-tip="We need to know the initial water level in the field to base the calculations on">Water level(in cms)</p>
                     <InputText name="HP" type="number" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')}/>
-                    
-                    <p data-tip="Quantity in liters">Amount irrigated today</p>
-                    <InputText name="IR_rec" type="number" value={this.state.formdata.IR_rec} onChange={ (e) => this.handleChange(e, 'IR_rec')}/>
                     
                     <p data-tip="Soil type based on grain size. Ranging from (0) fine sand to (5) solid clay.">Soil type</p>
                     <SelectButton key="id" options={this.soil_options} value={this.soil_options[this.state.formdata.soiltype].label} onChange={(e) => this.handleChange(e, 'soiltype')}></SelectButton>
