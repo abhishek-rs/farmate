@@ -1,11 +1,10 @@
-#ww {
-    border: 2px solid black;
-    height: 90%;
-    width: 80%;
+#ww, #dww {
+    height: 100%;
+    width: 100%;
     align-content: center;
     align-self: center;
 
-    #canvasOne{
+    #canvasOne, #canvasTwo{
         height: 100%;
         width: 100%;
     }
