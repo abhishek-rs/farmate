@@ -5,6 +5,7 @@ import Weather from './Weather.js';
 import '../styles/Dashboard.css';
 import {Row, Col} from 'react-bootstrap';
 
+
 export default class Dashboard extends Component {
     users=[];
   
@@ -20,14 +21,14 @@ export default class Dashboard extends Component {
             this.items=[];
             this.items.push(dataSnapshot.val());
             this.setState({
-                items: this.items
+             items: this.items
             });
-        }.bind(this));
+      }.bind(this));
     }
   
     render () {
         const { items } = this.state;
-        items.map( i => this.users.push(i.name + '\n'));
+        items.map( i => this.users.push(i.name+ '\n'));
         return (
             <div id="dashboard">
                 <div id="left-panel">
@@ -39,8 +40,8 @@ export default class Dashboard extends Component {
                 <div id="right-panel">
                     <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
                 </div>
-        
             </div> 
+               
         )
     }
 }

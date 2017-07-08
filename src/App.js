@@ -95,6 +95,7 @@ export default class App extends Component {
                 <PrivateRoute authed={this.state.authed} path='/farmate/weather' component={Weather} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/newfield' component={NewField} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/fieldashboard' component={FieldDashboard} />
+               
                 <Route render={() => <Redirect to='/farmate/dashboard'/>}/>
               </Switch>
             </div>
