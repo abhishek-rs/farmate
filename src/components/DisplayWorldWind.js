@@ -8,38 +8,59 @@ export default class DisplayWorldWind extends Component {
     constructor(props){
         super(props);
         this.state = Object.assign({
-            currentLatitude: null,
-            currentLongitude: null,
             field_ids: [],
-            highlightField: props.selectedField,
+            fieldNames: [],
+            fieldSnapshot: props.fieldSnapshot,
+            highlightedPolygon: {},
             fields: [],
-        })
+            highlightedField: props.highlightedField,
+        });
         this.getPosition = this.getPosition.bind(this);
         this.reRenderFields = this.reRenderFields.bind(this);
         this.getFields = this.getFields.bind(this);
+        this.handlePick = this.handlePick.bind(this);
     }
 
     getPosition(position){
-	    this.setState({
-		    currentLatitude: position.coords.latitude,
-		    currentLongitude: position.coords.longitude
-        }, ()=> {
-            this.wwd.goTo(new WorldWind.Position(this.state.currentLatitude, this.state.currentLongitude, 5000))    
-        });
+            this.wwd.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 5000))    
     }
 
     componentWillReceiveProps(nextProps){
-    /*    this.setState({
-            
-    }, () => this.reRenderFields());
-    */
+        this.setState({
+            fieldSnapshot: nextProps.fieldSnapshot,
+            highlightedField: nextProps.highlightedField,
+        }, () => {
+            this.getFields(this.state.fieldSnapshot);
+            this.reRenderFields();
+        })
+    }
+
+    handlePick(e){
+        let x = e.clientX,
+            y = e.clientY;
+
+        let pickList = this.wwd.pick(this.wwd.canvasCoordinates(x, y));
+        if(pickList.objects.length > 1){
+            let pickedField = pickList.objects[0].userObject;
+            if(this.state.highlightedPolygon !== {}){
+                let polygon = this.state.highlightedPolygon;
+                polygon.highlighted = false;
+                this.setState({
+                    highlightedPolygon : polygon
+                });
+            } 
+            pickedField.highlighted = true;
+        
+            this.setState({
+                highlightedField: pickedField.userProperties.id,
+                highlightedPolygon: pickedField
+            });
+            this.props.updateSelection(pickedField.userProperties.id);
+        }
     }
 
     componentWillMount(){
-        dataRef.once('value').then(
-            (snapshot) => 
-                    this.getFields(snapshot)
-        );
+       
     }
 
     reRenderFields(){
@@ -51,7 +72,8 @@ export default class DisplayWorldWind extends Component {
                 let polygon = new WorldWind.Polygon(f, null);
                 polygon.altitudeMode = WorldWind.ABSOLUTE;
                 polygon.extrude = true; // extrude the polygon edges to the ground
-
+                polygon.displayName = this.state.fieldNames[i];
+                polygon.userProperties = {'id': this.state.field_ids[i]};
                 let polygonAttributes = new WorldWind.ShapeAttributes(null);
                 polygonAttributes.drawInterior = true;
                 polygonAttributes.drawOutline = true;
@@ -61,14 +83,18 @@ export default class DisplayWorldWind extends Component {
                 polygonAttributes.applyLighting = true;
                 polygon.attributes = polygonAttributes;
                 
-                if(that.state.highlightField == that.state.field_ids[i]){
-                    polygon.highlighted = true;
-                }
                 // Create and assign the polygon's highlight attributes.
                 let highlightAttributes = new WorldWind.ShapeAttributes(polygonAttributes);
                 highlightAttributes.outlineColor = WorldWind.Color.RED;
                 highlightAttributes.interiorColor = new WorldWind.Color(1, 1, 1, 0.5);
                 polygon.highlightAttributes = highlightAttributes;
+                
+                if(that.state.highlightedField == polygon.userProperties.id){
+                    polygon.highlighted = true;
+                    this.setState({
+                        highlightedPolygon: polygon
+                    });
+                }
                 // Add the polygon to the layer and the layer to the World Window's layer list.
                 that.fieldsLayer.addRenderable(polygon);
         });        
@@ -76,6 +102,7 @@ export default class DisplayWorldWind extends Component {
 
     getFields(snapshot){
         let fields = Object.values(snapshot.val());
+        let fieldNames = [];
         let ids = Object.keys(snapshot.val());
         let allFieldBoundaries = [];
         fields.map(
@@ -89,10 +116,12 @@ export default class DisplayWorldWind extends Component {
                     fieldBoundaries.push(position);
                 }
                 allFieldBoundaries.push(fieldBoundaries);
+                fieldNames.push(f.name);
         });
         this.setState({
             field_ids: ids,
-            fields: allFieldBoundaries
+            fields: allFieldBoundaries,
+            fieldNames: fieldNames
         }, ()=> this.reRenderFields());
         
     }
@@ -101,8 +130,8 @@ export default class DisplayWorldWind extends Component {
         this.wwd = new WorldWind.WorldWindow("canvasTwo");
         this.wwd.addLayer(new WorldWind.BMNGOneImageLayer());
         this.wwd.addLayer(new WorldWind.BingAerialWithLabelsLayer());
-    //    var clickRecognizer= new WorldWind.ClickRecognizer(this.wwd, this.handlePick);
-    //    var tapRecognizer = new WorldWind.TapRecognizer(this.wwd, this.handlePick);
+        var clickRecognizer= new WorldWind.ClickRecognizer(this.wwd, this.handlePick);
+        var tapRecognizer = new WorldWind.TapRecognizer(this.wwd, this.handlePick);
         this.wwd.addLayer(new WorldWind.CompassLayer());
         this.fieldsLayer = new WorldWind.RenderableLayer();
         this.fieldsLayer.displayName = "Fields";
