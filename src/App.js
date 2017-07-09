@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard'
 import Weather from './components/Weather'
 import NewField from './components/NewField'
 import { logout } from './firebaseHelpers/auth'
+//import { FontAwesome } from 'react-fontawesome';
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
   return (
@@ -58,7 +59,13 @@ export default class App extends Component {
     this.removeListener()
   }
   render() {
-    return this.state.loading === true ? <h1>Loading</h1> : (
+    return this.state.loading === true 
+          ? <div id="loading">
+            <i className="fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>
+            <br />
+            <span>The world is getting ready for you...</span>
+          </div> 
+          : (
       <BrowserRouter>
         <div>
           <nav className="navbar navbar-default navbar-static-top">

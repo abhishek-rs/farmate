@@ -9,21 +9,23 @@ export default class CurrentFieldDisplay extends Component{
         super(props);
         this.state = Object.assign({
             fieldSnapshot: props.fieldSnapshot,
-            currentField: props.selectedField,
+            currentField: props.highlightedField,
             field: {},
-            fieldChosen: false
+            fieldChosen: false,
+            chartLoaded: false
         });
         this.renderChart = this.renderChart.bind(this);
         this.changeField = this.changeField.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({
-            fieldSnapshot: nextProps.fieldSnapshot,
-            currentField: nextProps.highlightedField,
-        }, () => {
-            this.changeField(this.state.fieldSnapshot);
-        })
+        if(nextProps.highlightedField !== this.state.currentField){
+            this.setState({
+                currentField: nextProps.highlightedField,
+            }, () => {
+                this.changeField(this.state.fieldSnapshot);
+            })
+        }
     }
 
     renderChart(doc){
@@ -38,7 +40,6 @@ export default class CurrentFieldDisplay extends Component{
         chartData.push(IRdata);
     });
      
-    console.log(chartData);
     var width = 700;
     var height = 300;
     var margins = {left: 100, right: 100, top: 50, bottom: 50};
@@ -93,9 +94,23 @@ export default class CurrentFieldDisplay extends Component{
            field: fields[chosenField],
            fieldChosen: fields[chosenField] === undefined ? false : true
         }, () => {
-            if(this.state.fieldChosen)
-                this.renderChart('chart')
+            if(this.state.fieldChosen){
+                this.setState({
+                    chartLoaded: true
+                }, () => this.renderChart('chart'));
+            }
         });
+    }
+
+    componentWillMount(){
+        this.changeField(this.state.fieldSnapshot);
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        if(nextProps.highlightedField !== this.state.currentField){
+            return true;
+        }
+        return false;
     }
 
     render(){
@@ -104,6 +119,12 @@ export default class CurrentFieldDisplay extends Component{
             <div>
             <div>{name}</div>
             <div id="chart"></div>
+                { !this.state.chartLoaded ? 
+                   <div>
+                   <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
+                    </div>    
+                        : null}
             </div>
         );
     }

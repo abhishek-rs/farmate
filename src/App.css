@@ -1,6 +1,19 @@
 .App {
   text-align: center; }
 
+#loading {
+  position: fixed;
+  top: 50vh;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center; }
+  #loading span {
+    color: white;
+    font-size: 20px;
+    padding: 10px; }
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px; }

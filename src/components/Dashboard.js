@@ -14,7 +14,10 @@ export default class Dashboard extends Component {
             items: [],
             fieldSnapshot: {},
             highlightedField: null,
+            dataDisplayed: false,
         });
+        this.changeSelection = this.changeSelection.bind(this);
+        this.handleCloseClick = this.handleCloseClick.bind(this);
     }
 
     componentWillMount(){
@@ -32,21 +35,31 @@ export default class Dashboard extends Component {
             highlightedField: fieldId
         });
     }
+
+    handleCloseClick(e){
+        this.setState({
+            highlightedField: null,
+            dataDisplayed:false
+        });
+    }
   
     render () {
+        let currentFieldPanel = this.state.highlightedField ? 
+                               <div id="right-panel"> 
+                                    <CurrentFieldDisplay fieldSnapshot={this.state.fieldSnapshot} highlightedField={this.state.highlightedField}/> 
+                                <a onClick={this.handleCloseClick} className="btn btn-warning">Close</a>
+                                </div>
+                                : null;
         return (
             <div id="dashboard">
                 <div id="left-panel">
                      <Weather></Weather>
+                     <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
                 </div>
                 <div id="globe-holder">
                      <DisplayWorldWind fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}></DisplayWorldWind>
                 </div>
-                <div id="right-panel">
-                    <CurrentFieldDisplay fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}/>
-                    <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
-                </div>
-        
+                {currentFieldPanel}
             </div> 
         )
     }
