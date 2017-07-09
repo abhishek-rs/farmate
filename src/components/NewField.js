@@ -1,8 +1,7 @@
 import React, { Component } from 'react' 
 import ReactDOM from 'react-dom'
 import '../styles/NewField.css'
-import {Chart} from 'react-d3-core'
-import {LineChart} from 'react-d3-basic'
+
 import {InputText} from 'primereact/components/inputtext/InputText'
 import {Slider} from 'primereact/components/slider/Slider';
 import ReactiveWorldWind from './ReactiveWorldWind'
@@ -57,6 +56,7 @@ constructor(){
         dataEntered: false,
         isEditable: false,
         doneDrawing: false,
+        dialogVisible: false
     });
     this.soil_options = [
             {
@@ -85,10 +85,11 @@ constructor(){
              value:'4',
             },
     ];
-    this.renderChart = this.renderChart.bind(this);
+    
     this.handleChange = this.handleChange.bind(this);
     this.startDrawing = this.startDrawing.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onDialogHide = this.onDialogHide.bind(this);
     this.clearDrawing = this.clearDrawing.bind(this);
     this.finishDrawing = this.finishDrawing.bind(this);
 }
@@ -132,7 +133,6 @@ handleSubmit(e) {
     let formdata = this.state.formdata;
     formdata.lat_center = formdata.lat_shape[0];
     formdata.long_center = formdata.long_shape[0]; 
-//    formdata.HP = formdata.HP * 0.01 * formdata.area * 1000;
     formdata.HP_list[29] = formdata.HP;
     let newPostKey = dataRef.push().key;
     let updates = {};
@@ -143,7 +143,14 @@ handleSubmit(e) {
 
 startDrawing(e){
     this.setState({
-        isEditable: true
+        isEditable: true,
+        dialogVisible: true
+    });
+}
+
+onDialogHide(e){
+    this.setState({
+        dialogVisible: false
     });
 }
 
@@ -169,93 +176,7 @@ finishDrawing(){
     });
 }
 
-renderChart(chartData, doc){
-    var adaptedChartData = [
- /*   {
-        "name": "Darron Weissnat IV",
-        "BMI": 20.72,
-        "age": 39,
-        "birthday": "2005-01-03T00:00:00.000Z",
-        "city": "East Russel",
-        "married": false,
-        "index": 0
-    },
-    {
-        "name": "Pablo Ondricka",
-        "BMI": 19.32,
-        "age": 38,
-        "birthday": "1974-05-13T00:00:00.000Z",
-        "city": "Lake Edytheville",
-        "married": false,
-        "index": 1
-    },
-    {
-        "name": "Mr. Stella Kiehn Jr.",
-        "BMI": 16.8,
-        "age": 34,
-        "birthday": "2003-07-25T00:00:00.000Z",
-        "city": "Lake Veronicaburgh",
-        "married": false,
-        "index": 2
-    },
-    {
-        "name": "Lavon Hilll I",
-        "BMI": 20.57,
-        "age": 12,
-        "birthday": "1994-10-26T00:00:00.000Z",
-        "city": "Annatown",
-        "married": true,
-        "index": 3
-    },
-    {
-        "name": "Clovis Pagac",
-        "BMI": 24.28,
-        "age": 26,
-        "birthday": "1995-11-10T00:00:00.000Z",
-        "city": "South Eldredtown",
-        "married": false,
-        "index": 4
-    }*/
-    ]; 
 
-    var width = 700;
-    var height = 300;
-    var margins = {left: 100, right: 100, top: 50, bottom: 50};
-    var title = "User sample";
-    var chartSeries = [
-      {
-        field: 'Minimum',
-        name: 'BMI',
-        color: '#445555',
-        style: {
-          "strokeWidth": 2,
-          "strokeOpacity": .2,
-          "fillOpacity": .2
-        }
-      }
-    ];
-    
-    var x = function(d) {
-      return d.index;
-    };
-
-ReactDOM.render(
-    
-      <LineChart
-        showXGrid= {true}
-        showYGrid= {true}
-        margins= {margins}
-        title={title}
-        data={chartData}
-        width={width}
-        height={height}
-        chartSeries={chartSeries}
-        x={x}
-      />
-    
-, document.getElementById(doc));
-
-}
 
 render(){
     return (
@@ -264,7 +185,7 @@ render(){
             <div id="input-ww">
                 <ReactiveWorldWind isDrawEnabled={this.state.isEditable} lat_shape={this.state.formdata.lat_shape} long_shape={this.state.formdata.long_shape} alt_shape={this.state.formdata.alt_shape}/>
             </div>
-            <Dialog header="How to plot your field" visible={this.state.dialogVisible} width="350px" modal={true}>
+            <Dialog header="How to plot your field" onHide={this.onDialogHide} visible={this.state.dialogVisible} width="350px" modal={true}>
                 Start by plotting the first end point of your field and continue by clicking on the next end point, till you are reach the end. You do not need to reconnect the starting and the end point, our app will do that for you. Click 'Done drawing' to finish. You can hit 'Clear' to restart your drawing at any point.   
             </Dialog>
 
