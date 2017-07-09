@@ -70,7 +70,7 @@ export default class DisplayWorldWind extends Component {
         fieldsToDisplay.map(
             (f, i) => {
                 let polygon = new WorldWind.Polygon(f, null);
-                polygon.altitudeMode = WorldWind.ABSOLUTE;
+                polygon.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
                 polygon.extrude = true; // extrude the polygon edges to the ground
                 polygon.displayName = this.state.fieldNames[i];
                 polygon.userProperties = {'id': this.state.field_ids[i]};
@@ -112,7 +112,7 @@ export default class DisplayWorldWind extends Component {
                 let longs = f.long_shape;
                 let alts = f.alt_shape;
                 for( let i=0; i < lats.length - 1; i++){
-                    let position = new WorldWind.Position(lats[i], longs[i], alts[i]);
+                    let position = new WorldWind.Position(lats[i], longs[i], 20);
                     fieldBoundaries.push(position);
                 }
                 allFieldBoundaries.push(fieldBoundaries);
