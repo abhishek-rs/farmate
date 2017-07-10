@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://abhishek-rs.github.io/farmate/",
+  "engines": {
+    "node": "7.4.0",
+    "npm": "4.5.0"
+  },
   "devDependencies": {
     "gh-pages": "^1.0.0",
     "node-sass-chokidar": "0.0.3",
