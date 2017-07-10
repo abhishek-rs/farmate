@@ -12,7 +12,7 @@
         color: white;
     }
 
-    #globe-holder{
+    #globe-holder{  
         width: 100%;
         position: fixed;
         align-content: center;
@@ -39,8 +39,17 @@
         height: 80vh;
         padding: 10px;
         margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        justify-content: center;
         align-self: left;
         background: rgba(6, 13, 79, 0.78);
+
+        a{
+            align-self: center;
+            margin-bottom: 20px;
+        }
     }
    
 

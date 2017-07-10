@@ -26,3 +26,14 @@ margin-bottom: 5px;
 #summaryWeather{
 margin-bottom: 5px;
 }
+
+#weather-loader{
+    position: relative;
+    height: 80%;
+    width: 100%;
+
+    span{
+        color: white;
+        padding: 10px;
+    }
+}

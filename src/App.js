@@ -61,7 +61,7 @@ export default class App extends Component {
   render() {
     return this.state.loading === true 
           ? <div id="loading">
-            <i className="fa fa-circle-o-notch fa-spin fa-5x fa-fw"></i>
+            <img src="./images/nasa_spinner.gif" />
             <br />
             <span>The world is getting ready for you...</span>
           </div> 

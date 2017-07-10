@@ -54,6 +54,7 @@ export default class Dashboard extends Component {
             <div id="dashboard">
                 <div id="left-panel">
                      <Weather></Weather>
+                     <br />
                      <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
                 </div>
                 <div id="globe-holder">
