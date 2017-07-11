@@ -1,18 +1,65 @@
 #new-field{
-    height: 100vh;
-    width: 100%;
     display: flex;
     flex-direction: row;
-    align-content: center;
-    justify-content: center;
+    justify-content: space-between;
+    align-content: space-between;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
 
     #input-ww{
-        width: 60%;
+        width: 100%;
+        position: relative;
+        align-content: center;
+        justify-content: center;
+        height: 130vh;
+        display: flex;
+        align-self: center;
     }
 
     #inputs{
-        width: 40%;
+        align-self: right;
+        float: right;
+        margin-right: 20px;
+        z-index: 100;
+        width: 30%;
+        height: 100vh;
         padding: 20px;
+        background: rgba(6, 13, 79, 0.78);
+        position: absolute;
+        right: 20px;
+        margin-bottom: 10px;
     }
-    
+    input {
+    width: 70%;
+    padding: 5px 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    text-align: center;
+        
+        #btn-info {
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    width: 50%;
+    }  
+}
+   p {
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 1.0px;
+   }
+   
+  #ui-selectbutton {
+    width: 70%;
+    padding: 5px 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    text-align: center;
+  } 
+
 }

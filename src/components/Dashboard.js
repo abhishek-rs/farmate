@@ -56,25 +56,13 @@ export default class Dashboard extends Component {
             <div id="dashboard">
                 <div id="left-panel">
                      <Weather></Weather>
-<<<<<<< HEAD
-                     <FieldDashboard fieldSnapshot={this.state.fieldSnapshot}> </FieldDashboard>
-=======
                      <br />
                      <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
->>>>>>> master
                 </div>
                 <div id="globe-holder">
                      <DisplayWorldWind fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}></DisplayWorldWind>
                 </div>
-<<<<<<< HEAD
-                <div id="right-panel">
-                    <CurrentFieldDisplay fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}/>
-                    <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
-                </div>
-                <div id="fieldHell"> </div>
-=======
                 {currentFieldPanel}
->>>>>>> master
             </div> 
                
         )
