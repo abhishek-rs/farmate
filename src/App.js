@@ -12,6 +12,7 @@ import Weather from './components/Weather'
 import NewField from './components/NewField'
 import FieldDashboard from './components/FieldDashboard'
 import { logout } from './firebaseHelpers/auth'
+//import { FontAwesome } from 'react-fontawesome';
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
   return (
@@ -59,7 +60,13 @@ export default class App extends Component {
     this.removeListener()
   }
   render() {
-    return this.state.loading === true ? <h1>Loading</h1> : (
+    return this.state.loading === true 
+          ? <div id="loading">
+            <img src="./images/nasa_spinner.gif" />
+            <br />
+            <span>The world is getting ready for you...</span>
+          </div> 
+          : (
       <BrowserRouter>
         <div>
           <nav className="navbar navbar-default navbar-static-top">

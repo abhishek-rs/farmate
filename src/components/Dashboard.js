@@ -16,7 +16,10 @@ export default class Dashboard extends Component {
             items: [],
             fieldSnapshot: {},
             highlightedField: null,
+            dataDisplayed: false,
         });
+        this.changeSelection = this.changeSelection.bind(this);
+        this.handleCloseClick = this.handleCloseClick.bind(this);
     }
 
     componentWillMount(){
@@ -34,22 +37,44 @@ export default class Dashboard extends Component {
             highlightedField: fieldId
         });
     }
+
+    handleCloseClick(e){
+        this.setState({
+            highlightedField: null,
+            dataDisplayed:false
+        });
+    }
   
     render () {
+        let currentFieldPanel = this.state.highlightedField ? 
+                               <div id="right-panel"> 
+                                    <CurrentFieldDisplay fieldSnapshot={this.state.fieldSnapshot} highlightedField={this.state.highlightedField}/> 
+                                <a onClick={this.handleCloseClick} className="btn btn-warning">Close</a>
+                                </div>
+                                : null;
         return (
             <div id="dashboard">
                 <div id="left-panel">
                      <Weather></Weather>
+<<<<<<< HEAD
                      <FieldDashboard fieldSnapshot={this.state.fieldSnapshot}> </FieldDashboard>
+=======
+                     <br />
+                     <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
+>>>>>>> master
                 </div>
                 <div id="globe-holder">
                      <DisplayWorldWind fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}></DisplayWorldWind>
                 </div>
+<<<<<<< HEAD
                 <div id="right-panel">
                     <CurrentFieldDisplay fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}/>
                     <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
                 </div>
                 <div id="fieldHell"> </div>
+=======
+                {currentFieldPanel}
+>>>>>>> master
             </div> 
                
         )

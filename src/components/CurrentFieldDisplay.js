@@ -9,49 +9,71 @@ export default class CurrentFieldDisplay extends Component{
         super(props);
         this.state = Object.assign({
             fieldSnapshot: props.fieldSnapshot,
-            currentField: props.selectedField,
+            currentField: props.highlightedField,
             field: {},
-            fieldChosen: false
+            fieldChosen: false,
+            chartLoaded: false
         });
         this.renderChart = this.renderChart.bind(this);
         this.changeField = this.changeField.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
-        this.setState({
-            fieldSnapshot: nextProps.fieldSnapshot,
-            currentField: nextProps.highlightedField,
-        }, () => {
-            this.changeField(this.state.fieldSnapshot);
-        })
+        if(nextProps.highlightedField !== this.state.currentField){
+            this.setState({
+                currentField: nextProps.highlightedField,
+            }, () => {
+                this.changeField(this.state.fieldSnapshot, this.state.currentField);
+            })
+        }
     }
 
     renderChart(doc){
     let field = this.state.field;
     let chartData = [];
-
-    field.IR_list.map( (f,i) => {
-        let IRdata = Object.assign({
-            IR: parseInt(f),
-            index: i
+    console.log(field);
+    let HP = field.HP_list;
+    HP = HP.concat(field.HP_pre_list);
+    let RF = field.RF_list;
+    RF = RF.concat(field.RF_pre_list);
+    let currentDate = new Date();
+    
+    console.log(HP);
+    HP.map( (f,i) => {
+        let HP_RF_data = Object.assign({
+            HP: parseFloat(f),
+            RF: parseFloat(RF[i]),
+            index: currentDate.getDate() - (30 - i)
             });
-        chartData.push(IRdata);
+        chartData.push(HP_RF_data);
     });
      
-    console.log(chartData);
-    var width = 700;
-    var height = 300;
-    var margins = {left: 100, right: 100, top: 50, bottom: 50};
+    var width = 300;
+    var height = 200;
+    var margins = {left: 20, right: 20, top: 10, bottom: 30};
     var title = "Irrigation levels";
-    var chartSeries = [
+    var chartSeries1 = [
       {
-        field: 'IR',
-        name: 'IR',
+        field: 'HP',
+        name: 'HP',
         color: '#fff',
         style: {
-          "strokeWidth": 2,
-          "strokeOpacity": .2,
-          "fillOpacity": .2
+          "strokeWidth": 4,
+          "strokeOpacity": .8,
+          "fillOpacity": .8
+        }
+      }
+    ];
+
+    var chartSeries2 = [
+      {
+        field: 'RF',
+        name: 'RF',
+        color: '#fff',
+        style: {
+          "strokeWidth": 4,
+          "strokeOpacity": .8,
+          "fillOpacity": .8
         }
       }
     ];
@@ -61,30 +83,42 @@ export default class CurrentFieldDisplay extends Component{
     }.bind(this);
 
     ReactDOM.render(
-    
+    <div>
       <LineChart
         showXGrid= {true}
-        showYGrid= {true}
+        showYGrid= {false}
         margins= {margins}
         title={title}
         data={chartData}
         width={width}
         height={height}
-        chartSeries={chartSeries}
+        chartSeries={chartSeries1}
         x={x}
       />
-    
+
+      <LineChart
+        showXGrid= {true}
+        showYGrid= {false}
+        margins= {margins}
+        title={title}
+        data={chartData}
+        width={width}
+        height={height}
+        chartSeries={chartSeries2}
+        x={x}
+      />
+    </div>
     , document.getElementById(doc));
 
     }
 
-    changeField(snapshot){
+    changeField(snapshot, selectedField){
         let fields = Object.values(snapshot.val());
         let ids = Object.keys(snapshot.val());
         let chosenField;
         ids.map(
             (f, i) => {
-            if(this.state.currentField === f){
+            if(selectedField === f){
                 chosenField = i;
             }   
         });
@@ -93,9 +127,23 @@ export default class CurrentFieldDisplay extends Component{
            field: fields[chosenField],
            fieldChosen: fields[chosenField] === undefined ? false : true
         }, () => {
-            if(this.state.fieldChosen)
-                this.renderChart('chart')
+            if(this.state.fieldChosen){
+                this.setState({
+                    chartLoaded: true
+                }, () => this.renderChart('chart'));
+            }
         });
+    }
+
+    componentWillMount(){
+        this.changeField(this.props.fieldSnapshot, this.props.highlightedField);
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        if(nextProps.highlightedField !== this.state.currentField || nextState.chartLoaded !== this.state.chartLoaded){
+            return true;
+        }
+        return false;
     }
 
     render(){
@@ -104,6 +152,12 @@ export default class CurrentFieldDisplay extends Component{
             <div>
             <div>{name}</div>
             <div id="chart"></div>
+                { !this.state.chartLoaded ? 
+                        <div>
+                            <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                            <span className="sr-only">Loading...</span>
+                        </div>    
+                    : null}
             </div>
         );
     }
