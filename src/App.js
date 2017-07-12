@@ -12,6 +12,7 @@ import Weather from './components/Weather'
 import NewField from './components/NewField'
 import FieldDashboard from './components/FieldDashboard'
 import { logout } from './firebaseHelpers/auth'
+import About from './components/About'
 //import { FontAwesome } from 'react-fontawesome';
 
 function PrivateRoute ({component: Component, authed, ...rest}) {
@@ -60,6 +61,58 @@ export default class App extends Component {
     this.removeListener()
   }
   render() {
+    let browserRouter = null;
+    if (!this.state.authed) {
+      browserRouter =
+        <div>
+          <nav className="navbar navbar-default navbar-static-top">
+            <div className="container">
+              <div className="navbar-header">
+                <img id="nasa-logo" src="nasa_logo.png"/>
+                <Link to="/farmate/dashboard" className="navbar-brand">Farmate</Link>
+              </div>
+              <ul className="nav navbar-nav pull-right">
+                <li>  
+                    : <span>
+                        <Link to="/farmate/login" className="navbar-brand">Login</Link>
+                        <Link to="/farmate/register" className="navbar-brand">Register</Link>
+                        <Link to="/farmate/" className="navbar-brand">About</Link>
+                      </span>}
+                </li>
+              </ul>
+            </div>
+          </nav>
+      </div>
+    } else {
+    <Route path='/farmate' exact component={Dashboard} />
+    browserRouter =
+  <div>
+    <nav className="navbar navbar-default navbar-static-top">
+            <div className="container">
+              <div className="navbar-header">
+                <img id="nasa-logo" src="nasa_logo.png"/>
+                <Link to="/farmate/dashboard" className="navbar-brand">Farmate</Link>
+              </div>
+              <ul className="nav navbar-nav pull-right">
+                <li>  
+                  <Link to="/farmate/" className="navbar-brand">About</Link>
+                  <Link to="/farmate/dashboard" className="navbar-brand">Dashboard</Link> 
+                   {this.state.authed
+                    ? <button
+                        style={{border: 'none', background: 'transparent'}}
+                        onClick={() => {
+                          logout()
+                        }}
+                        className="navbar-brand">Logout</button>
+                    : <span>
+                        
+                      </span>}
+                </li>
+              </ul>
+            </div>
+          </nav>
+  </div>
+      }
     return this.state.loading === true 
           ? <div id="loading">
             <img src="./images/nasa_spinner.gif" />
@@ -69,33 +122,11 @@ export default class App extends Component {
           : (
       <BrowserRouter>
         <div>
-          <nav className="navbar navbar-default navbar-static-top">
-            <div className="container">
-              <div className="navbar-header">
-                <img id="nasa-logo" src="nasa_logo.png"/>
-                <Link to="/farmate/dashboard" className="navbar-brand">Farmate</Link>
-              </div>
-              <ul className="nav navbar-nav pull-right">
-                <li>
-                  {this.state.authed
-                    ? <button
-                        style={{border: 'none', background: 'transparent'}}
-                        onClick={() => {
-                          logout()
-                        }}
-                        className="navbar-brand">Logout</button>
-                    : <span>
-                        <Link to="/farmate/login" className="navbar-brand">Login</Link>
-                        <Link to="/farmate/register" className="navbar-brand">Register</Link>
-                      </span>}
-                </li>
-              </ul>
-            </div>
-          </nav>
+          {browserRouter}
           <div className="container">
             <div className="row">
               <Switch>
-                <Route path='/farmate' exact component={Login} />
+                <Route path='/farmate' exact component={About} />
                 <PublicRoute authed={this.state.authed} path='/farmate/login' component={Login} />
                 <PublicRoute authed={this.state.authed} path='/farmate/register' component={Register} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/dashboard' component={Dashboard} />
