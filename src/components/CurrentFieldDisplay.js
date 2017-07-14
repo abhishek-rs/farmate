@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import {Chart} from 'react-d3-core'
-import {LineChart} from 'react-d3-basic'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 export default class CurrentFieldDisplay extends Component{
 
@@ -52,61 +51,26 @@ export default class CurrentFieldDisplay extends Component{
     var height = 200;
     var margins = {left: 20, right: 20, top: 10, bottom: 30};
     var title = "Irrigation levels";
-    var chartSeries1 = [
-      {
-        field: 'HP',
-        name: 'HP',
-        color: '#fff',
-        style: {
-          "strokeWidth": 4,
-          "strokeOpacity": .8,
-          "fillOpacity": .8
-        }
-      }
-    ];
-
-    var chartSeries2 = [
-      {
-        field: 'RF',
-        name: 'RF',
-        color: '#fff',
-        style: {
-          "strokeWidth": 4,
-          "strokeOpacity": .8,
-          "fillOpacity": .8
-        }
-      }
-    ];
-    
-    var x = function(d) {
-      return d.index;
-    }.bind(this);
 
     ReactDOM.render(
     <div>
-      <LineChart
-        showXGrid= {true}
-        showYGrid= {false}
-        margins= {margins}
-        title={title}
-        data={chartData}
-        width={width}
-        height={height}
-        chartSeries={chartSeries1}
-        x={x}
-      />
+        <p>Water level in the field</p>
+        <LineChart width={400} height={180} data={chartData}>
+            <Line type="monotone" dataKey="HP" stroke="#8884d8" />
+            <CartesianGrid stroke="#ccc" />
+            <XAxis dataKey="index" />
+            <YAxis />
+            <Tooltip />
+        </LineChart>
 
-      <LineChart
-        showXGrid= {true}
-        showYGrid= {false}
-        margins= {margins}
-        title={title}
-        data={chartData}
-        width={width}
-        height={height}
-        chartSeries={chartSeries2}
-        x={x}
-      />
+        <p>Rainfall</p>
+      <LineChart width={400} height={180} data={chartData}>
+            <Line type="monotone" dataKey="RF" stroke="#8884d8" />
+            <CartesianGrid stroke="#ccc" />
+            <XAxis dataKey="index" />
+            <YAxis />
+            <Tooltip />
+        </LineChart>
     </div>
     , document.getElementById(doc));
 

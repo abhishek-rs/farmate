@@ -27,15 +27,24 @@
         float: right;
         margin-right: 20px;
         z-index: 100;
-        width: 30%;
-        height: 80vh;
-        padding: 20px;
-        background: rgba(6, 13, 79, 0.78);
+        width: 35%;
+        height: 85vh;
+        padding: 10px;
+        background: #ECEFF1;
+        color: #1A237E;
+        border-radius: 10px 10px 10px 10px;
+        -moz-border-radius: 10px 10px 10px 10px;
+        -webkit-border-radius: 10px 10px 10px 10px;
+        border: 0px solid #000000;
+
+        -webkit-box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
+        -moz-box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
+        box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
     }
 
     #left-panel{
         z-index: 100;
-        width: 30%;
+        width: 25%;
         height: 80vh;
         padding: 10px;
         margin-left: 20px;
@@ -45,6 +54,14 @@
         justify-content: center;
         align-self: left;
         background: rgba(6, 13, 79, 0.78);
+        border-radius: 10px 10px 10px 10px;
+        -moz-border-radius: 10px 10px 10px 10px;
+        -webkit-border-radius: 10px 10px 10px 10px;
+        border: 0px solid #000000;
+
+        -webkit-box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
+        -moz-box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
+        box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
 
         a{
             align-self: center;

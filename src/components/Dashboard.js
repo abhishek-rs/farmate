@@ -9,7 +9,6 @@ import {Row, Col} from 'react-bootstrap';
 
 
 export default class Dashboard extends Component {
-  
     constructor(){
         super();
         this.state = Object.assign({
@@ -50,6 +49,7 @@ export default class Dashboard extends Component {
                                <div id="right-panel"> 
                                     <CurrentFieldDisplay fieldSnapshot={this.state.fieldSnapshot} highlightedField={this.state.highlightedField}/> 
                                 <a onClick={this.handleCloseClick} className="btn btn-warning">Close</a>
+                                <a className="btn btn-success">Update</a>
                                 </div>
                                 : null;
         return (

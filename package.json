@@ -36,6 +36,7 @@
     "react-router-dom": "^4.1.1",
     "react-tooltip": "^3.3.0",
     "reactfire": "^1.0.0",
+    "recharts": "^1.0.0-alpha.2",
     "superagent": "^3.5.2"
   },
   "scripts": {
