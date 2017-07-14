@@ -68,7 +68,7 @@ export default class App extends Component {
           <nav className="navbar navbar-default navbar-static-top">
             <div className="container">
               <div className="navbar-header">
-                <img id="nasa-logo" src="nasa_logo.png"/>
+                <img id="nasa-logo" src="NASA_logo.png"/>
                 <Link to="/farmate/dashboard" className="navbar-brand">Farmate</Link>
               </div>
               <ul className="nav navbar-nav pull-right">
@@ -90,7 +90,7 @@ export default class App extends Component {
     <nav className="navbar navbar-default navbar-static-top">
             <div className="container">
               <div className="navbar-header">
-                <img id="nasa-logo" src="nasa_logo.png"/>
+                <img id="nasa-logo" src="NASA_logo.png"/>
                 <Link to="/farmate/dashboard" className="navbar-brand">Farmate</Link>
               </div>
               <ul className="nav navbar-nav pull-right">
