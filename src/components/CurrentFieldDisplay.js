@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default class CurrentFieldDisplay extends Component{
 
@@ -62,15 +62,16 @@ export default class CurrentFieldDisplay extends Component{
             <YAxis />
             <Tooltip />
         </LineChart>
-
         <p>Rainfall</p>
-      <LineChart width={400} height={180} data={chartData}>
+        
+        <LineChart width={400} height={180} data={chartData}>
             <Line type="monotone" dataKey="RF" stroke="#8884d8" />
             <CartesianGrid stroke="#ccc" />
             <XAxis dataKey="index" />
             <YAxis />
             <Tooltip />
-        </LineChart>
+        </LineChart>    
+        
     </div>
     , document.getElementById(doc));
 
