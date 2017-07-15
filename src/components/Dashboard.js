@@ -7,7 +7,6 @@ import Weather from './Weather.js';
 import '../styles/Dashboard.css';
 import {Row, Col} from 'react-bootstrap';
 
-
 export default class Dashboard extends Component {
     constructor(){
         super();
@@ -15,7 +14,7 @@ export default class Dashboard extends Component {
             items: [],
             fieldSnapshot: {},
             highlightedField: null,
-            dataDisplayed: false,
+            dataDisplayed: false
         });
         this.changeSelection = this.changeSelection.bind(this);
         this.handleCloseClick = this.handleCloseClick.bind(this);
@@ -49,7 +48,6 @@ export default class Dashboard extends Component {
                                <div id="right-panel"> 
                                     <CurrentFieldDisplay fieldSnapshot={this.state.fieldSnapshot} highlightedField={this.state.highlightedField}/> 
                                 <a onClick={this.handleCloseClick} className="btn btn-warning">Close</a>
-                                <a className="btn btn-success">Update</a>
                                 </div>
                                 : null;
         return (
@@ -63,8 +61,7 @@ export default class Dashboard extends Component {
                      <DisplayWorldWind fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}></DisplayWorldWind>
                 </div>
                 {currentFieldPanel}
-            </div> 
-               
+            </div>   
         )
     }
 }

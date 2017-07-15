@@ -8,7 +8,7 @@ import ReactiveWorldWind from './ReactiveWorldWind'
 import ReactTooltip from 'react-tooltip'
 import {Calendar} from 'primereact/components/calendar/Calendar'
 import {SelectButton} from 'primereact/components/selectbutton/SelectButton'
-import {Dialog} from 'primereact/components/dialog/Dialog';
+import { Dialog } from 'primereact/components/dialog/Dialog';
 import { getUserId } from '../firebaseHelpers/auth'
 import { dataRef } from '../config/constants.js';
 
@@ -32,8 +32,10 @@ constructor(){
             long_center: 0,
             owner_id: getUserId(),
             IR_rec: 0,
+            date_irrigation: "",
             day_irrigation: 0,
             day_transplant: 0,
+            date_transplant: "",
             month_irrigation: 0,
             month_transplant: 0,
             year_irrigation: 0,
@@ -112,11 +114,13 @@ handleChange(e, attribute){
         formdata[attribute] = e.value;
     }
     else if(attribute == "date_transplant"){
+        formdata.date_transplant = e.value;
         formdata.day_transplant = e.value.getDate();
         formdata.month_transplant = e.value.getMonth();
         formdata.year_transplant = e.value.getFullYear();            
     }
     else if(attribute == "date_irrigation"){
+        formdata.date_irrigation = e.value;
         formdata.day_irrigation = e.value.getDate();
         formdata.month_irrigation = e.value.getMonth();
         formdata.year_irrigation = e.value.getFullYear();            
@@ -176,8 +180,6 @@ finishDrawing(){
     });
 }
 
-
-
 render(){
     return (
         <div id="new-field">
@@ -195,7 +197,7 @@ render(){
                     <p data-tip="Naming your field will make it easy to identify later">Name of field</p>
                     <InputText value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')}/>
                     
-                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in square meters)</p> 
+                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in hectares)</p> 
                     <InputText name="area" type="number" placeholder="e.g. 20" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
 
                     <p data-tip="Height of dikes for controlling the water built around the farm, typically 40-50cm. If there are none please enter 0">Dike Height (cm): </p> 
@@ -220,14 +222,14 @@ render(){
                     <br />
 
                     { !this.state.isEditable 
-                                        ? <input className="btn btn-info" disabled={this.state.doneDrawing} value="Draw my field" onClick={this.startDrawing} /> 
+                                        ? <a className="btn btn-info" disabled={this.state.doneDrawing} onClick={this.startDrawing}>Draw my field</a> 
                                         :  !this.state.doneDrawing
-                                        ? <input className="btn btn-info" value="Finish Drawing" onClick={this.finishDrawing} /> : null }
+                                        ? <a className="btn btn-info" onClick={this.finishDrawing}>Finish Drawing</a> : null }
 
-                    { this.state.isEditable && !this.state.doneDrawing ? <input className="btn btn-danger" value="Clear drawing" onClick={this.clearDrawing} /> : null }
+                    { this.state.isEditable && !this.state.doneDrawing ? <a className="btn btn-danger" onClick={this.clearDrawing}>Clear Drawing</a> : null }
                     <br />
                     <br />
-                    <input className="btn btn-success" disabled={!this.state.doneDrawing} onClick={this.handleSubmit} value="Submit" />
+                    <a className="btn btn-success" disabled={!this.state.doneDrawing} onClick={this.handleSubmit}>Submit</a>
 
                 </form>
                 <br />

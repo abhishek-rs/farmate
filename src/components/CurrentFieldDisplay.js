@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import {Dialog} from 'primereact/components/dialog/Dialog';
+import UpdateField from './UpdateField.js';
 
 export default class CurrentFieldDisplay extends Component{
 
@@ -11,9 +13,12 @@ export default class CurrentFieldDisplay extends Component{
             currentField: props.highlightedField,
             field: {},
             fieldChosen: false,
-            chartLoaded: false
+            chartLoaded: false,
+            dialogVisible: false
         });
+        this.onDialogHide = this.onDialogHide.bind(this);
         this.renderChart = this.renderChart.bind(this);
+        this.showUpdate = this.showUpdate.bind(this);
         this.changeField = this.changeField.bind(this);
     }
 
@@ -25,6 +30,18 @@ export default class CurrentFieldDisplay extends Component{
                 this.changeField(this.state.fieldSnapshot, this.state.currentField);
             })
         }
+    }
+
+    onDialogHide(e){
+        this.setState({
+            dialogVisible: false
+        });
+    }
+
+    showUpdate(){
+        this.setState({
+            dialogVisible: true
+        });
     }
 
     renderChart(doc){
@@ -105,7 +122,7 @@ export default class CurrentFieldDisplay extends Component{
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        if(nextProps.highlightedField !== this.state.currentField || nextState.chartLoaded !== this.state.chartLoaded){
+        if(nextProps.highlightedField !== this.state.currentField || nextState.chartLoaded !== this.state.chartLoaded || nextState.dialogVisible !== this.state.dialogVisible){
             return true;
         }
         return false;
@@ -114,6 +131,10 @@ export default class CurrentFieldDisplay extends Component{
     render(){
         let name = this.state.fieldChosen ? this.state.field.name : null; 
         return (
+        <div>
+            <Dialog header={name} onHide={this.onDialogHide} visible={this.state.dialogVisible} width="500px" modal={false}>
+                {this.state.fieldChosen && <UpdateField currentField={this.state.field} />}
+            </Dialog>    
             <div>
             <div>{name}</div>
             <div id="chart"></div>
@@ -122,8 +143,11 @@ export default class CurrentFieldDisplay extends Component{
                             <i className="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                             <span className="sr-only">Loading...</span>
                         </div>    
-                    : null}
+                    : null
+                }
+            <a onClick={this.showUpdate} className="btn btn-success">Update</a>
             </div>
+        </div>
         );
     }
 
