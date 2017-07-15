@@ -3,9 +3,9 @@ import { usersRef } from '../config/constants.js';
 import firebase from 'firebase';
 import DisplayWorldWind from './DisplayWorldWind.js';
 import Weather from './Weather.js';
-import MyFieldDisplay from './MyFieldDisplay.js';
+//import MyFieldDisplay from './MyFieldDisplay.js';
 
-
+var onlyFields = [];
 export default class FieldDashboard extends Component {
     
    // users=[];
@@ -17,11 +17,17 @@ export default class FieldDashboard extends Component {
             field:  {},
             fieldChosen: false,
             items: [],
-            oneMore: null
+            onlyFields: [],
+            fields: null,
         });
       this.filtersFields = this.filterFields.bind(this);  
+        console.log(props);
     }
-  
+    
+    componentWillMount() {
+    //    this.filterFields(); 
+
+    }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -30,21 +36,21 @@ export default class FieldDashboard extends Component {
      }, () => {
             this.filterFields();
      })
-    }
     
-
+    }
 
     filterFields(){
         let items = [];
-            items.push(Object.values(this.state.fieldSnapshot.val()));
+        console.log(Object.values(this.state.fieldSnapshot.val()));
         this.setState({
-         items: items[0]
+             items: items[0]
          });
          console.log(items[0]);
-            var myUserId = firebase.auth().currentUser.uid;
+            
+        var myUserId = firebase.auth().currentUser.uid;
             console.log(myUserId);
-            var filteredUsers = items[0].filter( (item) =>  item.owner_id === myUserId );
-            console.log(filteredUsers);
+        var filteredUsers = items[0].filter( (item) =>  item.owner_id === myUserId );
+        console.log(filteredUsers);
   //  var oneMore;
    // var filteredValues = filteredUsers.forEach(function(object){
   //  fieldName = object.name;
@@ -56,17 +62,16 @@ export default class FieldDashboard extends Component {
     })
    
     }
- 
-
-
   
-    render () {
-        return (
-             <div>
-           <div id="fieldHell">
-            <h1> Hello </h1>
-           <MyFieldDisplay oneMore={this.state.filteredUsers}> </MyFieldDisplay>
-            </div>
+    render () { 
+        
+        var onlyFields = this.state.filteredUsers.map((field) =>
+        <li> {field} </li> 
+            );
+            
+            return (
+           <div>
+             <ul>{onlyFields}</ul>
             
             </div>
         

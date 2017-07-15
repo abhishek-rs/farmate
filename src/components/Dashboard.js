@@ -58,7 +58,8 @@ export default class Dashboard extends Component {
                      <Weather></Weather>
                      <br />
                      <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
-                </div>
+                    <br />
+                    </div>
                 <div id="globe-holder">
                      <DisplayWorldWind fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}></DisplayWorldWind>
                 </div>

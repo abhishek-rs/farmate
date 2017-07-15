@@ -15,9 +15,7 @@ componentWillReceiveProps(nextProps){
 }
 
 render(){
-var myFields = filteredUsers.forEach(function(object){
-fieldName = object.name;
-}
+
 
 return (
 <div id="what">
