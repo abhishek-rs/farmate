@@ -133,7 +133,7 @@ export default class CurrentFieldDisplay extends Component{
         return (
         <div>
             <Dialog header={name} onHide={this.onDialogHide} visible={this.state.dialogVisible} width="500px" modal={false}>
-                {this.state.fieldChosen && <UpdateField currentField={this.state.field} />}
+                {this.state.fieldChosen && <UpdateField hideDialog={this.onDialogHide} currentField={this.state.field} fieldId={this.state.currentField} />}
             </Dialog>    
             <div>
             <div>{name}</div>

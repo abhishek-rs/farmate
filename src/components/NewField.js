@@ -197,7 +197,7 @@ render(){
                     <p data-tip="Naming your field will make it easy to identify later">Name of field</p>
                     <InputText value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')}/>
                     
-                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in hectares)</p> 
+                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in <hectares></hectares>)</p> 
                     <InputText name="area" type="number" placeholder="e.g. 20" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
 
                     <p data-tip="Height of dikes for controlling the water built around the farm, typically 40-50cm. If there are none please enter 0">Dike Height (cm): </p> 

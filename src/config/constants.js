@@ -12,4 +12,5 @@ var config = {
 
 export const usersRef = firebase.database().ref('main');
 export const dataRef = firebase.database().ref('main');
+export const database = firebase.database();
 export const firebaseAuth = firebase.auth;
