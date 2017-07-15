@@ -13,26 +13,28 @@ export default class FieldDashboard extends Component {
         super(props);
         this.state = Object.assign({
             fieldSnapshot: props.fieldSnapshot,
+            receivedProps: false,
             currentField: null,
+            filteredUsers: [],
             field:  {},
             fieldChosen: false,
             items: [],
             onlyFields: [],
             fields: null,
         });
-      this.filtersFields = this.filterFields.bind(this);  
+        this.filterFields = this.filterFields.bind(this);  
         console.log(props);
     }
     
     componentWillMount() {
-    //    this.filterFields(); 
-
+   //     this.filterFields(); 
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
             fieldSnapshot: nextProps.fieldSnapshot,
             currentField: nextProps.highlightedField,
+            receivedProps: true
      }, () => {
             this.filterFields();
      })
@@ -41,7 +43,7 @@ export default class FieldDashboard extends Component {
 
     filterFields(){
         let items = [];
-        console.log(Object.values(this.state.fieldSnapshot.val()));
+        items.push(Object.values(this.state.fieldSnapshot.val()));
         this.setState({
              items: items[0]
          });
@@ -57,26 +59,30 @@ export default class FieldDashboard extends Component {
    // console.log(fieldName);
  //  }); console.log(filteredValues);
      
-        this.setState({
+    this.setState({
        filteredUsers: filteredUsers,     
-    })
+    });
    
     }
   
     render () { 
         
-        var onlyFields = this.state.filteredUsers.map((field) =>
-        <li> {field} </li> 
-            );
-            
-            return (
-           <div>
-             <ul>{onlyFields}</ul>
-            
+       var onlyFields = this.state.filteredUsers !== [] 
+       ? this.state.filteredUsers.map(
+            (field) => <li> {field.name} </li> ) 
+            : null;
+    
+        return (
+        <div>
+        {   this.state.filteredUsers  &&
+            <div>
+             <ul>{onlyFields}</ul>    
             </div>
+        }
+        </div>
         
-        )    
-    }
+        );
+}
 
 }
 
