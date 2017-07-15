@@ -41,21 +41,21 @@ export default class FieldDashboard extends Component {
          items: items[0]
          });
          console.log(items[0]);
-    var myUserId = firebase.auth().currentUser.uid;
-         console.log(myUserId);
-    var filteredUsers = items[0].filter( (item) =>  item.owner_id === myUserId );
-    console.log(filteredUsers);
+            var myUserId = firebase.auth().currentUser.uid;
+            console.log(myUserId);
+            var filteredUsers = items[0].filter( (item) =>  item.owner_id === myUserId );
+            console.log(filteredUsers);
   //  var oneMore;
    // var filteredValues = filteredUsers.forEach(function(object){
   //  fieldName = object.name;
    // console.log(fieldName);
  //  }); console.log(filteredValues);
      
-      this.setState({
-    filteredUsers: filteredUsers,     
- })
+        this.setState({
+       filteredUsers: filteredUsers,     
+    })
    
- }
+    }
  
 
 
