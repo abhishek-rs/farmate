@@ -2,10 +2,9 @@ import React, { Component } from 'react'
 import { usersRef } from '../config/constants.js';
 import firebase from 'firebase';
 import DisplayWorldWind from './DisplayWorldWind.js';
-import Weather from './Weather.js';
-//import MyFieldDisplay from './MyFieldDisplay.js';
+import MyFieldDisplay from './MyFieldDisplay.js';
 
-var onlyFields = [];
+
 export default class FieldDashboard extends Component {
     
    // users=[];
@@ -19,11 +18,11 @@ export default class FieldDashboard extends Component {
             field:  {},
             fieldChosen: false,
             items: [],
-            onlyFields: [],
-            fields: null,
+            field: null,
         });
+            this.onlyFields = [];
       this.filterFields = this.filterFields.bind(this);  
-        
+      this.handleClick = this.handleClick.bind(this); 
     }
     
     componentWillReceiveProps(nextProps) {
@@ -60,21 +59,31 @@ export default class FieldDashboard extends Component {
     });
    
     }
+
+    handleClick() {
+     //  event.currentTarget.style.backgroundColor = '#ccc';
+        // event.preventDefault()
+        console.log("click");
+        //var el = event.target
+    }
   
     render () { 
         
-        var onlyFields = this.state.filteredUsers !== [] ? this.state.filteredUsers.map((field) =>
-        <li> {field.name} </li> 
+        let onlyFields = this.state.filteredUsers !== [] ? this.state.filteredUsers.map((field) =>
+          <MyFieldDisplay field={field} onClick={this.handleClick}> </MyFieldDisplay>  
             ) : null;
+        
             
             return (
            <div>
-        {   this.state.filteredUsers  &&
-            <div>
-             <ul>{onlyFields}</ul>    
-              </div>
+        {   onlyFields  &&
+                <div>
+            
+                { onlyFields }
+             
+                </div>
         }
-        </div>
+           </div>
         
         )    
     }
