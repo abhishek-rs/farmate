@@ -22,14 +22,10 @@ export default class FieldDashboard extends Component {
             onlyFields: [],
             fields: null,
         });
-        this.filterFields = this.filterFields.bind(this);  
-        console.log(props);
+      this.filterFields = this.filterFields.bind(this);  
+        
     }
     
-    componentWillMount() {
-   //     this.filterFields(); 
-    }
-
     componentWillReceiveProps(nextProps) {
         this.setState({
             fieldSnapshot: nextProps.fieldSnapshot,
@@ -59,7 +55,7 @@ export default class FieldDashboard extends Component {
    // console.log(fieldName);
  //  }); console.log(filteredValues);
      
-    this.setState({
+        this.setState({
        filteredUsers: filteredUsers,     
     });
    
@@ -67,22 +63,21 @@ export default class FieldDashboard extends Component {
   
     render () { 
         
-       var onlyFields = this.state.filteredUsers !== [] 
-       ? this.state.filteredUsers.map(
-            (field) => <li> {field.name} </li> ) 
-            : null;
-    
-        return (
-        <div>
+        var onlyFields = this.state.filteredUsers !== [] ? this.state.filteredUsers.map((field) =>
+        <li> {field.name} </li> 
+            ) : null;
+            
+            return (
+           <div>
         {   this.state.filteredUsers  &&
             <div>
              <ul>{onlyFields}</ul>    
-            </div>
+              </div>
         }
         </div>
         
-        );
-}
+        )    
+    }
 
 }
 

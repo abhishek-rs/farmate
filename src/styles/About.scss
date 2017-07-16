@@ -1,0 +1,21 @@
+#about{
+    justify-content: space-between;
+    align-content: space-between;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 0px 100px 20px 100px;
+    background: url("/images/globe.png") no-repeat center;
+background-size: cover;
+}
+
+#logos{
+  padding-top: 5px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+}
+#aalto{
+  height: 250px;
+  overflow: auto;
+}
