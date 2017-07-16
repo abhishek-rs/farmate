@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/ReactiveWorldWind.css';
 import { dataRef } from '../config/constants.js';
+import { getUserId } from '../firebaseHelpers/auth';
 
 const WorldWind = window.WorldWind;
 
@@ -67,25 +68,31 @@ export default class DisplayWorldWind extends Component {
         let fieldsToDisplay = this.state.fields;
         let that = this; 
         this.fieldsLayer.removeAllRenderables();
+        this.textLayer.removeAllRenderables();
         fieldsToDisplay.map(
             (f, i) => {
                 let polygon = new WorldWind.Polygon(f, null);
+                console.log(f);
+                let fieldName = f[0] ? new WorldWind.GeographicText(f[0], this.state.fieldNames[i]) : undefined;
                 polygon.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
                 polygon.extrude = true; // extrude the polygon edges to the ground
                 polygon.displayName = this.state.fieldNames[i];
                 polygon.userProperties = {'id': this.state.field_ids[i]};
                 let polygonAttributes = new WorldWind.ShapeAttributes(null);
+                let textAttributes = new WorldWind.TextAttributes(null);
+                textAttributes.font = new WorldWind.Font(30, 'italic', 'normal', 'normal', 'sans-serif', 'center');
+                textAttributes.color = new WorldWind.Color(48,63,159, 1);
                 polygonAttributes.drawInterior = true;
                 polygonAttributes.drawOutline = true;
                 polygonAttributes.outlineColor = WorldWind.Color.BLUE;
-                polygonAttributes.interiorColor = new WorldWind.Color(0, 1, 1, 0.5);
+                polygonAttributes.interiorColor = this.state.ownerIds[i] === getUserId() ? new WorldWind.Color(0, 1, 1, 0.5) : new WorldWind.Color(1, 0, 0, 0.5);
                 polygonAttributes.drawVerticals = polygon.extrude;
                 polygonAttributes.applyLighting = true;
                 polygon.attributes = polygonAttributes;
                 
                 // Create and assign the polygon's highlight attributes.
                 let highlightAttributes = new WorldWind.ShapeAttributes(polygonAttributes);
-                highlightAttributes.outlineColor = WorldWind.Color.RED;
+                highlightAttributes.outlineColor = WorldWind.Color.GREEN;
                 highlightAttributes.interiorColor = new WorldWind.Color(1, 1, 1, 0.5);
                 polygon.highlightAttributes = highlightAttributes;
                 
@@ -97,12 +104,19 @@ export default class DisplayWorldWind extends Component {
                 }
                 // Add the polygon to the layer and the layer to the World Window's layer list.
                 that.fieldsLayer.addRenderable(polygon);
+                fieldName ? 
+                fieldName.attributes = textAttributes
+                : null;
+                fieldName ? 
+                this.textLayer.addRenderable(fieldName)
+                : null;
         });        
     }
 
     getFields(snapshot){
         let fields = Object.values(snapshot.val());
         let fieldNames = [];
+        let ownerIds = [];
         let ids = Object.keys(snapshot.val());
         let allFieldBoundaries = [];
         fields.map(
@@ -117,11 +131,13 @@ export default class DisplayWorldWind extends Component {
                 }
                 allFieldBoundaries.push(fieldBoundaries);
                 fieldNames.push(f.name);
+                ownerIds.push(f.owner_id);
         });
         this.setState({
             field_ids: ids,
             fields: allFieldBoundaries,
-            fieldNames: fieldNames
+            fieldNames: fieldNames,
+            ownerIds: ownerIds
         }, ()=> this.reRenderFields());
         
     }
@@ -134,8 +150,10 @@ export default class DisplayWorldWind extends Component {
         var tapRecognizer = new WorldWind.TapRecognizer(this.wwd, this.handlePick);
         this.wwd.addLayer(new WorldWind.CompassLayer());
         this.fieldsLayer = new WorldWind.RenderableLayer();
+        this.textLayer = new WorldWind.RenderableLayer();
         this.fieldsLayer.displayName = "Fields";
         this.wwd.addLayer(this.fieldsLayer);
+        this.wwd.addLayer(this.textLayer);
         this.wwd.addLayer(new WorldWind.ViewControlsLayer(this.wwd));
         this.coords = new WorldWind.CoordinatesDisplayLayer(this.wwd);
         window.navigator.geolocation.getCurrentPosition(this.getPosition);
