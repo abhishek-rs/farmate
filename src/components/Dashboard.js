@@ -46,8 +46,7 @@ export default class Dashboard extends Component {
     render () {
         let currentFieldPanel = this.state.highlightedField ? 
                                <div id="right-panel"> 
-                                    <CurrentFieldDisplay fieldSnapshot={this.state.fieldSnapshot} highlightedField={this.state.highlightedField}/> 
-                                <a onClick={this.handleCloseClick} className="btn btn-warning">Close</a>
+                                    <CurrentFieldDisplay close={this.handleCloseClick} fieldSnapshot={this.state.fieldSnapshot} highlightedField={this.state.highlightedField}/> 
                                 </div>
                                 : null;
         return (

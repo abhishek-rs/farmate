@@ -1,0 +1,44 @@
+#currentFieldData{
+    height: 90%;
+    width: 100%;
+
+    h3{
+        font-weight: bolder;
+        padding: 2px;
+        margin: 0;
+    }
+
+    a{
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+}
+
+#chart{
+    height: 100%;
+    width: 100%
+}
+
+.chartContainer{
+    width: 100%;
+    height: 22vh;
+    margin-left: -5px;
+    margin-bottom: 20px;
+
+    p {
+        font-weight: bolder;
+        font-style: italic;
+    }
+
+    #rainfall{
+        color: #673AB7;
+    }
+
+    #loss{
+        color: #4CAF50;
+    }
+
+    #waterlvl{
+        color: #FF5722;
+    }
+}

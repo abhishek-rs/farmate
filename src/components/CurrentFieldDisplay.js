@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import {Dialog} from 'primereact/components/dialog/Dialog';
 import UpdateField from './UpdateField.js';
+import '../styles/CurrentFieldDisplay.css';
+import * as moment from 'moment';
 
 export default class CurrentFieldDisplay extends Component{
 
@@ -47,48 +49,78 @@ export default class CurrentFieldDisplay extends Component{
     renderChart(doc){
     let field = this.state.field;
     let chartData = [];
-    console.log(field);
+    
     let HP = field.HP_list;
     HP = HP.concat(field.HP_pre_list);
     let RF = field.RF_list;
     RF = RF.concat(field.RF_pre_list);
-    let currentDate = new Date();
-    
-    console.log(HP);
+    let ET = field.ET_list;
+    ET = ET.concat(field.ET_pre_list);
+    let DP = field.DP_list;
+    DP = DP.concat(field.DP_pre_list);
+    let RO = field.RO_list;
+    RO = RO.concat(field.RO_pre_list);   
+
     HP.map( (f,i) => {
         let HP_RF_data = Object.assign({
-            HP: parseFloat(f),
-            RF: parseFloat(RF[i]),
-            index: currentDate.getDate() - (30 - i)
+            'WaterLevel': parseFloat(f),
+            'Rainfall': parseFloat(RF[i]),
+            'Run-off': parseFloat(RO[i]),
+            'Evaporation': parseFloat(ET[i]),
+            'Seepage': parseFloat(DP[i]),
+            index: moment().day(i - 29).format("DD-MM")
             });
         chartData.push(HP_RF_data);
     });
-     
-    var width = 300;
-    var height = 200;
-    var margins = {left: 20, right: 20, top: 10, bottom: 30};
-    var title = "Irrigation levels";
-
+    
+    
+    var margins = {top: 2, right: 10, left: 0, bottom: 0};
+    
     ReactDOM.render(
     <div>
-        <p>Water level in the field</p>
-        <LineChart width={400} height={180} data={chartData}>
-            <Line type="monotone" dataKey="HP" stroke="#8884d8" />
-            <CartesianGrid stroke="#ccc" />
-            <XAxis dataKey="index" />
-            <YAxis />
-            <Tooltip />
-        </LineChart>
-        <p>Rainfall</p>
-        
-        <LineChart width={400} height={180} data={chartData}>
-            <Line type="monotone" dataKey="RF" stroke="#8884d8" />
-            <CartesianGrid stroke="#ccc" />
-            <XAxis dataKey="index" />
-            <YAxis />
-            <Tooltip />
-        </LineChart>    
-        
+        <div className="chartContainer">
+            <p id="waterlvl">Water level in the field</p>
+            <ResponsiveContainer>
+            <AreaChart data={chartData}
+                margin={margins}>
+                <CartesianGrid stroke="#ccc" />
+                <XAxis dataKey="index" />
+                <YAxis />
+                <Tooltip />
+                <Area type='monotone' dataKey='WaterLevel' stroke='#FF5722' fill='#FF5722' />
+            </AreaChart>
+            </ResponsiveContainer>
+        </div>
+
+        <div className="chartContainer">
+        <p id="rainfall">Rainfall</p>
+        <ResponsiveContainer>
+            <AreaChart data={chartData}
+                margin={margins}>
+                <CartesianGrid stroke="#ccc" />
+                <XAxis dataKey="index" />
+                <YAxis />
+                <Tooltip />
+                <Area type='monotone' dataKey='Rainfall' stroke='#8884d8' fill='#8884d8' />
+            </AreaChart>    
+        </ResponsiveContainer>
+        </div>
+
+        <div className="chartContainer">
+        <p id="loss">Losses</p>
+        <ResponsiveContainer>
+            <AreaChart data={chartData}
+                margin={margins}>
+                <CartesianGrid stroke="#ccc" />
+                <XAxis dataKey="index" />
+                <YAxis />
+                <Tooltip />
+                <Area type='monotone' dataKey='Seepage' stackId="1" stroke='#4CAF50' fill='#4CAF50' />
+                <Area type='monotone' dataKey='Evaporation' stackId="2" stroke='#3F51B5' fill='#3F51B5' />
+                <Area type='monotone' dataKey='Run-off' stackId="3" stroke='#F44336' fill='#F44336' />
+            </AreaChart>    
+        </ResponsiveContainer>
+        </div>
     </div>
     , document.getElementById(doc));
 
@@ -129,14 +161,15 @@ export default class CurrentFieldDisplay extends Component{
     }
 
     render(){
-        let name = this.state.fieldChosen ? this.state.field.name : null; 
+        let name = this.state.fieldChosen ? this.state.field.name : null;
+         
         return (
-        <div>
+        <div id="currentFieldData">
             <Dialog header={name} onHide={this.onDialogHide} visible={this.state.dialogVisible} width="500px" modal={false}>
                 {this.state.fieldChosen && <UpdateField hideDialog={this.onDialogHide} currentField={this.state.field} fieldId={this.state.currentField} />}
             </Dialog>    
             <div>
-            <div>{name}</div>
+            <h3>{name}</h3>
             <div id="chart"></div>
                 { !this.state.chartLoaded ? 
                         <div>
@@ -145,7 +178,8 @@ export default class CurrentFieldDisplay extends Component{
                         </div>    
                     : null
                 }
-            <a onClick={this.showUpdate} className="btn btn-success">Update</a>
+            <a id="update" onClick={this.showUpdate} className="btn btn-success">Update</a>
+            <a onClick={this.props.close} className="btn btn-danger">Close</a>
             </div>
         </div>
         );
