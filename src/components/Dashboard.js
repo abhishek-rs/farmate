@@ -18,9 +18,20 @@ export default class Dashboard extends Component {
         });
         this.changeSelection = this.changeSelection.bind(this);
         this.handleCloseClick = this.handleCloseClick.bind(this);
+        this.updateData = this.updateData.bind(this);
     }
 
     componentWillMount(){
+        let that = this;
+        dataRef.once('value').then(
+            (snapshot) => 
+                    that.setState({
+                        fieldSnapshot: snapshot,
+                        }) 
+        );
+    }
+
+    updateData(){
         let that = this;
         dataRef.once('value').then(
             (snapshot) => 
@@ -46,7 +57,7 @@ export default class Dashboard extends Component {
     render () {
         let currentFieldPanel = this.state.highlightedField ? 
                                <div id="right-panel"> 
-                                    <CurrentFieldDisplay close={this.handleCloseClick} fieldSnapshot={this.state.fieldSnapshot} highlightedField={this.state.highlightedField}/> 
+                                    <CurrentFieldDisplay updateData={this.updateData} close={this.handleCloseClick} fieldSnapshot={this.state.fieldSnapshot} highlightedField={this.state.highlightedField}/> 
                                 </div>
                                 : null;
         return (

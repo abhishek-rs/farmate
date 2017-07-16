@@ -1,5 +1,6 @@
 import React, { Component } from 'react' 
 import ReactDOM from 'react-dom'
+import Request from 'superagent';
 import { InputText } from 'primereact/components/inputtext/InputText'
 import { Calendar } from 'primereact/components/calendar/Calendar'
 import { getUserId } from '../firebaseHelpers/auth'
@@ -39,7 +40,7 @@ export default class UpdateField extends Component {
             formdata.IR_list[29 - days] = IR_in_L;
             formdata.HP_list[29 - days] = (parseFloat(realdata.HP_list[29 - days]) + (e.target.value / area_in_m2) * 100).toFixed(2);
             formdata.HP = days > 0 ? (parseFloat(realdata.HP_list[29 - days]) + (e.target.value / area_in_m2) * 100).toFixed(2) : formdata.HP; 
-    }
+        }
         else if(attribute == "HP"){
             formdata.HP = e.target.value;
             formdata.HP_list[29] = e.target.value;  
@@ -54,13 +55,34 @@ export default class UpdateField extends Component {
 
     handleSubmit(e) {
         let formdata = this.state.formdata;
-        let newPostKey = dataRef.push().key;
+        let baseUrl = 'http://127.0.0.1:8000/api/predict/single_field/';
         let updates = {};
-        database.ref('main/' + this.state.fieldId).set(formdata);
+        let that = this;
+        database.ref('main/' + this.state.fieldId).set(formdata)
+                    .then( () => 
+                        Request.get(baseUrl + that.state.fieldId)
+                        .end( (err, res) => {
+                            if(err){
+                                that.props.updateData();
+                            }
+                            else{
+                                that.props.updateData();
+                                console.log(res)
+                            }
+                        })
+        );        
         this.setState({
-            messages: [{severity:'info', summary:'Success', detail: "Data for Field" + this.state.formdata.name + "has been updated!"}]
-        });
-        this.props.hideDialog('1');
+            messages: [{severity:'info', summary:'Success', detail: "Data for Field " + this.state.formdata.name + " has been updated!"}]
+        }, () => this.props.hideDialog('1'));
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps.currentField !== this.state.currentField){
+            this.setState({
+                currentField: nextProps.currentField,
+                formdata: nextProps.currentField
+            })
+        }
     }
 
     render(){

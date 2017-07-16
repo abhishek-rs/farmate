@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Request from 'superagent';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import {Dialog} from 'primereact/components/dialog/Dialog';
 import UpdateField from './UpdateField.js';
 import '../styles/CurrentFieldDisplay.css';
+import { dataRef, database } from '../config/constants.js';
+
 import * as moment from 'moment';
+import {ToggleButton} from 'primereact/components/togglebutton/ToggleButton';
+import { getUserId } from '../firebaseHelpers/auth';
+import {Growl} from 'primereact/components/growl/Growl';
 
 export default class CurrentFieldDisplay extends Component{
 
@@ -16,12 +22,16 @@ export default class CurrentFieldDisplay extends Component{
             field: {},
             fieldChosen: false,
             chartLoaded: false,
-            dialogVisible: false
+            dialogVisible: false,
+            updateCheck: false,
+            messages: []
         });
+        this.userId = getUserId();
         this.onDialogHide = this.onDialogHide.bind(this);
         this.renderChart = this.renderChart.bind(this);
         this.showUpdate = this.showUpdate.bind(this);
         this.changeField = this.changeField.bind(this);
+        this.onChangeUpdate = this.onChangeUpdate.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
@@ -46,6 +56,34 @@ export default class CurrentFieldDisplay extends Component{
         });
     }
 
+    onChangeUpdate(){
+        this.setState({
+            updateCheck: true
+        });
+        let formdata = this.state.field;
+        formdata.IR_list[29] = formdata.IR_rec;
+        let area_in_m2 = parseInt(formdata.area) * 10000;
+        formdata.HP_list[29], formdata.HP = (parseFloat(formdata.HP_list[29]) + (formdata.IR_rec / area_in_m2) * 100).toFixed(2);
+        let baseUrl = 'http://127.0.0.1:8000/api/predict/single_field/';
+        let that = this;
+        database.ref('main/' + this.state.currentField).set(formdata)
+                    .then( () => 
+                        Request.get(baseUrl + that.state.currentField)
+                        .end( (err, res) => {
+                            if(err){
+                                that.props.updateData();
+                            }
+                            else{
+                                that.props.updateData();
+                                console.log(res)
+                            }
+                        })
+        );        
+        this.setState({
+            messages: [{severity:'info', summary:'Success', detail: "Data for Field " + formdata.name + " has been updated!"}]
+        });
+    }
+
     renderChart(doc){
     let field = this.state.field;
     let chartData = [];
@@ -62,13 +100,14 @@ export default class CurrentFieldDisplay extends Component{
     RO = RO.concat(field.RO_pre_list);   
 
     HP.map( (f,i) => {
+        let dayDiff = i -29;
         let HP_RF_data = Object.assign({
             'WaterLevel': parseFloat(f),
             'Rainfall': parseFloat(RF[i]),
             'Run-off': parseFloat(RO[i]),
             'Evaporation': parseFloat(ET[i]),
             'Seepage': parseFloat(DP[i]),
-            index: moment().day(i - 29).format("DD-MM")
+            index: (dayDiff === 0) ? 'Today' : moment().day(i - 29).format("DD-MM")
             });
         chartData.push(HP_RF_data);
     });
@@ -154,22 +193,27 @@ export default class CurrentFieldDisplay extends Component{
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        if(nextProps.highlightedField !== this.state.currentField || nextState.chartLoaded !== this.state.chartLoaded || nextState.dialogVisible !== this.state.dialogVisible){
+        if(nextProps.highlightedField !== this.state.currentField 
+            || nextState.chartLoaded !== this.state.chartLoaded 
+            || nextState.dialogVisible !== this.state.dialogVisible 
+            || nextState.field !== this.state.field
+            || nextState.currentField !== this.state.currentField
+            || nextState.updateCheck !== this.state.updateCheck){
             return true;
         }
         return false;
     }
 
     render(){
-        let name = this.state.fieldChosen ? this.state.field.name : null;
-         
+    //    let name = this.state.fieldChosen ? this.state.field.name : null;
+        console.log(this.userId);
         return (
         <div id="currentFieldData">
-            <Dialog header={name} onHide={this.onDialogHide} visible={this.state.dialogVisible} width="500px" modal={false}>
-                {this.state.fieldChosen && <UpdateField hideDialog={this.onDialogHide} currentField={this.state.field} fieldId={this.state.currentField} />}
+            <Dialog header={this.state.field.name} onHide={this.onDialogHide} visible={this.state.dialogVisible} width="500px" modal={false}>
+                {this.state.fieldChosen && <UpdateField updateData={this.props.updateData} hideDialog={this.onDialogHide} currentField={this.state.field} fieldId={this.state.currentField} />}
             </Dialog>    
             <div>
-            <h3>{name}</h3>
+            <h3>{this.state.field.name}</h3>
             <div id="chart"></div>
                 { !this.state.chartLoaded ? 
                         <div>
@@ -178,12 +222,19 @@ export default class CurrentFieldDisplay extends Component{
                         </div>    
                     : null
                 }
+
+            {this.state.field.owner_id === this.userId && 
+            <div id="update-block">
+            <span id="rec">Today's recommended irrigation</span>
+            <ToggleButton style={{width:'100px', height: '25px'}} onLabel="Done!" offLabel={this.state.field.IR_rec.toString()} onIcon="fa-check-square" offIcon="fa-square"
+            checked={this.state.updateCheck} onChange={this.onChangeUpdate}/>
+            <br />
             <a id="update" onClick={this.showUpdate} className="btn btn-success">Update</a>
-            <a onClick={this.props.close} className="btn btn-danger">Close</a>
+            </div>
+            }
+            <span><a onClick={this.props.close} className="btn btn-danger">Close</a></span>
             </div>
         </div>
         );
     }
-
-
 }
