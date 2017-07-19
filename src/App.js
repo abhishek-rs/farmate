@@ -73,11 +73,11 @@ export default class App extends Component {
               </div>
               <ul className="nav navbar-nav pull-right">
                 <li>  
-                    : <span>
+                     <span>
                         <Link to="/farmate/login" className="navbar-brand">Login</Link>
                         <Link to="/farmate/register" className="navbar-brand">Register</Link>
                         <Link to="/farmate/about" className="navbar-brand">About</Link>
-                      </span>}
+                      </span>
                 </li>
               </ul>
             </div>
@@ -95,7 +95,7 @@ export default class App extends Component {
               </div>
               <ul className="nav navbar-nav pull-right">
                 <li>  
-                  <Link to="/farmate/" className="navbar-brand">About</Link>
+                  <Link to="/farmate/about" className="navbar-brand">About</Link>
                   <Link to="/farmate/dashboard" className="navbar-brand">Dashboard</Link> 
                    {this.state.authed
                     ? <button

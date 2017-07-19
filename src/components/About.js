@@ -6,6 +6,7 @@ export default class About extends Component {
 
 render(){
     return(
+    <div id="container">
         <div id="about">
             <div id="about-wrapper">
                 <div id="welcome">
@@ -30,43 +31,43 @@ render(){
                     <p>You can also see the weather and rainfall predictions on the dashboard to be able to plan your farming actions better.
                      </p>
                 </div>
-                <div id="we">
-                     <h3>Who we are</h3>
-                    <p>A group of Aalto students who believe that resourceful and sustainable farming is the future.
-                    </p>
-                     <div id="team">
-                     <h3>Thomas</h3> <br />  <h3>Abhishek</h3> <h3>Milda</h3>
-                     </div>
-                     <div id="team">
-                        <div id="person-image"> <img src="/images/thomas.jpg" /> </div>
-                            
-                       
-                    
-                        <div id="person-image"> <img src="/images/abhishek.jpg" /> </div>
-                            
-                        
-                       
-                        <div id="person-image"> <img src="/images/mildaa.jpg" /> </div>
-                             
-                    
-                    </div>
-                </div>
                 <div id="background">
                     <h3>Background</h3>
-                    <p> User research</p>
-                    <p>Science </p>
+                    <p> 70% of all freshwater worldwide is used for irrigation practices. Of this roughly 45% is used for the irrigation of ricefields. Due to freshwater shortage that already exists and is predicted to get worse we decided to develop Farmate. Farmate is a platform build on NASA World Wind (https://worldwind.arc.nasa.gov/) for the NASA Europa Challenge (http://www.nasaeuropachallenge.com/). The goal of this platform is to enable farmers to keep tracker of the water levels on their fields. Which in turn would cause water saving on irrigation.
+                    </p>
+                    <p> To validate our idea we engaged in discussions in online farming forums with the farmer community. We also collaborated with Matti Kummu, Assistant Professor at Water development research group at Aalto University. We received a lot of positive feedback on our project. </p>
+                    <h5>"When is this platform going to launch?"" - user from <a href="www.ozfarmer.com.au"> ozfarmer.com.au </a> </h5>
+                    <h5>"A system helping me keep better track of irrigation would be really useful" - user from <a href="https://thefarmingforum.co.uk/index.php"> thefarmingforum.co.uk </a> </h5>
+                    <p>Farmate employs various mathematical models based on latest research to predict the current water level. A variety of APIs are used to get the necessary data for the predictions.</p>
+                </div>
+            </div>
+        </div>
+        <div id="bottom-page">
+               <div id="we">
+                      <h3>Who we are</h3>
+                      <p>A group of Aalto students who believe that resourceful and sustainable farming is the future.
+                      </p>
+                      <h3>Thomas</h3> <br />  <h3>Abhishek</h3> <h3>Milda</h3>
+                     <div id="team">
+                         <div id="person-image"> <img src="/images/thomas.jpg" /> 
+                         </div>
+                         <div id="person-image"> <img src="/images/abhishek.jpg" /> 
+                         </div>
+                        <div id="person-image"> <img src="/images/mildaa.jpg" /> 
+                        </div>
+                    </div>
                 </div>
                 <div id="partners">
                      <h3>Partners </h3>
                      <div id="logos">
                         <img id="aalto" src="/images/aaltoo.png"/>
                         <img id="aalto" src="/images/EIT.png"/>
+                    </div>
                 </div>
-            </div>
-            </div>
         </div>
+    </div>
 
-    )    
+ )    
 }
 
 

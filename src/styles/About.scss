@@ -1,3 +1,11 @@
+#container{
+padding: 0px;   
+margin: 0px;
+position: relative;
+font-family: Arial, Helvetica, sans-serif !important;
+height: 120vh;
+}
+
 .navbar {
     position: relative;
     min-height: 50px;
@@ -6,10 +14,11 @@
 #about {
     width: 100%;
     background: url("/images/globe.png") no-repeat right;
+    background-attachment: fixed;
     position: relative;
     margin: 0px 0px 0px 0px;
     padding-right: 0px;
-    height: 120vh;
+    height: 100vh;
     display: flex;
 }
 
@@ -19,21 +28,22 @@
   margin-right: 0px;
   width: 60%;
   padding: 20px 20px 0px 20px;
-  position: absolute;
+  position: relative;
   left: 20px;
   margin-bottom: 0px;
-  height: 70vh;
+  height: 60vh;
   z-index: 100;
 
 }
 #logos{
   padding-top: 5px;
-  background-color: #fff;
+  padding-right:20px !important; 
+  background-color: rgba(6, 13, 79, 0.78);
   display: flex;
   flex-direction: row;
 }
 #aalto{
-  height: 250px;
+  height: 150px;
   overflow: auto;
 }
 
@@ -41,22 +51,31 @@
   margin: 0;
   padding: 0;
 }
-#team {
-display: flex;
-flex-direction: row;
-
-}
   
 #person-image {
 border-radius: 50%;
 width: 50%;
  padding: 10px;
+ display: flex;
+flex-direction: row;
 
 }
 
   #person-text h3{
-  font-family: 'Bahiana', cursive;
   font-size: 15pt;
   color: white;
   text-align: center;
+    }
+
+    #bottom-page{
+      width: 100%;
+      position: absolute;
+      align-self: left;
+      float: left;
+      margin-right: 0px;
+      padding: 20px 20px 0px 20px;
+      left: 20px;
+     margin-bottom: 0px;
+     height: 60vh;
+       z-index: 100;
     }
