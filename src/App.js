@@ -76,7 +76,7 @@ export default class App extends Component {
                     : <span>
                         <Link to="/farmate/login" className="navbar-brand">Login</Link>
                         <Link to="/farmate/register" className="navbar-brand">Register</Link>
-                        <Link to="/farmate/" className="navbar-brand">About</Link>
+                        <Link to="/farmate/about" className="navbar-brand">About</Link>
                       </span>}
                 </li>
               </ul>
@@ -126,14 +126,14 @@ export default class App extends Component {
           <div className="container">
             <div className="row">
               <Switch>
-                <Route path='/farmate' exact component={About} />
+                <Route path='/farmate' exact component={Login} />
                 <PublicRoute authed={this.state.authed} path='/farmate/login' component={Login} />
                 <PublicRoute authed={this.state.authed} path='/farmate/register' component={Register} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/dashboard' component={Dashboard} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/weather' component={Weather} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/newfield' component={NewField} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/fieldashboard' component={FieldDashboard} />
-               
+               <Route path='/farmate/about' exact component={About} />
                 <Route render={() => <Redirect to='/farmate/dashboard'/>}/>
               </Switch>
             </div>

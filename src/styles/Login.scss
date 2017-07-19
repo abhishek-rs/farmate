@@ -1,0 +1,45 @@
+
+.container{
+padding: 0px;   
+margin: 0px;
+position: relative;
+font-family: Arial, Helvetica, sans-serif !important;
+}
+.background-video {
+height: 100%;
+width: 100%;
+float: left;
+top: 0;
+left:0;
+bottom: 0;
+right: 0;
+padding: none;
+display: relative;
+margin: 0px;
+z-index:0
+}
+
+.welcome{
+align-self: center;
+position: relative;
+z-index:10;
+padding-bottom: 30px;
+padding-top:  50px;
+text-align: center;
+}
+
+#login-form{
+position: absolute;
+top:40;
+left:0;
+ align-self: center;
+z-index:10;
+text-align: left;
+}
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+}

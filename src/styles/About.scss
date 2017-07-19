@@ -1,14 +1,31 @@
-#about{
-    justify-content: space-between;
-    align-content: space-between;
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+}
+#about {
     width: 100%;
-    text-align: center;
-    justify-content: center;
-    padding: 0px 100px 20px 100px;
-    background: url("/images/globe.png") no-repeat center;
-background-size: cover;
+    background: url("/images/globe.png") no-repeat right;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    padding-right: 0px;
+    height: 120vh;
+    display: flex;
 }
 
+#about-wrapper{
+  align-self: left;
+  float: left;
+  margin-right: 0px;
+  width: 60%;
+  padding: 20px 20px 0px 20px;
+  position: absolute;
+  left: 20px;
+  margin-bottom: 0px;
+  height: 70vh;
+  z-index: 100;
+
+}
 #logos{
   padding-top: 5px;
   background-color: #fff;
@@ -19,3 +36,27 @@ background-size: cover;
   height: 250px;
   overflow: auto;
 }
+
+#welcome {
+  margin: 0;
+  padding: 0;
+}
+#team {
+display: flex;
+flex-direction: row;
+
+}
+  
+#person-image {
+border-radius: 50%;
+width: 50%;
+ padding: 10px;
+
+}
+
+  #person-text h3{
+  font-family: 'Bahiana', cursive;
+  font-size: 15pt;
+  color: white;
+  text-align: center;
+    }
