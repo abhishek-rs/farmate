@@ -14,8 +14,7 @@ export default class UpdateField extends Component {
         this.state = Object.assign({
             currentField: props.currentField,
             formdata: props.currentField,
-            fieldId: props.fieldId,
-            messages: []
+            fieldId: props.fieldId
         });
 
         this.handleChange = this.handleChange.bind(this);
@@ -36,6 +35,7 @@ export default class UpdateField extends Component {
             let duration = moment.duration(currentDate.diff(formdata.date_irrigation));
             let days = duration.asDays().toFixed(0);
             let IR_in_L = e.target.value * 1000;
+            formdata.IR_rec = -1;
             let area_in_m2 = parseInt(formdata.area) * 10000;
             formdata.IR_list[29 - days] = IR_in_L;
             formdata.HP_list[29 - days] = (parseFloat(realdata.HP_list[29 - days]) + (e.target.value / area_in_m2) * 100).toFixed(2);
@@ -71,9 +71,7 @@ export default class UpdateField extends Component {
                             }
                         })
         );        
-        this.setState({
-            messages: [{severity:'info', summary:'Success', detail: "Data for Field " + this.state.formdata.name + " has been updated!"}]
-        }, () => this.props.hideDialog('1'));
+        this.props.hideDialog('1');
     }
 
     componentWillReceiveProps(nextProps){
@@ -99,7 +97,6 @@ export default class UpdateField extends Component {
 
                 <p data-tip="If the displayed water level is incorrect, please update it here. This will help us improve our suggestions for future.">Water level post irrigation (cms)</p>
                 <InputText name="HP" type="number" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')} />
-                <Growl value={this.state.messages} closable={true}></Growl>
                 <a className="btn btn-success" onClick={this.handleSubmit}>Update</a>
             </form>
         );

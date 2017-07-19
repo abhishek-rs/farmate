@@ -46,8 +46,11 @@ export default class CurrentFieldDisplay extends Component{
 
     onDialogHide(e){
         this.setState({
-            dialogVisible: false
+            dialogVisible: false,
+            messages: [{severity:'info', summary:'Success', detail: "Data for Field " + this.state.field.name + " has been updated!"}]
         });
+        let that = this;
+        setTimeout(() =>  that.setState({ messages: [] }), 1500);
     }
 
     showUpdate(){
@@ -63,6 +66,7 @@ export default class CurrentFieldDisplay extends Component{
         let formdata = this.state.field;
         formdata.IR_list[29] = formdata.IR_rec;
         let area_in_m2 = parseInt(formdata.area) * 10000;
+        formdata.IR_rec = -1;
         formdata.HP_list[29], formdata.HP = (parseFloat(formdata.HP_list[29]) + (formdata.IR_rec / area_in_m2) * 100).toFixed(2);
         let baseUrl = 'http://127.0.0.1:8000/api/predict/single_field/';
         let that = this;
@@ -227,13 +231,14 @@ export default class CurrentFieldDisplay extends Component{
             <div id="update-block">
             <span id="rec">Today's recommended irrigation</span>
             <ToggleButton style={{width:'100px', height: '25px'}} onLabel="Done!" offLabel={this.state.field.IR_rec.toString()} onIcon="fa-check-square" offIcon="fa-square"
-            checked={this.state.updateCheck} onChange={this.onChangeUpdate}/>
+            checked={this.state.updateCheck} disabled={this.state.field.IR_rec === -1} onChange={this.onChangeUpdate}/>
             <br />
             <a id="update" onClick={this.showUpdate} className="btn btn-success">Update</a>
             </div>
             }
             <span><a onClick={this.props.close} className="btn btn-danger">Close</a></span>
             </div>
+            <Growl value={this.state.messages} closable={true}></Growl>
         </div>
         );
     }

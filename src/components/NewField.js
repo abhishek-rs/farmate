@@ -188,7 +188,7 @@ render(){
                 <ReactiveWorldWind isDrawEnabled={this.state.isEditable} lat_shape={this.state.formdata.lat_shape} long_shape={this.state.formdata.long_shape} alt_shape={this.state.formdata.alt_shape}/>
             </div>
             <Dialog header="How to plot your field" onHide={this.onDialogHide} visible={this.state.dialogVisible} width="350px" modal={true}>
-                Double click the on the map area where you want to start plotting the first point of your field. Continue drawing by clicking on the next field corner point, until you are reach the end. You do not need to reconnect the starting and the end field points, our app will do that for you. Click 'Done drawing' to finish. You can hit 'Clear' to restart drawing anytime.   
+                Click or tap on the map area where you want to start plotting the first point of your field. Continue drawing by clicking on the next field corner point, until you are reach the end. You do not need to reconnect the starting and the end field points, our app will do that for you. Click 'Done drawing' to finish. You can hit 'Clear' to restart drawing anytime.   
             </Dialog>
 
             <div id="inputs">
@@ -197,10 +197,10 @@ render(){
                     <p data-tip="Naming your field will make it easy to identify later">Name of field</p>
                     <InputText value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')}/>
                     
-                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in <hectares></hectares>)</p> 
+                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in hectares)</p> 
                     <InputText name="area" type="number" placeholder="e.g. 20" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
 
-                    <p data-tip="Height of dikes for controlling the water built around the farm, typically 40-50cm. If there are none please enter 0">Dike Height (cm): </p> 
+                    <p data-tip="Height of dikes for controlling the water built around the farm, typically 40-50cm. If there are none please enter 0">Dike Height (cms): </p> 
                     <InputText name="dike_height" type="number" placeholder="" value={this.state.formdata.dike_height} onChange={(e) => this.handleChange(e, 'dike_height')}/>
                     
                     <p data-tip="Typically no more than 20cm. We need to know the initial water level in the field to base the calculations on">Water level(in cms)</p>
