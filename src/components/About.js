@@ -42,21 +42,22 @@ render(){
                 </div>
             </div>
         </div>
-        <div id="bottom-page">
+         <div id="bottom-page">
                <div id="we">
                       <h3>Who we are</h3>
                       <p>A group of Aalto students who believe that resourceful and sustainable farming is the future.
                       </p>
-                      <h3>Thomas</h3> <br />  <h3>Abhishek</h3> <h3>Milda</h3>
+                     
                      <div id="team">
                          <div id="person-image"> <img src="/images/thomas.jpg" /> 
-                         </div>
+                        <h4 id="person-text">Thomas</h4> </div> 
                          <div id="person-image"> <img src="/images/abhishek.jpg" /> 
-                         </div>
+                        <h4 id="person-text">Abhishek</h4> </div>  
                         <div id="person-image"> <img src="/images/mildaa.jpg" /> 
-                        </div>
+                        <h4 id="person-text">Milda</h4></div>  
                     </div>
                 </div>
+           
                 <div id="partners">
                      <h3>Partners </h3>
                      <div id="logos">

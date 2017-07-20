@@ -34,7 +34,7 @@ export default class Login extends Component {
       <h1>Welcome to Farmate </h1>
                     <h4> A platform helping you keep track of the irrigation of your fields</h4>
      </div>
-        <h2> Login </h2>
+        <h2 className="form-login"> Login </h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Email</label>
@@ -52,7 +52,7 @@ export default class Login extends Component {
               &nbsp;{this.state.loginMessage} <a onClick={this.resetPassword} className="alert-link">Forgot Password?</a>
             </div>
           }
-          <button type="submit" className="btn btn-primary">Login</button>
+          <button id="buttonstyle" type="submit" className="btn btn-primary">Login</button>
         </form>
         <div className="welcome">
         <h4>If this is your first time visiting farmate, learn more about it by visiting <a href="/farmate/about">About</a> section.</h4>

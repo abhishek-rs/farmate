@@ -36,11 +36,11 @@ height: 120vh;
 
 }
 #logos{
-  padding-top: 5px;
-  padding-right:20px !important; 
-  background-color: rgba(6, 13, 79, 0.78);
+  padding-top: 10px;
   display: flex;
   flex-direction: row;
+  background-color: rgba(6, 13, 79, 0.78);
+  
 }
 #aalto{
   height: 150px;
@@ -51,21 +51,31 @@ height: 120vh;
   margin: 0;
   padding: 0;
 }
+
+#we {
+  width: 60%;
+}
+#team{
+  padding-top: 5px;
+  padding-right:20px !important; 
+  display: flex;
+  flex-direction: row;
+}
   
 #person-image {
-border-radius: 50%;
-width: 50%;
- padding: 10px;
- display: flex;
-flex-direction: row;
-
+overflow: auto;
+padding-right: 30px;
+padding-left: 30px;
+align-self: center;
 }
 
-  #person-text h3{
+  #person-text h4{
   font-size: 15pt;
   color: white;
-  text-align: center;
-    }
+  text-align: center !important;
+  align-self: center;
+ 
+  }
 
     #bottom-page{
       width: 100%;
@@ -73,9 +83,10 @@ flex-direction: row;
       align-self: left;
       float: left;
       margin-right: 0px;
-      padding: 20px 20px 0px 20px;
+      padding: 0px 20px 0px 20px;
       left: 20px;
      margin-bottom: 0px;
      height: 60vh;
+     margin-top: 0px;
        z-index: 100;
     }

@@ -43,7 +43,7 @@ export default class Register extends Component {
               &nbsp;{this.state.registerError}
             </div>
           }
-          <button type="submit" className="btn btn-primary">Register</button>
+          <button id="buttonstyle" type="submit" className="btn btn-primary">Register</button>
         </form>
       </div>
       </div>
