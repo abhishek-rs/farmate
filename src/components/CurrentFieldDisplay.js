@@ -122,7 +122,6 @@ export default class CurrentFieldDisplay extends Component{
     ReactDOM.render(
     <div>
         <div className="chartContainer">
-            <p id="waterlvl">Water level in the field</p>
             <ResponsiveContainer>
             <AreaChart data={chartData}
                 margin={margins}>
@@ -133,10 +132,10 @@ export default class CurrentFieldDisplay extends Component{
                 <Area type='monotone' dataKey='WaterLevel' stroke='#FF5722' fill='#FF5722' />
             </AreaChart>
             </ResponsiveContainer>
+            <p id="waterlvl">Water level in the field</p>
         </div>
 
         <div className="chartContainer">
-        <p id="rainfall">Rainfall</p>
         <ResponsiveContainer>
             <AreaChart data={chartData}
                 margin={margins}>
@@ -147,10 +146,10 @@ export default class CurrentFieldDisplay extends Component{
                 <Area type='monotone' dataKey='Rainfall' stroke='#8884d8' fill='#8884d8' />
             </AreaChart>    
         </ResponsiveContainer>
+        <p id="rainfall">Rainfall</p>
         </div>
 
         <div className="chartContainer">
-        <p id="loss">Losses</p>
         <ResponsiveContainer>
             <AreaChart data={chartData}
                 margin={margins}>
@@ -163,6 +162,7 @@ export default class CurrentFieldDisplay extends Component{
                 <Area type='monotone' dataKey='Run-off' stackId="3" stroke='#F44336' fill='#F44336' />
             </AreaChart>    
         </ResponsiveContainer>
+        <p id="loss">Losses</p>
         </div>
     </div>
     , document.getElementById(doc));
