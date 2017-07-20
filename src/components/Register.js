@@ -24,7 +24,7 @@ export default class Register extends Component {
       <div id="login-form" className="col-sm-6 col-sm-offset-3">
         <div className="welcome">
       <h1>Register </h1>
-      <h4> Become a part of a community that believes in sustainable farming today.</h4>
+      <h4> Become part of a community that believes in sustainable farming today.</h4>
      </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">

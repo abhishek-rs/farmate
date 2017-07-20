@@ -18,8 +18,14 @@ height: 120vh;
     position: relative;
     margin: 0px 0px 0px 0px;
     padding-right: 0px;
-    height: 100vh;
+    height: 130vh;
     display: flex;
+}
+
+@media only screen and (max-width: 500px) {
+    #about {
+        background-attachment: scroll;
+}
 }
 
 #about-wrapper{
@@ -31,7 +37,7 @@ height: 120vh;
   position: relative;
   left: 20px;
   margin-bottom: 0px;
-  height: 60vh;
+  height: 70vh;
   z-index: 100;
 
 }
@@ -42,22 +48,24 @@ height: 120vh;
   background-color: rgba(6, 13, 79, 0.78);
   
 }
-#aalto{
+#logostyle{
   height: 150px;
   overflow: auto;
+  padding-left: 0px;
 }
 
-#welcome {
-  margin: 0;
-  padding: 0;
+#page-section {
+  padding-top: 10px;
+  padding-bottom: 5px;
 }
 
 #we {
-  width: 60%;
+  width: 80%;
+  
 }
 #team{
-  padding-top: 5px;
-  padding-right:20px !important; 
+  margin-top: 20px;
+  padding-right:60px !important; 
   display: flex;
   flex-direction: row;
 }
@@ -77,16 +85,65 @@ align-self: center;
  
   }
 
-    #bottom-page{
-      width: 100%;
-      position: absolute;
-      align-self: left;
-      float: left;
-      margin-right: 0px;
-      padding: 0px 20px 0px 20px;
-      left: 20px;
-     margin-bottom: 0px;
-     height: 60vh;
-     margin-top: 0px;
-       z-index: 100;
+ #bottom-page{
+  width: 90%;
+  position: absolute;
+  align-self: left;
+  float: left;
+  margin-right: 0px;
+  padding: 0px 20px 0px 20px;
+  left: 20px;
+  margin-bottom: 0px;
+  height: 60vh;
+  margin-top: 20px;
+  z-index: 100;
     }
+
+  .quotes{
+  font-size: 20px;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  }
+
+  .btn{
+      margin-top: 20px;
+  }
+
+
+  .how{
+   display: flex;
+   flex-direction: row;
+}
+
+.how-container{
+padding-top: 10px;
+display: flex;
+flex-direction: row;
+  justify-content: center;
+  margin-left: 0px;
+  padding-left: 0px;
+  
+}
+
+
+
+.how-text{
+ padding-top: 40px;
+ padding-left: 20px;
+
+}
+
+.number{
+padding-right: 10px;
+
+}
+
+.fun{
+  margin-top: 10px;
+  margin-bottom: 50px;
+  
+}
+
+.section-title{
+  padding-bottom: 20px;
+}
