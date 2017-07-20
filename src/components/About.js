@@ -24,37 +24,28 @@ render(){
                     <h1> How it works </h1>
                       <div className="how">
                          <div className="how-container">
-                            <img className="number"src="/images/nasa-fun.png" />
+                            <img className="number"src="/images/nasa-fun4.png" />
                                 <div className="how-text"> <p>Join farmate. </p>
                                     <p className="fun"> Create a free account on farmate by registering.
                                  </p>
-                                <p> Add your field to our map and our system will tell you how much you need to irrigate each day to keep the optimum water level. </p> <p className="fun"> The calculations are performed based on your inputs when you first create the field and the latest agriculture engineering formulas.
+                                <p> Add your field to our map. Our system will tell you how much to irrigate each day to keep the optimum water level. You can add more than 1 field to keep track of all the different crop types and fields that you have. </p> <p className="fun"> The calculations are performed based on your inputs when you first create the field and the latest agriculture engineering formulas.
                                   </p>
-                                 <p className="fun"> See the fields and irrigation levels of your neighbours on the map and communicate your needs together better.
+                                 <p> See the fields and irrigation levels of your neighbours on the map and communicate your needs together better.
                                 </p>
+                                <p className="fun">You can also see the weather and rainfall predictions on the dashboard to be able to plan your farming actions better.
+                                 </p>
                                 </div>
                          </div>
-             
-               
-               
                     </div>
               </div>
                 <div id="page-section">
-                    <h3 className="section-title">Awesome features </h3>
-                    <p>You can more than 1 field to keep track of all the different crop types and fields that you have.
-                    </p>
-                    
-                    <p> Stay informed: our system will display the overall water level of your field, the rain fall as well as the water loss.
-                    </p>
-                    <p>You can also see the weather and rainfall predictions on the dashboard to be able to plan your farming actions better.
-                     </p>
                      <a href="/farmate/register" className="btn btn-info">Register now</a>
                 </div>
                 
             </div>
         </div>
          <div id="bottom-page">
-             <div id="page-section">
+             <div id="background-section">
                     <h1>Background</h1>
                     <p>Farmate employs various mathematical models based on latest research to predict the current water level. A variety of APIs are used to get the necessary data for the predictions.</p>
                     <p> To validate our idea we engaged in discussions in online farming forums with the farmer community. We also collaborated with Matti Kummu, Assistant Professor at Water development research group at Aalto University. We received a lot of positive feedback on our project. </p>
