@@ -53,8 +53,9 @@
   width: 100% !important; }
 
 .navbar-default {
-  background: #0565b0 !important;
-  border: none !important; }
+  background: #1A237E !important;
+  border: none !important;
+  font-family: 'PT Sans', sans-serif; }
 
 .navbar-default .navbar-brand {
   color: #eee !important; }

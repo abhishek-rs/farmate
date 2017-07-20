@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import '../styles/ReactiveWorldWind.css';
+import '../styles/InputWorldWind.css';
 const WorldWind = window.WorldWind;
 
-export default class ReactiveWorldWind extends Component {
+export default class InputWorldWind extends Component {
     constructor(props){
         super(props);
         this.state = Object.assign({
@@ -23,7 +23,9 @@ export default class ReactiveWorldWind extends Component {
 		    currentLatitude: position.coords.latitude,
 		    currentLongitude: position.coords.longitude
         }, ()=> {
-            this.wwd.goTo(new WorldWind.Position(this.state.currentLatitude, this.state.currentLongitude, 5000))    
+            let goToAnimator = new WorldWind.GoToAnimator(this.wwd);
+            goToAnimator.travelTime = 7000;
+            goToAnimator.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 50000))
         });
     }
 

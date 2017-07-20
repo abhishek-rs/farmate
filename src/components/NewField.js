@@ -4,7 +4,7 @@ import '../styles/NewField.css'
 
 import {InputText} from 'primereact/components/inputtext/InputText'
 import {Slider} from 'primereact/components/slider/Slider';
-import ReactiveWorldWind from './ReactiveWorldWind'
+import InputWorldWind from './InputWorldWind'
 import ReactTooltip from 'react-tooltip'
 import {Calendar} from 'primereact/components/calendar/Calendar'
 import {SelectButton} from 'primereact/components/selectbutton/SelectButton'
@@ -185,7 +185,7 @@ render(){
         <div id="new-field">
             <ReactTooltip />
             <div id="input-ww">
-                <ReactiveWorldWind isDrawEnabled={this.state.isEditable} lat_shape={this.state.formdata.lat_shape} long_shape={this.state.formdata.long_shape} alt_shape={this.state.formdata.alt_shape}/>
+                <InputWorldWind isDrawEnabled={this.state.isEditable} lat_shape={this.state.formdata.lat_shape} long_shape={this.state.formdata.long_shape} alt_shape={this.state.formdata.alt_shape}/>
             </div>
             <Dialog header="How to plot your field" onHide={this.onDialogHide} visible={this.state.dialogVisible} width="350px" modal={true}>
                 Click or tap on the map area where you want to start plotting the first point of your field. Continue drawing by clicking on the next field corner point, until you are reach the end. You do not need to reconnect the starting and the end field points, our app will do that for you. Click 'Done drawing' to finish. You can hit 'Clear' to restart drawing anytime.   

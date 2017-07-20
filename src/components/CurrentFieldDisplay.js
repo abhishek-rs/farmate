@@ -166,7 +166,6 @@ export default class CurrentFieldDisplay extends Component{
         </div>
     </div>
     , document.getElementById(doc));
-
     }
 
     changeField(snapshot, selectedField){
@@ -209,7 +208,6 @@ export default class CurrentFieldDisplay extends Component{
     }
 
     render(){
-    //    let name = this.state.fieldChosen ? this.state.field.name : null;
         console.log(this.userId);
         return (
         <div id="currentFieldData">
@@ -231,7 +229,7 @@ export default class CurrentFieldDisplay extends Component{
             <div id="update-block">
             <span id="rec">Today's recommended irrigation</span>
             <ToggleButton style={{width:'100px', height: '25px'}} onLabel="Done!" offLabel={this.state.field.IR_rec.toString()} onIcon="fa-check-square" offIcon="fa-square"
-            checked={this.state.updateCheck} disabled={this.state.field.IR_rec === -1} onChange={this.onChangeUpdate}/>
+            checked={this.state.field.IR_rec === -1 ? true: this.state.updateCheck } disabled={this.state.field.IR_rec === -1} onChange={this.onChangeUpdate}/>
             <br />
             <a id="update" onClick={this.showUpdate} className="btn btn-success">Update</a>
             </div>

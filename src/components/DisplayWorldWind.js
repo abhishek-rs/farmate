@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/ReactiveWorldWind.css';
+import '../styles/InputWorldWind.css';
 import { dataRef } from '../config/constants.js';
 import { getUserId } from '../firebaseHelpers/auth';
 
@@ -23,7 +23,9 @@ export default class DisplayWorldWind extends Component {
     }
 
     getPosition(position){
-            this.wwd.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 5000))    
+            let goToAnimator = new WorldWind.GoToAnimator(this.wwd);
+            goToAnimator.travelTime = 7000;
+            goToAnimator.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 50000))    
     }
 
     componentWillReceiveProps(nextProps){
@@ -80,8 +82,8 @@ export default class DisplayWorldWind extends Component {
                 polygon.userProperties = {'id': this.state.field_ids[i]};
                 let polygonAttributes = new WorldWind.ShapeAttributes(null);
                 let textAttributes = new WorldWind.TextAttributes(null);
-                textAttributes.font = new WorldWind.Font(30, 'italic', 'normal', 'normal', 'sans-serif', 'center');
-                textAttributes.color = new WorldWind.Color(48,63,159, 1);
+                textAttributes.font = new WorldWind.Font(30, 'normal', 'normal', 'normal', 'sans-serif', 'center');
+                textAttributes.color = new WorldWind.Color(0,0,0, 1);
                 polygonAttributes.drawInterior = true;
                 polygonAttributes.drawOutline = true;
                 polygonAttributes.outlineColor = WorldWind.Color.BLUE;
@@ -148,13 +150,11 @@ export default class DisplayWorldWind extends Component {
         this.wwd.addLayer(new WorldWind.BingAerialWithLabelsLayer());
         var clickRecognizer= new WorldWind.ClickRecognizer(this.wwd, this.handlePick);
         var tapRecognizer = new WorldWind.TapRecognizer(this.wwd, this.handlePick);
-        this.wwd.addLayer(new WorldWind.CompassLayer());
         this.fieldsLayer = new WorldWind.RenderableLayer();
         this.textLayer = new WorldWind.RenderableLayer();
         this.fieldsLayer.displayName = "Fields";
         this.wwd.addLayer(this.fieldsLayer);
         this.wwd.addLayer(this.textLayer);
-        this.wwd.addLayer(new WorldWind.ViewControlsLayer(this.wwd));
         this.coords = new WorldWind.CoordinatesDisplayLayer(this.wwd);
         window.navigator.geolocation.getCurrentPosition(this.getPosition);
         //this.wwd.addLayer(this.coords);

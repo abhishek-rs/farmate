@@ -5,6 +5,7 @@
     align-content: space-between;
     width: 100%;
     text-align: center;
+    font-family: 'PT Sans', sans-serif;
     
     .intro{
         text-align: center;
@@ -25,18 +26,18 @@
     #right-panel{
         align-self: right;
         float: right;
-        margin-right: 20px;
+        margin: 0;
+        margin-top: -20px;
         z-index: 100;
         width: 35%;
-        height: 90vh;
+        height: 100vh;
         padding: 10px;
         background: #CFD8DC;
         color: #1A237E;
-        border-radius: 10px 10px 10px 10px;
-        -moz-border-radius: 10px 10px 10px 10px;
-        -webkit-border-radius: 10px 10px 10px 10px;
         border: 0px solid #000000;
-
+        -webkit-transition: width 3s;
+        -moz-transition: width 3s;
+        transition: width 3s;
         -webkit-box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
         -moz-box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
         box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
