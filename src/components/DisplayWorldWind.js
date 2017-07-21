@@ -74,7 +74,6 @@ export default class DisplayWorldWind extends Component {
         fieldsToDisplay.map(
             (f, i) => {
                 let polygon = new WorldWind.Polygon(f, null);
-                console.log(f);
                 let fieldName = f[0] ? new WorldWind.GeographicText(f[0], this.state.fieldNames[i]) : undefined;
                 polygon.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
                 polygon.extrude = true; // extrude the polygon edges to the ground
@@ -140,8 +139,7 @@ export default class DisplayWorldWind extends Component {
             fields: allFieldBoundaries,
             fieldNames: fieldNames,
             ownerIds: ownerIds
-        }, ()=> this.reRenderFields());
-        
+        }, ()=> this.reRenderFields());  
     }
 
     componentDidMount(){

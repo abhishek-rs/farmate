@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { dataRef } from '../config/constants.js';
 import DisplayWorldWind from './DisplayWorldWind.js';
 import CurrentFieldDisplay from './CurrentFieldDisplay.js';
-import FieldDashboard from './FieldDashboard.js';
+import FieldsContainer from './FieldsContainer.js';
 import Weather from './Weather.js';
 import '../styles/Dashboard.css';
 import {Row, Col} from 'react-bootstrap';
@@ -63,9 +63,10 @@ export default class Dashboard extends Component {
         return (
             <div id="dashboard">
                 <div id="left-panel">
-                     <Weather></Weather>
-                     <br />
-                     <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
+                    <FieldsContainer fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} selectedField={this.state.highlightedField} />
+                    <Weather></Weather>
+                    <br />
+                    <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
                 </div>
                 <div id="globe-holder">
                      <DisplayWorldWind fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}></DisplayWorldWind>
