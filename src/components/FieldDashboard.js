@@ -72,7 +72,6 @@ export default class FieldDashboard extends Component {
         let onlyFields = this.state.filteredUsers !== [] ? this.state.filteredUsers.map((field) =>
           <MyFieldDisplay field={field} onClick={this.handleClick}> </MyFieldDisplay>  
             ) : null;
-        
             
             return (
            <div>
@@ -83,6 +82,7 @@ export default class FieldDashboard extends Component {
              
                 </div>
         }
+       
            </div>
         
         )    
@@ -91,26 +91,3 @@ export default class FieldDashboard extends Component {
 }
 
 
-
-     //let that = this;
-       // usersRef.once("value").then (function(dataSnapshot) {
-        //    let items = [];
-         //   items.push(Object.values(dataSnapshot.val()));
-         //   that.setState({
-         //       items: items[0]
-         //   });
-         //    console.log(items[0]);
-         //    var myUserId = firebase.auth().currentUser.uid;
-         //    console.log(myUserId);
-        //    var filteredUsers = items[0].filter( (item) =>  item.owner_id === myUserId );
-       // console.log(filteredUsers);
-       // var oneMore;
-      //      var filteredValues = filteredUsers.forEach(function(object){
-      //          oneMore = object.name;
-       //         console.log(oneMore);
-      //      });
-//
-      //      this.setState({
-     //           oneMore: oneMore
-      //      });
-     //   }.bind(this));
