@@ -5,6 +5,7 @@
     align-content: space-between;
     width: 100%;
     text-align: center;
+    margin-top: 50px;
     
     .intro{
         text-align: center;
@@ -36,7 +37,7 @@
     #left-panel{
         z-index: 100;
         width: 30%;
-        height: 80vh;
+        height: 90vh;
         padding: 10px;
         margin-left: 20px;
         display: flex;

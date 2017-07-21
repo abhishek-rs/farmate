@@ -6,6 +6,7 @@
     width: 100%;
     height: 100vh;
     text-align: center;
+    margin-top: 20px;
 
     #input-ww{
         width: 100%;
@@ -20,7 +21,7 @@
     #inputs{
         align-self: right;
         float: right;
-        margin-right: 20px;
+        margin-right: 10px;
         z-index: 100;
         width: 30%;
         height: 100vh;
@@ -31,21 +32,11 @@
         margin-bottom: 10px;
     }
     input {
-    width: 70%;
-    padding: 5px 5px;
-    margin: 5px 0;
-    box-sizing: border-box;
-    text-align: center;
-        
-        #btn-info {
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
     width: 50%;
-    }  
+    padding: 5px 5px;
+    margin-left:10px;
+    box-sizing: border-box;
+    text-align: left;
 }
    p {
     margin: 5px 0;
@@ -62,4 +53,41 @@
     text-align: center;
   } 
 
+}
+.text {
+display: flex;
+flex-direction: row;
+width: 180px;
+}
+
+.form-container{
+    display: flex;
+flex-direction: row;
+}
+
+.inputfield{
+display: flex;
+flex-direction: row;
+padding-bottom: 20px;
+}
+
+.form-title{
+padding-bottom: 10px;
+}
+.soil-button{
+width: 300px;
+margin-left: 5px;
+padding-left: 25px;
+}
+
+#asshole{
+margin-bottom: 10px;
+margin-left: 10px;
+margin-top: 15px;
+width: 40%;
+}
+
+#buttonjoy{
+margin-bottom: 10px;
+width: 40% !important;
 }

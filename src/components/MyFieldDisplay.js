@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import FieldDashboard from './FieldDashboard.js';
+import '../styles/MyFieldDisplay.css'
 
 export default class MyFieldDisplay extends Component {
 
@@ -14,11 +15,13 @@ export default class MyFieldDisplay extends Component {
 render(){
   return (
   <div id="fieldinfo" >
-  
-  <p onClick={this.props.onClick}> {this.props.field.name} </p>
+  <ul> 
+  <p onClick={this.props.onClick} className="fieldtitle"> Field Name: {this.props.field.name}</p>
 
-
-  </div>
+  <p> Crop Type: {this.props.field.crop_type} </p>
+  <p>Last irrigated: Cannot read our database </p>
+</ul>
+</div>
 
   )
 

@@ -55,11 +55,13 @@ export default class Dashboard extends Component {
         return (
             <div id="dashboard">
                 <div id="left-panel">
+                     { this.state.fieldSnapshot !== {} && <FieldDashboard fieldSnapshot={this.state.fieldSnapshot} />}
                      <Weather></Weather>
+                     
                      <br />
                      <a href="/farmate/newfield" className="btn btn-success">Create new field</a>
                     <br />
-                { this.state.fieldSnapshot !== {} && <FieldDashboard fieldSnapshot={this.state.fieldSnapshot} />}
+                
                 </div>
                 <div id="globe-holder">
                      <DisplayWorldWind fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}></DisplayWorldWind>

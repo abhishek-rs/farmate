@@ -185,53 +185,64 @@ render(){
             <div id="input-ww">
                 <ReactiveWorldWind isDrawEnabled={this.state.isEditable} lat_shape={this.state.formdata.lat_shape} long_shape={this.state.formdata.long_shape} alt_shape={this.state.formdata.alt_shape}/>
             </div>
+            <div className="form-container">
             <Dialog header="How to plot your field" onHide={this.onDialogHide} visible={this.state.dialogVisible} width="350px" modal={true}>
                 Double click the on the map area where you want to start plotting the first point of your field. Continue drawing by clicking on the next field corner point, until you are reach the end. You do not need to reconnect the starting and the end field points, our app will do that for you. Click 'Done drawing' to finish. You can hit 'Clear' to restart drawing anytime.   
             </Dialog>
-
             <div id="inputs">
+                <h3 className="form-title"> Add new field</h3>
                 <form id="new-form" onSubmit={this.handleSubmit}>
-                    
-                    <p data-tip="Naming your field will make it easy to identify later">Name of field</p>
+                    <div className="inputfield" >
+                    <p className="text" data-tip="Naming your field will make it easy to identify later">Name of field </p> 
                     <InputText value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')}/>
-                    
-                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in square meters)</p> 
+                    </div>
+                     <div className="inputfield" >
+                    <p className="text" data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in square meters) </p> 
                     <InputText name="area" type="number" placeholder="e.g. 20" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
-
-                    <p data-tip="Height of dikes for controlling the water built around the farm, typically 40-50cm. If there are none please enter 0">Dike Height (cm): </p> 
+                    </div>
+                     <div className="inputfield" >
+                    <p className="text" data-tip="Height of dikes for controlling the water built around the farm, typically 40-50cm. If there are none please enter 0">Dike Height (cm)</p> 
                     <InputText name="dike_height" type="number" placeholder="" value={this.state.formdata.dike_height} onChange={(e) => this.handleChange(e, 'dike_height')}/>
-                    
-                    <p data-tip="Typically no more than 20cm. We need to know the initial water level in the field to base the calculations on">Water level(in cms)</p>
+                    </div>
+                     <div className="inputfield" >
+                    <p className="text" data-tip="Typically no more than 20cm. We need to know the initial water level in the field to base the calculations on">Water level (in cm) </p> 
                     <InputText name="HP" type="number" placeholder="" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')}/>
-                    
-                    <p data-tip="Soil type based on grain size. Ranging from (0) fine sand to (5) solid clay.">Soil type</p>
-                    <SelectButton key="id" options={this.soil_options} value={this.soil_options[this.state.formdata.soil_type].label} onChange={(e) => this.handleChange(e, 'soil_type')}></SelectButton>
-
-                    <p data-tip="Rice is the only type available now">Crop type</p>
+                    </div>
+                     <div className="inputfield" >
+                    <p className="text" data-tip="Soil type based on grain size. Ranging from (0) fine sand to (5) solid clay.">Soil type </p> 
+                    <SelectButton className="soil-button" key="id" options={this.soil_options} value={this.soil_options[this.state.formdata.soil_type].label} onChange={(e) => this.handleChange(e, 'soil_type')}></SelectButton>
+                     </div>
+                      <div className="inputfield" >
+                    <p className="text" data-tip="Rice is the only type available now">Crop type </p> 
                     <InputText name="crop_type" value="Rice" type="string" readOnly="true"/>
-                    
-                    <p data-tip="When was the crop planted?">Plantation date</p>
+                    </div>
+                     <div className="inputfield" >
+                    <p className="text" data-tip="When was the crop planted?">Plantation date </p> 
                     <Calendar tabindex="0" placeholder="Calendar" onChange={(e) => this.handleChange(e, 'date_transplant')}></Calendar>
-    
-                    <p data-tip="When was the last irrigation done?">Last irrigation date</p>
+                     </div>
+                      <div className="inputfield" >
+                    <p  className="text" data-tip="When was the last irrigation done?">Last irrigation date </p> 
                     <Calendar tabindex="0" placeholder="Calendar" onChange={(e) => this.handleChange(e, 'date_irrigation')}></Calendar>
-    
+                        </div>
                     <br />
                     <br />
-
+                   
                     { !this.state.isEditable 
-                                        ? <input className="btn btn-info" disabled={this.state.doneDrawing} value="Draw my field" onClick={this.startDrawing} /> 
+                                        ? <input id="buttonjoy" className="btn btn-info" disabled={this.state.doneDrawing} value="Draw my field" onClick={this.startDrawing} /> 
                                         :  !this.state.doneDrawing
-                                        ? <input className="btn btn-info" value="Finish Drawing" onClick={this.finishDrawing} /> : null }
+                                        ? <input id="buttonjoy" className="btn btn-info" value="Finish Drawing" onClick={this.finishDrawing} /> : null }
 
-                    { this.state.isEditable && !this.state.doneDrawing ? <input className="btn btn-danger" value="Clear drawing" onClick={this.clearDrawing} /> : null }
+                    { this.state.isEditable && !this.state.doneDrawing ? <input id="buttonjoy" className="btn btn-danger" value="Clear drawing" onClick={this.clearDrawing} /> : null }
                     <br />
                     <br />
-                    <input className="btn btn-success" disabled={!this.state.doneDrawing} onClick={this.handleSubmit} value="Submit" />
+                    <input id="buttonjoy" className="btn btn-success" disabled={!this.state.doneDrawing} onClick={this.handleSubmit} value="Submit" />
 
-                </form>
+                 </form>
+                 <a href="/farmate/dashboard" className="btn btn-danger" id="asshole">Back to Dashboard</a>
+                  </div>
                 <br />
-                <a href="/farmate/dashboard" className="btn btn-danger">Cancel</a>
+                
+               
                 <div id="desired-depth-chart"></div>
                 <div id="critical-depth-chart"></div>
             </div>
