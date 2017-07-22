@@ -7,6 +7,8 @@ import { getUserId } from '../firebaseHelpers/auth'
 import { dataRef, database } from '../config/constants.js';
 import * as moment from 'moment';
 import {Growl} from 'primereact/components/growl/Growl';
+import '../styles/UpdateField.css';
+
 export default class UpdateField extends Component {
 
     constructor(props){
@@ -60,7 +62,7 @@ export default class UpdateField extends Component {
         let that = this;
         database.ref('main/' + this.state.fieldId).set(formdata)
                     .then( () => 
-                        Request.get(baseUrl + that.state.fieldId)
+                    /*    Request.get(baseUrl + that.state.fieldId)
                         .end( (err, res) => {
                             if(err){
                                 that.props.updateData();
@@ -69,7 +71,7 @@ export default class UpdateField extends Component {
                                 that.props.updateData();
                                 console.log(res)
                             }
-                        })
+                        })*/{}
         );        
         this.props.hideDialog('1');
     }
@@ -87,7 +89,7 @@ export default class UpdateField extends Component {
         return (
             <form id="update-form" onSubmit={this.handleSubmit}>
                 <p data-tip="You can change the name of the field here">Name of field</p>
-                <InputText value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')} />    
+                <span><InputText value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')} /></span>    
                 
                 <p data-tip="Date of last irrigation">Last irrigation date</p>
                 <Calendar tabindex="0" placeholder="Calendar" onChange={(e) => this.handleChange(e, 'date_irrigation')} ></Calendar>
@@ -97,6 +99,7 @@ export default class UpdateField extends Component {
 
                 <p data-tip="If the displayed water level is incorrect, please update it here. This will help us improve our suggestions for future.">Water level post irrigation (cms)</p>
                 <InputText name="HP" type="number" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')} />
+                <br />
                 <a className="btn btn-success" onClick={this.handleSubmit}>Update</a>
             </form>
         );

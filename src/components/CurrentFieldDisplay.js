@@ -49,8 +49,7 @@ export default class CurrentFieldDisplay extends Component{
             dialogVisible: false,
             messages: [{severity:'info', summary:'Success', detail: "Data for Field " + this.state.field.name + " has been updated!"}]
         });
-        let that = this;
-        setTimeout(() =>  that.setState({ messages: [] }), 1500);
+        this.props.updateData();
     }
 
     showUpdate(){
@@ -201,21 +200,21 @@ export default class CurrentFieldDisplay extends Component{
             || nextState.dialogVisible !== this.state.dialogVisible 
             || nextState.field !== this.state.field
             || nextState.currentField !== this.state.currentField
-            || nextState.updateCheck !== this.state.updateCheck){
+            || nextState.updateCheck !== this.state.updateCheck
+            || nextState.fieldSnapshot !== this.state.fieldSnapshot){
             return true;
         }
         return false;
     }
 
     render(){
-        console.log(this.userId);
         return (
         <div id="currentFieldData">
-            <Dialog header={this.state.field.name} onHide={this.onDialogHide} visible={this.state.dialogVisible} width="500px" modal={false}>
+            <Dialog header={this.state.field.name} onHide={this.onDialogHide} visible={this.state.dialogVisible} width="600px" modal={false}>
                 {this.state.fieldChosen && <UpdateField updateData={this.props.updateData} hideDialog={this.onDialogHide} currentField={this.state.field} fieldId={this.state.currentField} />}
             </Dialog>    
             <div>
-            <h3>{this.state.field.name}</h3>
+            <h4>{this.state.field.name} stats: </h4>
             <div id="chart"></div>
                 { !this.state.chartLoaded ? 
                         <div>
@@ -225,18 +224,18 @@ export default class CurrentFieldDisplay extends Component{
                     : null
                 }
 
-            {this.state.field.owner_id === this.userId && 
+            { this.state.field.owner_id === this.userId && 
             <div id="update-block">
-            <span id="rec">Today's recommended irrigation</span>
-            <ToggleButton style={{width:'100px', height: '25px'}} onLabel="Done!" offLabel={this.state.field.IR_rec.toString()} onIcon="fa-check-square" offIcon="fa-square"
-            checked={this.state.field.IR_rec === -1 ? true: this.state.updateCheck } disabled={this.state.field.IR_rec === -1} onChange={this.onChangeUpdate}/>
-            <br />
-            <a id="update" onClick={this.showUpdate} className="btn btn-success">Update</a>
+                <p id="rec">Today's recommended irrigation</p>
+                <ToggleButton style={{width:'100px', height: '25px'}} onLabel="Done!" offLabel={this.state.field.IR_rec.toString()} onIcon="fa-check-square" offIcon="fa-square"
+                checked={this.state.field.IR_rec === -1 ? true: this.state.updateCheck } disabled={this.state.field.IR_rec === -1} onChange={this.onChangeUpdate}/>
             </div>
             }
-            <span><a onClick={this.props.close} className="btn btn-danger">Close</a></span>
+            { this.state.field.owner_id === this.userId &&
+            <span><a id="update" onClick={this.showUpdate} className="btn btn-success button">Update</a></span>
+            }
+            <span><a onClick={this.props.close} className="btn btn-danger button">Close</a></span>
             </div>
-            <Growl value={this.state.messages} closable={true}></Growl>
         </div>
         );
     }

@@ -57,7 +57,7 @@ export default class FieldsContainer extends Component {
                                     let isSelected = false;
                                     if(ids[i] == this.state.selectedField)
                                         isSelected = true;
-                                    return <Field field={f} id={ids[i]} isSelected={isSelected} handleClick={this.handlePick}/>
+                                    return <Field key={ids[i]} field={f} id={ids[i]} isSelected={isSelected} handleClick={this.handlePick}/>
                                 })
                         : null;
 

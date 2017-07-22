@@ -57,6 +57,9 @@
 .navbar-default {
   background: #1A237E !important;
   border: none !important;
+  margin-bottom: 0px !important;
+  position: fixed !important;
+  width: 100% !important;
   font-family: 'PT Sans', sans-serif; }
 
 .navbar-default .navbar-brand {

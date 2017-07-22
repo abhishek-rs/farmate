@@ -17,22 +17,20 @@ export default class Register extends Component {
   }
   render () {
     return (
-      <div className="container">
+      <div className="login-container">
        <video className="background-video" loop muted autoPlay>
           <source src="/images/test.mp4" type="video/mp4" />
       </video>
-      <div id="login-form" className="col-sm-6 col-sm-offset-3">
+      <div id="login-form" className="col-sm-6">
         <div className="welcome">
-      <h1>Register </h1>
-      <h4> Become part of a community that believes in sustainable farming today.</h4>
+      <h1>Register to Farmate!</h1>
+      <h4 className="italic"> Become part of a community that believes in sustainable farming today.</h4>
      </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label>Email</label>
             <input className="form-control" ref={(email) => this.email = email} placeholder="Email"/>
           </div>
           <div className="form-group">
-            <label>Password</label>
             <input type="password" className="form-control" placeholder="Password" ref={(pw) => this.pw = pw} />
           </div>
           {
@@ -45,6 +43,13 @@ export default class Register extends Component {
           }
           <button id="buttonstyle" type="submit" className="btn btn-primary">Register</button>
         </form>
+        <br />
+        <br />
+        
+        <div className="welcome">
+        <h4 className="italic">If this is your first time visiting farmate, learn more about it by visiting the <a className="btn btn-info" href="/farmate/about">About</a> section.</h4>
+        <h4 className="italic">Built using NASA's WorldWind application for NASA Europa Challenge 2017</h4>
+        </div>
       </div>
       </div>
     )

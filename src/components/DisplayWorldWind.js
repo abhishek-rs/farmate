@@ -82,10 +82,11 @@ export default class DisplayWorldWind extends Component {
                 let polygonAttributes = new WorldWind.ShapeAttributes(null);
                 let textAttributes = new WorldWind.TextAttributes(null);
                 textAttributes.font = new WorldWind.Font(30, 'normal', 'normal', 'normal', 'sans-serif', 'center');
-                textAttributes.color = new WorldWind.Color(0,0,0, 1);
+                textAttributes.color = new WorldWind.Color(1,1,1, 1);
                 polygonAttributes.drawInterior = true;
                 polygonAttributes.drawOutline = true;
                 polygonAttributes.outlineColor = WorldWind.Color.BLUE;
+                polygonAttributes.outlineWidth = 1.5;
                 polygonAttributes.interiorColor = this.state.ownerIds[i] === getUserId() ? new WorldWind.Color(0, 1, 1, 0.5) : new WorldWind.Color(1, 0, 0, 0.5);
                 polygonAttributes.drawVerticals = polygon.extrude;
                 polygonAttributes.applyLighting = true;
@@ -94,6 +95,7 @@ export default class DisplayWorldWind extends Component {
                 // Create and assign the polygon's highlight attributes.
                 let highlightAttributes = new WorldWind.ShapeAttributes(polygonAttributes);
                 highlightAttributes.outlineColor = WorldWind.Color.GREEN;
+                highlightAttributes.outlineWidth = 1.5;
                 highlightAttributes.interiorColor = new WorldWind.Color(1, 1, 1, 0.5);
                 polygon.highlightAttributes = highlightAttributes;
                 

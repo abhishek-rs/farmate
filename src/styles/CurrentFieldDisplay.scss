@@ -1,14 +1,18 @@
 #currentFieldData{
     height: 90%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
 
-    h3{
-        font-weight: bolder;
+    h4{
+        font-weight: bold;
         padding: 2px;
         margin: 0;
     }
 
-    a{
+    .button{
         margin-top: 5px;
         margin-right: 5px;
     }
@@ -20,13 +24,39 @@
 }
 
 #update-block{
+    padding: 10px;
+    background: #1A237E;
+    width: 50%;
+    border-radius: 5px;
+    align-self: center;
+    margin: auto;
+
+
     #rec{
         padding: 2px;
         font-size: 16px;
         font-weight: bold;
         margin-top: 5px;
         margin-bottom: 2px;
+        margin-right: 10px;
+        color: white;
     }
+}
+
+.ui-dialog-titlebar{
+    background: #1A237E !important;
+    border: none !important;
+    color: white !important;
+}
+
+.ui-dialog-titlebar-close{
+    background: red !important;
+    color: white !important;
+}
+
+.ui-dialog-content{
+    background: #CFD8DC !important; 
+    font-family: 'PT Sans', sans-serif !important;
 }
 
 .chartContainer{

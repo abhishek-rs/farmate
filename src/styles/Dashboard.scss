@@ -27,9 +27,12 @@
         align-self: right;
         float: right;
         margin: 0;
+        position: relative;
         z-index: 100;
         width: 35%;
+        top: 50px;
         padding: 10px;
+        min-height: 95vh;
         background: #CFD8DC;
         color: #1A237E;
         border: 0px solid #000000;
@@ -50,9 +53,11 @@
         align-content: space-between;
         justify-content: center;
         align-self: left;
+        position: relative;
+        min-height: 95vh;
         background: rgba(6, 13, 79, 0.78);
         border: 0px solid #000000;
-
+        top: 50px;
         -webkit-box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
         -moz-box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
         box-shadow: 3px 11px 5px -6px rgba(0,0,0,0.75);
