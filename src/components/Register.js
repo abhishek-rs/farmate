@@ -19,7 +19,7 @@ export default class Register extends Component {
     return (
       <div className="login-container">
        <video className="background-video" loop muted autoPlay>
-          <source src="/images/test.mp4" type="video/mp4" />
+          <source src="/farmate/images/test.mp4" type="video/mp4" />
       </video>
       <div id="login-form" className="col-sm-6">
         <div className="welcome">

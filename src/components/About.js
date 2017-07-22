@@ -24,7 +24,7 @@ render(){
                     <h1> How it works </h1>
                       <div className="how">
                          <div className="how-container">
-                            <img className="number" src="/images/nasa-fun4.png" />
+                            <img className="number" src="/farmate/images/nasa-fun4.png" />
                                 <div className="how-text"> <p>Join farmate. </p>
                                     <p className="fun"> Create a free account on farmate by registering.
                                  </p>
@@ -59,19 +59,19 @@ render(){
                       </p>
                      
                      <div id="team">
-                         <div id="person-image"> <img src="/images/thomas.jpg" /> 
+                         <div id="person-image"> <img src="/farmate/images/thomas.jpg" /> 
                         <h4 id="person-text">Thomas</h4> </div> 
-                         <div id="person-image"> <img src="/images/abhishek.jpg" /> 
+                         <div id="person-image"> <img src="/farmate/images/abhishek.jpg" /> 
                         <h4 id="person-text">Abhishek</h4> </div>  
-                        <div id="person-image"> <img src="/images/mildaa.jpg" /> 
+                        <div id="person-image"> <img src="/farmate/images/mildaa.jpg" /> 
                         <h4 id="person-text">Milda</h4></div>  
                     </div>
                 </div>
                 <div id="partners">
                      <h1>Partners </h1>
                      <div id="logos">
-                        <img id="logostyle" src="/images/aaltoo.png"/>
-                        <img id="logostyle" src="/images/EIT.png"/>
+                        <img id="logostyle" src="/farmate/images/aaltoo.png"/>
+                        <img id="logostyle" src="/farmate/images/EIT.png"/>
                     </div>
                 </div>
   
