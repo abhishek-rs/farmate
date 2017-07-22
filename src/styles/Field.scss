@@ -1,0 +1,54 @@
+.field{
+    background: #CFD8DC;
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+
+    .holder{
+            display: flex;
+            flex-direction: row;
+            align-content: space-between;
+            .sub-holder{
+                display: flex;
+                flex-direction: column;
+                background: #9FA8DA;
+                color: #607D8B;
+                padding: 5px;
+                width: 70%;
+                border-radius: 10px 10px 10px 10px;
+                -moz-border-radius: 10px 10px 10px 10px;
+                -webkit-border-radius: 10px 10px 10px 10px;
+                
+                .field-details{
+                    color: #1A237E;
+                    font-weight: bolder;
+
+                    h4{
+                        margin: 1px;
+                        font-weight: bolder;
+                        font-style: italic;
+                    }
+                    p{
+                        margin: 1px;
+                        font-weight: normal;
+
+                        span:hover{
+                            cursor: initial;
+                        }
+                    }
+                }
+            }
+            .icon {
+                    align-self: center;
+                    width: 30%;
+
+                    img{
+                        height: 50px;
+                    }
+                }
+        }
+
+}

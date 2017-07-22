@@ -9,7 +9,8 @@ export default class FieldsContainer extends Component {
         this.state = Object.assign({
             fieldSnapshot: props.fieldSnapshot,
             selectedField: props.selectedField,
-            fields: []
+            fields: [],
+            fieldIds: []
         });
         this.getFields = this.getFields.bind(this);
         this.handlePick = this.handlePick.bind(this);
@@ -18,7 +19,7 @@ export default class FieldsContainer extends Component {
     componentWillReceiveProps(nextProps){
         this.setState({
             fieldSnapshot: nextProps.fieldSnapshot,
-            highlightedField: nextProps.selectedField,
+            selectedField: nextProps.selectedField,
         }, () => {
             this.getFields(this.state.fieldSnapshot);
         })
@@ -27,27 +28,37 @@ export default class FieldsContainer extends Component {
     getFields(snapshot){
         let fields = Object.values(snapshot.val());
         let ids = Object.keys(snapshot.val());
-        let allFieldBoundaries = [];
+        let relevantFieldIds = [];
         let ownerid = getUserId();
-        let currentUserFields = fields.filter((f) => f.owner_id == ownerid );
+        let currentUserFields = fields.filter((f,i) => {
+            if(f.owner_id == ownerid){
+                relevantFieldIds.push(ids[i])
+                return true;
+            }
+        });
         this.setState({
             fields: currentUserFields,
+            fieldIds: relevantFieldIds
         });
     }
 
     componentWillMount(){
     }
 
-    handlePick(){
-
+    handlePick(id){
+        this.props.updateSelection(id);
     }
 
     render(){
-        console.log(this.state.fields);
+        let ids = this.state.fieldIds;
         let Fields = this.state.fields !== []
-                        ? this.state.fields.map( (f) =>
-                                <Field field={f} />
-                        )
+                        ? this.state.fields.map( (f,i) =>
+                                {   
+                                    let isSelected = false;
+                                    if(ids[i] == this.state.selectedField)
+                                        isSelected = true;
+                                    return <Field field={f} id={ids[i]} isSelected={isSelected} handleClick={this.handlePick}/>
+                                })
                         : null;
 
          return  (

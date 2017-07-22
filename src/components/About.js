@@ -24,7 +24,7 @@ render(){
                     <h1> How it works </h1>
                       <div className="how">
                          <div className="how-container">
-                            <img className="number"src="/images/nasa-fun4.png" />
+                            <img className="number" src="/images/nasa-fun4.png" />
                                 <div className="how-text"> <p>Join farmate. </p>
                                     <p className="fun"> Create a free account on farmate by registering.
                                  </p>

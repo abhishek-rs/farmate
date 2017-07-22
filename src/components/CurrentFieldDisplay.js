@@ -104,14 +104,14 @@ export default class CurrentFieldDisplay extends Component{
     RO = RO.concat(field.RO_pre_list);   
 
     HP.map( (f,i) => {
-        let dayDiff = i -29;
+        let dayDiff = i - 29;
         let HP_RF_data = Object.assign({
             'WaterLevel': parseFloat(f),
             'Rainfall': parseFloat(RF[i]),
             'Run-off': parseFloat(RO[i]),
             'Evaporation': parseFloat(ET[i]),
             'Seepage': parseFloat(DP[i]),
-            index: (dayDiff === 0) ? 'Today' : moment().day(i - 29).format("DD-MM")
+            index: (dayDiff === 0) ? 'Today' : moment().add(dayDiff, 'days').format("DD-MM")
             });
         chartData.push(HP_RF_data);
     });

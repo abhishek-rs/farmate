@@ -10,7 +10,6 @@ import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import Weather from './components/Weather'
 import NewField from './components/NewField'
-import FieldDashboard from './components/FieldDashboard'
 import { logout } from './firebaseHelpers/auth'
 import About from './components/About'
 //import { FontAwesome } from 'react-fontawesome';
@@ -95,15 +94,15 @@ export default class App extends Component {
               </div>
               <ul className="nav navbar-nav pull-right">
                 <li>  
-                  <Link to="/farmate/about" className="navbar-brand">About</Link>
-                  <Link to="/farmate/dashboard" className="navbar-brand">Dashboard</Link> 
+                  <span className="nav-button"><Link to="/farmate/about" className="navbar-brand">About</Link></span>
+                  <span className="nav-button"><Link to="/farmate/dashboard" className="navbar-brand">Dashboard</Link></span> 
                    {this.state.authed
-                    ? <button
+                    ? <span className="nav-button"><button
                         style={{border: 'none', background: 'transparent'}}
                         onClick={() => {
                           logout()
                         }}
-                        className="navbar-brand">Logout</button>
+                        className="navbar-brand">Logout</button></span>
                     : <span>
                         
                       </span>}
@@ -132,8 +131,7 @@ export default class App extends Component {
                 <PrivateRoute authed={this.state.authed} path='/farmate/dashboard' component={Dashboard} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/weather' component={Weather} />
                 <PrivateRoute authed={this.state.authed} path='/farmate/newfield' component={NewField} />
-                <PrivateRoute authed={this.state.authed} path='/farmate/fieldashboard' component={FieldDashboard} />
-               <Route path='/farmate/about' exact component={About} />
+                <Route path='/farmate/about' exact component={About} />
                 <Route render={() => <Redirect to='/farmate/dashboard'/>}/>
               </Switch>
             </div>

@@ -6,11 +6,6 @@ font-family: Arial, Helvetica, sans-serif !important;
 height: 120vh;
 }
 
-.navbar {
-    position: relative;
-    min-height: 50px;
-    margin-bottom: 0px;
-}
 #about {
     width: 100%;
     background: url("/images/globe.png") no-repeat right;
@@ -110,14 +105,7 @@ align-self: center;
   padding-top: 15px;
   padding-bottom: 5px;
   }
-
-  .btn{
-      margin-top: 0px;
-      margin-left: 160px;
-      margin-bottom: 40px;
-  }
-
-
+     
   .how{
    display: flex;
    flex-direction: row;
