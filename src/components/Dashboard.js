@@ -71,6 +71,8 @@ export default class Dashboard extends Component {
                 <div id="globe-holder">
                      <DisplayWorldWind fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} highlightedField={this.state.highlightedField}></DisplayWorldWind>
                 </div>
+                
+
                 {currentFieldPanel}
             </div>   
         )

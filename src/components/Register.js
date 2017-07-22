@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { auth } from '../firebaseHelpers/auth'
+import '../styles/Login.css';
 
 function setErrorMsg(error) {
   return {
@@ -16,8 +17,15 @@ export default class Register extends Component {
   }
   render () {
     return (
-      <div className="col-sm-6 col-sm-offset-3">
-        <h1>Register</h1>
+      <div className="container">
+       <video className="background-video" loop muted autoPlay>
+          <source src="/images/test.mp4" type="video/mp4" />
+      </video>
+      <div id="login-form" className="col-sm-6 col-sm-offset-3">
+        <div className="welcome">
+      <h1>Register </h1>
+      <h4> Become part of a community that believes in sustainable farming today.</h4>
+     </div>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Email</label>
@@ -35,8 +43,9 @@ export default class Register extends Component {
               &nbsp;{this.state.registerError}
             </div>
           }
-          <button type="submit" className="btn btn-primary">Register</button>
+          <button id="buttonstyle" type="submit" className="btn btn-primary">Register</button>
         </form>
+      </div>
       </div>
     )
   }

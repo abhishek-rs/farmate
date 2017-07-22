@@ -1,0 +1,157 @@
+#container{
+padding: 0px;   
+margin: 0px;
+position: relative;
+font-family: Arial, Helvetica, sans-serif !important;
+height: 120vh;
+}
+
+.navbar {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 0px;
+}
+#about {
+    width: 100%;
+    background: url("/images/globe.png") no-repeat right;
+    background-attachment: fixed;
+    position: relative;
+    margin: 0px 0px 0px 0px;
+    padding-right: 0px;
+    height: 115vh;
+    display: flex;
+}
+
+@media only screen and (max-width: 500px) {
+    #about {
+        background-attachment: scroll;
+}
+}
+
+#about-wrapper{
+  align-self: left;
+  float: left;
+  margin-right: 0px;
+  width: 60%;
+  padding: 20px 20px 0px 20px;
+  position: relative;
+  left: 20px;
+  margin-bottom: 0px;
+  height: 70vh;
+  z-index: 100;
+
+}
+#logos{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(6, 13, 79, 0.78);
+   overflow: auto;
+  
+}
+#logostyle{
+  height: 150px;
+  overflow: auto;
+  padding-left: 0px;
+}
+
+#page-section {
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+#background-section {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  margin-right: 50px;
+}
+
+#we {
+  width: 80%;
+  
+}
+#team{
+  margin-top: 20px;
+  padding-right:60px !important; 
+  display: flex;
+  flex-direction: row;
+}
+  
+#person-image {
+overflow: auto;
+padding-right: 30px;
+padding-left: 30px;
+align-self: center;
+}
+
+  #person-text h4{
+  font-size: 15pt;
+  color: white;
+  text-align: center !important;
+  align-self: center;
+ 
+  }
+
+ #bottom-page{
+  width: 100%;
+  position: absolute;
+  align-self: left;
+  float: left;
+  margin-right: 0px;
+  padding: 0px 20px 0px 20px;
+  left: 20px;
+  margin-bottom: 0px;
+  height: 60vh;
+  margin-top: 20px;
+  z-index: 100;
+    }
+
+  .quotes{
+  font-size: 20px;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  }
+
+  .btn{
+      margin-top: 0px;
+      margin-left: 160px;
+      margin-bottom: 40px;
+  }
+
+
+  .how{
+   display: flex;
+   flex-direction: row;
+}
+
+.how-container{
+padding-top: 10px;
+display: flex;
+flex-direction: row;
+  justify-content: center;
+  margin-left: 0px;
+  padding-left: 0px;
+  
+}
+
+
+
+.how-text{
+ padding-top: 40px;
+ padding-left: 20px;
+
+}
+
+.number{
+padding-right: 10px;
+
+}
+
+.fun{
+  margin-top: 10px;
+  margin-bottom: 50px;
+  
+}
+
+.section-title{
+  padding-bottom: 20px;
+}
