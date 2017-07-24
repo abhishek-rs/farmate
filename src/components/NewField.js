@@ -197,11 +197,13 @@ render(){
                     <div className="inputfield" >
                     <p className="text" data-tip="Naming your field will make it easy to identify later">Name of field </p> 
                     <InputText value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')}/>
-                    
-                    <p data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in hectares)</p> 
+                    </div>
+                     <div className="inputfield" >
+                    <p className="text" data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in hectares)</p> 
                     <InputText name="area" type="number" placeholder="e.g. 20" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
-
-                    <p data-tip="Height of dikes for controlling the water built around the farm, typically 40-50cm. If there are none please enter 0">Dike Height (cms): </p> 
+                    </div>
+                     <div className="inputfield" >
+                    <p className="text" data-tip="Height of dikes for controlling the water built around the farm, typically 40-50cm. If there are none please enter 0">Dike Height (cms): </p> 
                     <InputText name="dike_height" type="number" placeholder="" value={this.state.formdata.dike_height} onChange={(e) => this.handleChange(e, 'dike_height')}/>
                     </div>
                      <div className="inputfield" >
@@ -217,11 +219,11 @@ render(){
                     <InputText name="crop_type" value="Rice" type="string" readOnly="true"/>
                     </div>
                      <div className="inputfield" >
-                    <p className="text" data-tip="When was the crop planted?">Plantation date </p> 
+                    <p className="calendar-text" data-tip="When was the crop planted?">Plantation date </p> 
                     <Calendar tabindex="0" placeholder="Calendar" onChange={(e) => this.handleChange(e, 'date_transplant')}></Calendar>
                      </div>
                       <div className="inputfield" >
-                    <p  className="text" data-tip="When was the last irrigation done?">Last irrigation date </p> 
+                    <p  className="calendar-text" data-tip="When was the last irrigation done?">Last irrigation date </p> 
                     <Calendar tabindex="0" placeholder="Calendar" onChange={(e) => this.handleChange(e, 'date_irrigation')}></Calendar>
                         </div>
                     <br />
