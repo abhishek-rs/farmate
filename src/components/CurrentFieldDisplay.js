@@ -49,7 +49,6 @@ export default class CurrentFieldDisplay extends Component{
             dialogVisible: false,
             messages: [{severity:'info', summary:'Success', detail: "Data for Field " + this.state.field.name + " has been updated!"}]
         });
-        this.props.updateData();
     }
 
     showUpdate(){
@@ -72,13 +71,14 @@ export default class CurrentFieldDisplay extends Component{
         database.ref('main/' + this.state.currentField).set(formdata)
                     .then( () => 
                         Request.get(baseUrl + that.state.currentField)
-                        .end( (err, res) => {
+                        .then( (err, res) => {
                             if(err){
+                                console.log('error updating:', err);
                                 that.props.updateData();
                             }
                             else{
                                 that.props.updateData();
-                                console.log(res)
+                                console.log('Updated!')
                             }
                         })
         );        

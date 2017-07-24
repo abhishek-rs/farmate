@@ -35,11 +35,9 @@ export default class InputWorldWind extends Component {
         this.wwd.addLayer(new WorldWind.BingAerialWithLabelsLayer());
         var clickRecognizer= new WorldWind.ClickRecognizer(this.wwd, this.handlePick);
         var tapRecognizer = new WorldWind.TapRecognizer(this.wwd, this.handlePick);
-        this.wwd.addLayer(new WorldWind.CompassLayer());
         this.pathsLayer = new WorldWind.RenderableLayer();
         this.pathsLayer.displayName = "Paths";
         this.wwd.addLayer(this.pathsLayer);
-        this.wwd.addLayer(new WorldWind.ViewControlsLayer(this.wwd));
         this.coords = new WorldWind.CoordinatesDisplayLayer(this.wwd);
         window.navigator.geolocation.getCurrentPosition(this.getPosition);
         //this.wwd.addLayer(this.coords);

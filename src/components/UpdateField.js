@@ -35,17 +35,17 @@ export default class UpdateField extends Component {
         else if(attribute == "IR"){
             let currentDate = moment().local();
             let duration = moment.duration(currentDate.diff(formdata.date_irrigation));
-            let days = duration.asDays().toFixed(0);
+            let days = duration.asDays().toFixed(0) - 1;
             let IR_in_L = e.target.value * 1000;
             formdata.IR_rec = -1;
             let area_in_m2 = parseInt(formdata.area) * 10000;
             formdata.IR_list[29 - days] = IR_in_L;
             formdata.HP_list[29 - days] = (parseFloat(realdata.HP_list[29 - days]) + (e.target.value / area_in_m2) * 100).toFixed(2);
-            formdata.HP = days > 0 ? (parseFloat(realdata.HP_list[29 - days]) + (e.target.value / area_in_m2) * 100).toFixed(2) : formdata.HP; 
+            formdata.HP = days == 0 ? (parseFloat(realdata.HP) + (e.target.value / area_in_m2) * 100).toFixed(2) : formdata.HP; 
         }
         else if(attribute == "HP"){
             formdata.HP = e.target.value;
-            formdata.HP_list[29] = e.target.value;  
+            formdata.HP_list[29 ] = e.target.value;  
         }
         else 
             formdata[attribute]=e.target.value;
@@ -62,16 +62,17 @@ export default class UpdateField extends Component {
         let that = this;
         database.ref('main/' + this.state.fieldId).set(formdata)
                     .then( () => 
-                    /*    Request.get(baseUrl + that.state.fieldId)
-                        .end( (err, res) => {
+                        Request.get(baseUrl + that.state.fieldId)
+                        .then( (err, res) => {
                             if(err){
+                                console.log('error in update');
                                 that.props.updateData();
                             }
                             else{
+                                console.log('success')
                                 that.props.updateData();
-                                console.log(res)
                             }
-                        })*/{}
+                        })
         );        
         this.props.hideDialog('1');
     }
@@ -80,7 +81,8 @@ export default class UpdateField extends Component {
         if(nextProps.currentField !== this.state.currentField){
             this.setState({
                 currentField: nextProps.currentField,
-                formdata: nextProps.currentField
+                formdata: nextProps.currentField,
+                fieldId: nextProps.fieldId
             })
         }
     }
@@ -97,7 +99,7 @@ export default class UpdateField extends Component {
                 <p data-tip="Irrigation in cubic m. on the selected date.">How much did you irrigate? (in cubic mt.)</p>
                 <InputText name="IR" type="number" placeholder="0" onChange={(e) => this.handleChange(e, 'IR')} />
 
-                <p data-tip="If the displayed water level is incorrect, please update it here. This will help us improve our suggestions for future.">Water level post irrigation (cms)</p>
+                <p data-tip="If the displayed water level is incorrect, please update it here. This will help us improve our suggestions for future.">Current water level post irrigation (cms)</p>
                 <InputText name="HP" type="number" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')} />
                 <br />
                 <a className="btn btn-success" onClick={this.handleSubmit}>Update</a>

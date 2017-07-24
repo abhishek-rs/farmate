@@ -8,6 +8,7 @@
     "npm": "4.5.0"
   },
   "devDependencies": {
+    "concurrently": "^3.5.0",
     "gh-pages": "^1.0.0",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.0.2",
@@ -50,7 +51,8 @@
     "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "dev": "concurrently --kill-others \"npm start\" \"python ./update_script/nasa/main.py\""
   },
   "watches": {
     "start": [
