@@ -57,7 +57,7 @@ export default class UpdateField extends Component {
 
     handleSubmit(e) {
         let formdata = this.state.formdata;
-        let baseUrl = 'http://127.0.0.1:8000/api/predict/single_field/';
+        let baseUrl = 'https://shekzilla.pythonanywhere.com/api/predict/single_field/';
         let updates = {};
         let that = this;
         database.ref('main/' + this.state.fieldId).set(formdata)
