@@ -122,10 +122,12 @@ export default class DisplayWorldWind extends Component {
         let ownerIds = [];
         let ids = Object.keys(snapshot.val());
         let allFieldBoundaries = [];
+        console.log(fields)
         fields.map(
             (f) => {
                 let fieldBoundaries = [];
                 let lats = f.lat_shape;
+                console.log(lats)
                 let longs = f.long_shape;
                 let alts = f.alt_shape;
                 for( let i=0; i < lats.length - 1; i++){
