@@ -234,7 +234,7 @@ render(){
                                         :  !this.state.doneDrawing
                                         ? <a id="buttonjoy" className="btn btn-info" onClick={this.finishDrawing}>Finish Drawing</a> : null }
 
-                    { this.state.isEditable && !this.state.doneDrawing ? <a className="btn btn-danger" onClick={this.clearDrawing}>Clear Drawing</a> : null }
+                    { this.state.isEditable && !this.state.doneDrawing ? <a  id="buttonjoy" className="btn btn-danger" onClick={this.clearDrawing}>Clear Drawing</a> : null }
                     <br />
                     <br />
                     <a id="buttonjoy" className="btn btn-success" disabled={!this.state.doneDrawing} onClick={this.handleSubmit}>Submit</a>

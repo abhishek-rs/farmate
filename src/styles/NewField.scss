@@ -6,7 +6,7 @@
     width: 100%;
     height: 100vh;
     text-align: center;
-    margin-top: 30px !important;
+    margin-top: 40px !important;
     padding-bottom: 20px;
     font-family: 'PT Sans', sans-serif;
     
@@ -21,8 +21,8 @@
     }
 
     #inputs{
-        align-self: right;
-        float: right;
+        align-self: left;
+        float: left;
         margin-right: 10px;
         z-index: 100;
         width: 30%;
@@ -30,8 +30,8 @@
         padding: 20px;
         background: rgba(6, 13, 79, 0.78);
         position: absolute;
-        right: 20px;
-        margin-bottom: 10px;
+        left: 0px;
+        margin-bottom: 5px;
     }
     input {
     width: 50%;
@@ -79,22 +79,23 @@ padding-bottom: 20px;
 }
 
 .form-title{
-padding-bottom: 10px;
+padding-bottom: 15px;
 }
 .soil-button{
 width: 300px;
-margin-left: 5px;
+margin-left: 10px;
 padding-left: 25px;
 }
 
 #asshole{
-margin-bottom: 10px;
+margin-bottom: 5px;
+margin-top: 17px;
 margin-left: 5px;
-margin-top: 15px;
 width: 40%;
 }
 
 #buttonjoy{
-margin-bottom: 10px;
+margin-bottom: 1px;
 width: 40% !important;
+margin-left: 3px;
 }
