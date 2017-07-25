@@ -64,7 +64,7 @@ export default class Dashboard extends Component {
         return (
             <div id="dashboard">
                 <div id="left-panel">
-                    <a href="/farmate/newfield" className="btn btn-success create">+ Create new field</a>
+                    <a href="/newfield" className="btn btn-success create">+ Create new field</a>
                     <FieldsContainer fieldSnapshot={this.state.fieldSnapshot} updateSelection={this.changeSelection.bind(this)} selectedField={this.state.highlightedField} />
                     <Weather></Weather>
                 </div>

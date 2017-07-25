@@ -20,7 +20,7 @@ function PrivateRoute ({component: Component, authed, ...rest}) {
       {...rest}
       render={(props) => authed === true
         ? <Component {...props} />
-        : <Redirect to={{pathname: '/farmate/login', state: {from: props.location}}} />}
+        : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
     />
   )
 }
@@ -31,7 +31,7 @@ function PublicRoute ({component: Component, authed, ...rest}) {
       {...rest}
       render={(props) => authed === false
         ? <Component {...props} />
-        : <Redirect to='/farmate/dashboard' />}
+        : <Redirect to='/dashboard' />}
     />
   )
 }
@@ -68,14 +68,14 @@ export default class App extends Component {
             <div className="container">
               <div className="navbar-header">
                 <img id="nasa-logo" src="NASA_logo.png"/>
-                <Link to="/farmate/dashboard" className="navbar-brand">Farmate</Link>
+                <Link to="/dashboard" className="navbar-brand">Farmate</Link>
               </div>
               <ul className="nav navbar-nav pull-right">
                 <li>  
                      <span>
-                        <Link to="/farmate/login" className="navbar-brand">Login</Link>
-                        <Link to="/farmate/register" className="navbar-brand">Register</Link>
-                        <Link to="/farmate/about" className="navbar-brand">About</Link>
+                        <Link to="/login" className="navbar-brand">Login</Link>
+                        <Link to="/register" className="navbar-brand">Register</Link>
+                        <Link to="/about" className="navbar-brand">About</Link>
                       </span>
                 </li>
               </ul>
@@ -90,12 +90,12 @@ export default class App extends Component {
             <div className="container">
               <div className="navbar-header">
                 <img id="nasa-logo" src="NASA_logo.png"/>
-                <Link to="/farmate/dashboard" className="navbar-brand">Farmate</Link>
+                <Link to="/dashboard" className="navbar-brand">Farmate</Link>
               </div>
               <ul className="nav navbar-nav pull-right">
                 <li>  
-                  <span className="nav-button"><Link to="/farmate/about" className="navbar-brand">About</Link></span>
-                  <span className="nav-button"><Link to="/farmate/dashboard" className="navbar-brand">Dashboard</Link></span> 
+                  <span className="nav-button"><Link to="/about" className="navbar-brand">About</Link></span>
+                  <span className="nav-button"><Link to="/dashboard" className="navbar-brand">Dashboard</Link></span> 
                    {this.state.authed
                     ? <span className="nav-button"><button
                         style={{border: 'none', background: 'transparent'}}
@@ -126,13 +126,13 @@ export default class App extends Component {
             <div className="row">
               <Switch>
                 <Route path='/farmate' exact component={Login} />
-                <PublicRoute authed={this.state.authed} path='/farmate/login' component={Login} />
-                <PublicRoute authed={this.state.authed} path='/farmate/register' component={Register} />
-                <PrivateRoute authed={this.state.authed} path='/farmate/dashboard' component={Dashboard} />
-                <PrivateRoute authed={this.state.authed} path='/farmate/weather' component={Weather} />
-                <PrivateRoute authed={this.state.authed} path='/farmate/newfield' component={NewField} />
-                <Route path='/farmate/about' exact component={About} />
-                <Route render={() => <Redirect to='/farmate/dashboard'/>}/>
+                <PublicRoute authed={this.state.authed} path='/login' component={Login} />
+                <PublicRoute authed={this.state.authed} path='/register' component={Register} />
+                <PrivateRoute authed={this.state.authed} path='/dashboard' component={Dashboard} />
+                <PrivateRoute authed={this.state.authed} path='/weather' component={Weather} />
+                <PrivateRoute authed={this.state.authed} path='/newfield' component={NewField} />
+                <Route path='/about' exact component={About} />
+                <Route render={() => <Redirect to='/dashboard'/>}/>
               </Switch>
             </div>
           </div>

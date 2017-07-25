@@ -56,7 +56,7 @@ export default class Login extends Component {
         <br />
         
         <div className="welcome">
-        <h4 className="italic">If this is your first time visiting farmate, learn more about it by visiting the <a className="btn btn-info" href="/farmate/about">About</a> section.</h4>
+        <h4 className="italic">If this is your first time visiting farmate, learn more about it by visiting the <a className="btn btn-info" href="/about">About</a> section.</h4>
         <h4 className="italic">Built using NASA's WorldWind application for NASA Europa Challenge 2017</h4>
         </div>
       </div>

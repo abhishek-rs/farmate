@@ -2,7 +2,7 @@
   "name": "farmate",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://abhishek-rs.github.io/farmate/",
+  "homepage": "https://farmate.firebaseapp.com/",
   "engines": {
     "node": "7.4.0",
     "npm": "4.5.0"

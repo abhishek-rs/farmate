@@ -39,7 +39,7 @@ render(){
                     </div>
               </div>
                 <div id="page-section">
-                     <a href="/farmate/register" className="btn btn-info">Register now</a>
+                     <a href="/register" className="btn btn-info">Register now</a>
                 </div>
                 
             </div>
