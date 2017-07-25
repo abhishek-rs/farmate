@@ -10,7 +10,7 @@ render(){
         <div id="about">
             <div id="about-wrapper">
                 <div id="page-section">
-                    <h1>Welcome to Farmate </h1>
+                    <h1 className="welcome-title">Welcome to Farmate </h1>
                     <p className="quotes"> A platform helping you keep track of the irrigation of your fields</p>
                     </div>
                      <div id ="page-section">
@@ -41,11 +41,7 @@ render(){
                 <div id="page-section">
                      <a href="/farmate/register" className="btn btn-info">Register now</a>
                 </div>
-                
-            </div>
-        </div>
-         <div id="bottom-page">
-             <div id="background-section">
+                <div id="page-section">
                     <h1>Background</h1>
                     <p>Farmate employs various mathematical models based on latest research to predict the current water level. A variety of APIs are used to get the necessary data for the predictions.</p>
                     <p> To validate our idea we engaged in discussions in online farming forums with the farmer community. We also collaborated with Matti Kummu, Assistant Professor at Water development research group at Aalto University. We received a lot of positive feedback on our project. </p>
@@ -53,9 +49,9 @@ render(){
                     <h5 className="quotes">"A system helping me keep better track of irrigation would be really useful" - user from <a href="https://thefarmingforum.co.uk/index.php"> thefarmingforum.co.uk </a> </h5>
                     
                 </div>
-               <div id="we">
+               <div id="page-section">
                       <h1>Who we are</h1>
-                      <p>A group of Aalto students who believe that resourceful and sustainable farming is the future.
+                      <p>A group of Aalto students studying Human Computer Interaction and Design who believe that resourceful and sustainable farming is the future.
                       </p>
                      
                      <div id="team">
@@ -66,17 +62,24 @@ render(){
                         <div id="person-image"> <img src="/farmate/images/mildaa.jpg" /> 
                         <h4 id="person-text">Milda</h4></div>  
                     </div>
+                    <h1>Partners </h1>
                 </div>
                 <div id="partners">
-                     <h1>Partners </h1>
-                     <div id="logos">
+                <div id="logos">
                         <img id="logostyle" src="/farmate/images/aaltoo.png"/>
                         <img id="logostyle" src="/farmate/images/EIT.png"/>
                     </div>
+                 <div id="footer">
+                     Farmate 2017. All rights reserved. 
                 </div>
+            </div> 
+        </div>
+         
+
   
 </div>
 </div>
- )    
+ 
+)    
 }
 }
