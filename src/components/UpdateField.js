@@ -29,7 +29,7 @@ export default class UpdateField extends Component {
         if(attribute == "date_irrigation"){
             formdata.date_irrigation = e.value;
             formdata.day_irrigation = e.value.getDate();
-            formdata.month_irrigation = e.value.getMonth();
+            formdata.month_irrigation = e.value.getMonth()  + 1;
             formdata.year_irrigation = e.value.getFullYear();            
         }
         else if(attribute == "IR"){

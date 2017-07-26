@@ -11,7 +11,7 @@ import {SelectButton} from 'primereact/components/selectbutton/SelectButton'
 import { Dialog } from 'primereact/components/dialog/Dialog';
 import { getUserId } from '../firebaseHelpers/auth'
 import { dataRef } from '../config/constants.js';
-
+import * as moment from 'moment';
 export default class NewField extends Component {
 
 constructor(){
@@ -114,15 +114,15 @@ handleChange(e, attribute){
         formdata[attribute] = e.value;
     }
     else if(attribute == "date_transplant"){
-        formdata.date_transplant = e.value;
+        formdata.date_transplant = moment(e.value).format();
         formdata.day_transplant = e.value.getDate();
-        formdata.month_transplant = e.value.getMonth();
+        formdata.month_transplant = e.value.getMonth() + 1;
         formdata.year_transplant = e.value.getFullYear();            
     }
     else if(attribute == "date_irrigation"){
-        formdata.date_irrigation = e.value;
+        formdata.date_irrigation = moment(e.value).format();
         formdata.day_irrigation = e.value.getDate();
-        formdata.month_irrigation = e.value.getMonth();
+        formdata.month_irrigation = e.value.getMonth()  + 1;
         formdata.year_irrigation = e.value.getFullYear();            
     }
     else
