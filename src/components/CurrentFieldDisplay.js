@@ -227,7 +227,7 @@ export default class CurrentFieldDisplay extends Component{
             { this.state.field.owner_id === this.userId && 
             <div id="update-block">
                 <p id="rec">Today's recommended irrigation</p>
-                <ToggleButton style={{width:'100px', height: '25px'}} onLabel="Done!" offLabel={this.state.field.IR_rec.toString()} onIcon="fa-check-square" offIcon="fa-square"
+                <ToggleButton style={{width:'100px', height: '25px'}} onLabel="Done!" offLabel={this.state.field.IR_rec.toString() + 'cubic m.'} onIcon="fa-check-square" offIcon="fa-square"
                 checked={this.state.field.IR_rec === -1 ? true: this.state.updateCheck } disabled={this.state.field.IR_rec === -1} onChange={this.onChangeUpdate}/>
             </div>
             }
