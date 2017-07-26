@@ -25,7 +25,8 @@ export default class DisplayWorldWind extends Component {
     getPosition(position){
             let goToAnimator = new WorldWind.GoToAnimator(this.wwd);
             goToAnimator.travelTime = 7000;
-            goToAnimator.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 50000))    
+         //   goToAnimator.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 50000))
+         goToAnimator.goTo(new WorldWind.Position(12.533182, 76.876796, 5000));        
     }
 
     componentWillReceiveProps(nextProps){
