@@ -1,6 +1,36 @@
 # Farmate
-##### (powered by NASA WorldWind - built for the [NASA Europa Challenge 2017](http://www.nasaeuropachallenge.com/))
+##### (powered by [NASA World Wind](https://worldwind.arc.nasa.gov/) - built for the [NASA Europa Challenge 2017](http://www.nasaeuropachallenge.com/))
 ![NASA Logo](https://github.com/abhishek-rs/farmate/blob/master/public/NASA_logo.png)
+
+## Table of contents
+
+1. [Introduction](https://github.com/abhishek-rs/farmate#introduction)
+2. [How to Launch]()
+3. [Theoretical Background]()
+4. [Backend]()   
+    a. [Introduction]()   
+    b. [Dependencies]()    
+    c. [Flowchart Update]()    
+    d. [Flowchart Predict]()    
+    e. [Functions]()   
+      i. [Update]()    
+      ii. [Predict]()
+
+5. [APIs]()
+6. [Database]()    
+   a. [Structure]()
+7. [Connection]()
+8. [Front-end client]()  
+   a. [Planning]()   
+   b. [User research]()   
+   c. [Design]()   
+   d. [Implementation]()
+
+9. [Limitations & Future Work]()
+
+10. [Acknowledgements]()
+
+11. [References]()
 
 
 ## Introduction
@@ -45,38 +75,6 @@ This will start the flask server on the current terminal.
 You should be able to see the same client hosted on firebase now running locally. It will access the update api when you perform updates on your field.
 
 
-
-Content
-
-Introduction
-How to Launch
-Content
-Theoretical Background
-Backend
-Introduction
-Dependencies
-Flowchart Update:
-Flowchart Predict
-Functions
-Update
-Predict
-APIs
-Database
-Database Structure
-Connection
-Front-end client
-Planning
-User research
-Design
-Implementation
-Limitations & Future Work
-Acknowledgements
-References
-
-
-
-
-
 Theoretical Background
 70% of all freshwater in the world is used for irrigations practices [1]. Of this, 45% is used for irrigating rice paddies [2]. For this reason we decided to focus on implementing our MVP for irrigation of rice fields specifically. However, the models employed can be extended to different types of crops.  
 
@@ -99,8 +97,6 @@ For DP a simplified model and a constant was used based on the granularity of th
 
 The ET also uses a simplified model. Our model is based on the Modified Penman Method, however, it does not take the different stages of the crop into account. Again this was due to similar reasons, in a research environment this can be easily measured. However, the model is not capable of assuming. 
 
-
-
 Backend
 Introduction
 The backend is completely in python. This language was chosen for its excellent webdeployment, the documentation and community is extremely active as well as that we were familiar with it. We hope by making the backend python, it will be easier pick-up by other people who want to continue on our work. 
@@ -116,14 +112,6 @@ datetime
 pyrebase
 urllib
 flask
-
-
-
-Flowchart Update: 
-Flowchart Predict
-
-
-
 
 Functions
 The backend consists of two major parts. First of all there is the update half of the backend. This uses historical data of what happened during the day to update the history arrays, as well as predict the current water level. 
