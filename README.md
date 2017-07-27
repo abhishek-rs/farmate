@@ -56,6 +56,7 @@ As we use a web scraper to get historical rainfall information, we had trouble h
 If you would like to see the update script in action, you can run the instance locally. To do this follow the steps below. You will need to have node, npm, python 2.7 and pip installer on your computer. 
 1. Clone the repo 
 > git clone https://github.com/abhishek-rs/farmate.git
+
 > cd farmate
 2. Install node dependencies 
 > npm install 
@@ -75,9 +76,9 @@ You should be able to see the same client hosted on firebase now running locally
 
 
 ## Theoretical Background
-70% of all freshwater in the world is used for irrigations practices [1]. Of this, 45% is used for irrigating rice paddies [2]. For this reason we decided to focus on implementing our MVP for irrigation of rice fields specifically. However, the models employed can be extended to different types of crops.  
+70% of all freshwater in the world is used for irrigations practices [1](https://github.com/abhishek-rs/farmate#references). Of this, 45% is used for irrigating rice paddies [2](https://github.com/abhishek-rs/farmate#references). For this reason we decided to focus on implementing our MVP for irrigation of rice fields specifically. However, the models employed can be extended to different types of crops.  
 
-Khepar et al. [3] offer an elaborate model to calculate the water level at a given time in a field. Although the overall formula is deceivingly simple, the separate components are not. 
+Khepar et al. [3](https://github.com/abhishek-rs/farmate#references) offer an elaborate model to calculate the water level at a given time in a field. Although the overall formula is deceivingly simple, the separate components are not. 
 
 The water level on a given day is as follows:
 
@@ -104,14 +105,14 @@ The backend is completely in python. This language was chosen for its excellent 
 It calls a variety of APIs to get, mainly weather related, data needed for the model described earlier. The data is used to update the water level on the fields as well as to predict the water level over the next five days. We use a firebase database to keep track of all values for each rice field. Pyrebase is used as an interface with our database. Furthermore we use flask to create all callable APIs for the front-end. In this chapter we will discuss the different functions in the back end and show a flowchart on how they are related. After that we will discuss the different APIs we used. Finally we will explain the structure of our database. 
 
 ### Dependencies
-fao_eto (included)
-Requests (standard with python >= 2.7)
-time (standard with python >= 2.7)
-Re (standard with python >= 2.7)
-datetime
-pyrebase
-urllib
-flask
+* fao_eto (included)
+* Requests (standard with python >= 2.7)
+* time (standard with python >= 2.7)
+* Re (standard with python >= 2.7)
+* datetime
+* pyrebase
+* urllib
+* flask
 
 ## Functions
 The backend consists of two major parts. First of all there is the update half of the backend. This uses historical data of what happened during the day to update the history arrays, as well as predict the current water level. 
@@ -186,7 +187,7 @@ In practice the /update/single_field and /update/user_field are never used. This
 With regards to prediction, we use /predict/user_field on a user login, as well as when an user updates the fields. /predict/all_fields is never used, except for testing purposes. This is because of the amount of computation required.
 
 ## Front-end client 
-We decided to use ReactJS to build the client application as we had a fair bit of experience in building web apps using it from our earlier work. As we knew WorldWind would be a major  part of the client we wanted to explore possibilities to incorporate WorldWind in React’s component based structure and hook up react’s selective rendering to improve the app’s performance on the browser while still using WorldWind and most of its features. 
+We decided to use [ReactJs](https://facebook.github.io/react/) to build the client application as we had a fair bit of experience in building web apps using it from our earlier work. As we knew WorldWind would be a major  part of the client we wanted to explore possibilities to incorporate WorldWind in React’s component based structure and hook up react’s selective rendering to improve the app’s performance on the browser while still using WorldWind and most of its features. 
 
 ### Planning
 We started off by listing our key features and discussing what would be the best way to let the user make full use of all these features - 
@@ -196,7 +197,7 @@ We started off by listing our key features and discussing what would be the best
 * Get calculated daily information on how much water you should supply to each of your registered fields based on various factors mentioned earlier. 
 
 ### User research
-We validated our plans and design ideas by starting discussions in farming forums: ozfarmer.com.au and thefarmingforum.co.uk. One of the important things that came out there was the importance of having access to the most relevant information about each field easily. 
+We validated our plans and design ideas by starting discussions in farming forums: [OZfarmer](http://ozfarmer.com.au/) and [The farming forum](https://thefarmingforum.co.uk/index.php). One of the important things that came out there was the importance of having access to the most relevant information about each field easily. 
 
 Based on the feedback we go from the mentor and the interaction we had with farmers on farming forums we decided to display the following - 
 * Current water level in the field and the predicted water level for the next week. 
@@ -213,7 +214,8 @@ The data is displayed to the user predominantly using interactive charts. We wan
 ### Implementation
 One of the first challenges we had to tackle was using WorldWind as a full fledged react component that takes props, has states and rerenders based on the change in these values. As we would be using WorldWind in two major functionalities i.e drawing new fields and displaying existing fields we started off by creating two versions of the WorldWind react components that support each of these functions. 
 
-Most of the input and form components in the application are build using PrimeReact components. The charts are built using ReCharts, another excellent react component library based on D3.js. We’ll discuss most of views and their composition briefly in the next section.   
+Most of the input and form components in the application are build using [PrimeReact](https://www.primefaces.org/primereact/#/) components. The charts are built using [ReCharts](http://recharts.org/#/en-US/), another excellent react component library based on D3.js. We’ll discuss most of views and their composition briefly in the next section. 
+
 The app currently has four major UI screens - 
 1. **Login/Register screen** - Here we use Firebase’s authentication system to register new users and allow existing users to login to the application. 
 
