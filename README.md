@@ -5,30 +5,30 @@
 ## Table of contents
 
 1. [Introduction](https://github.com/abhishek-rs/farmate#introduction)
-2. [How to Launch]()
-3. [Theoretical Background]()
-4. [Backend]()   
-    a. [Introduction]()   
-    b. [Dependencies]()       
-    c. [Functions]()   
-      i. [Update]()    
-      ii. [Predict]()
+2. [How to Launch](https://github.com/abhishek-rs/farmate#how-to-launch)
+3. [Theoretical Background](https://github.com/abhishek-rs/farmate#theoretical-background)
+4. [Backend](https://github.com/abhishek-rs/farmate#backend)   
+    a. [Introduction](https://github.com/abhishek-rs/farmate#introduction-1)   
+    b. [Dependencies](https://github.com/abhishek-rs/farmate#dependencies)       
+    c. [Functions](https://github.com/abhishek-rs/farmate#functions)   
+      i. [Update](https://github.com/abhishek-rs/farmate#update)    
+      ii. [Predict](https://github.com/abhishek-rs/farmate#predict)
 
-5. [APIs]()
-6. [Database]()    
-   a. [Structure]()
-7. [Connection]()
-8. [Front-end client]()  
-   a. [Planning]()   
-   b. [User research]()   
-   c. [Design]()   
-   d. [Implementation]()
+5. [APIs](https://github.com/abhishek-rs/farmate#apis)
+6. [Database](https://github.com/abhishek-rs/farmate#database)    
+   a. [Structure](https://github.com/abhishek-rs/farmate#database-structure)
+7. [Connection](https://github.com/abhishek-rs/farmate#connection)
+8. [Front-end client](https://github.com/abhishek-rs/farmate#front-end-client)  
+   a. [Planning](https://github.com/abhishek-rs/farmate#planning)   
+   b. [User research](https://github.com/abhishek-rs/farmate#user-research)   
+   c. [Design](https://github.com/abhishek-rs/farmate#design)   
+   d. [Implementation](https://github.com/abhishek-rs/farmate#implementation)
 
-9. [Limitations & Future Work]()
+9. [Limitations & Future Work](https://github.com/abhishek-rs/farmate#limitations--future-work)
 
-10. [Acknowledgements]()
+10. [Acknowledgements](https://github.com/abhishek-rs/farmate#acknowledgements)
 
-11. [References]()
+11. [References](https://github.com/abhishek-rs/farmate#references)
 
 
 ## Introduction
@@ -83,12 +83,12 @@ The water level on a given day is as follows:
 
 > HP<sub>J</sub> = HP<sub>J-1</sub> + RF<sub>J</sub> + IR<sub>J</sub> - ET<sub>J</sub> - DP<sub>J</sub> - RO<sub>J</sub>  (1)
 
-HP<sub>J</sub> = is the ponding depth (water height) on day J, given in cm
-RF<sub>J</sub> = is the rainfall on day J, in cm
-IR<sub>J</sub> = is the irrigation applied on day J, in cm
-ET<sub>J</sub> = Is the crop evotranspiration (cm), this is both the water that evaporated as well as water taken in by the crop. 
-DP<sub>J</sub> = Depth percolation on day J, the water that is lost through the ground (cm)
-RO<sub>J</sub> = Run Off, surface runoff on day J (cm)
+* **HP<sub>J</sub>** = is the ponding depth (water height) on day J, given in cm
+* **RF<sub>J</sub>** = is the rainfall on day J, in cm
+* **IR<sub>J</sub>** = is the irrigation applied on day J, in cm
+* **ET<sub>J</sub>** = Is the crop evotranspiration (cm), this is both the water that evaporated as well as water taken in by the crop. 
+* **DP<sub>J</sub>** = Depth percolation on day J, the water that is lost through the ground (cm)
+* **RO<sub>J</sub>** = Run Off, surface runoff on day J (cm)
 
 The model is run every 24 hours, at the end of everyday. It takes into account the different factors that were relevant during the day. HP, is therefore the water height at the end of day J. 
 
@@ -249,10 +249,10 @@ In the current implementation there are some significant limitations. First of a
 
 Another limitation is that the desired and critical water level is currently hard-coded and limited to rice. This differs per location and crop type. Hence this should be adjustable by the user in future iterations. This is something that cannot be universal world-wide.     
 
-From the user interface side, a future improvement could be adding the possibility to edit current fields, especially if possibility to have more than one crop type was added in the future. In addition, the possibility to remove field from the map or choose which of his fields the user would like to be visible to his neighbours could be introduced. Nevertheless, we make the current possibilities of the system very clear to the user prior registering to farmate in the about page as well as the principle of collaboration and sharing the information with neighbours upon which this system was built on.
+From the user interface side, a future improvement could be adding the possibility to edit current fields, especially if possibility to have more than one crop type was added in the future. In addition, the possibility to remove field from the map or choose which of his fields the user would like to be visible to his neighbours could be introduced. Nevertheless, we make the current possibilities of the system very clear to the user prior registering to farmate in the about page as well as the principle of collaboration and sharing the information with neighbours upon which this system was built on.
 
 ## Acknowledgements 
-We would like to thank our mentor Matti Kummu. Since we are all HCI students he has been a true help in understanding agriculture and pointing us to to right directions. 
+We would like to thank our mentor Matti Kummu. Since we are all HCI students he has been a true help in understanding agriculture and pointing us to to right directions. And we would also like to thank all the creators of all the npm modules, python libraries, NASA WorldWind for the excellent documentation and support that helped us build the application. 
 
 ## References
 
