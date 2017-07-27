@@ -9,10 +9,13 @@ render(){
     <div id="container">
         <div id="about">
             <div id="about-wrapper">
-                <div id="page-section">
-                    <h1 className="welcome-title">Welcome to Farmate </h1>
-                    <p className="quotes"> A platform helping farmers to keep track of the irrigation of their fields</p>
+                <div className="welcome-wrapper">
+                     <h1 className="welcome-title">Welcome to Farmate </h1>
+                     <div className="icon-title">
+				        <img src="/farmate/images/rice3.png" />	
+			        </div>
                     </div>
+                    <p className="sub-title"> A platform helping farmers to keep track of the irrigation of their fields</p>
                      <div id ="page-section">
                     <p> 70% of all freshwater worldwide is used for irrigation practices. Due to freshwater shortage that already exists and is predicted to get worse.
                     </p>
@@ -22,11 +25,11 @@ render(){
                 </div>
            
               <div id ="page-section">
-                    <h1> How it works </h1>
+                    <h1 className="title-color"> How it works </h1>
                       <div className="how">
                           <div className="how-container">
                             <div className="number"> 1 </div>
-                                <div className="how-text"> <p> Create a free account on farmate by registering.
+                                <div className="how-text"> <p> Create a free account on farmate by registering, add your field to our map.
                                                     </p>
                                  </div>
                             </div>
@@ -35,7 +38,7 @@ render(){
              
                 <div className="how-container">
                       <div className="number"> 2 </div>
-                    <div className="how-text"><p>Add your field to our map and our system will tell you how much you need to irrigate each day to keep the optimum water level. The calculations are performed based on your inputs when you first create the field and the latest agriculture engineering formulas.
+                    <div className="how-text"><p>Our system will tell you how much you need to irrigate each day to keep the optimum water level. The calculations are performed based on your inputs when you first create the field.
                     </p>
                      </div>
                     </div>
@@ -50,22 +53,32 @@ render(){
               </div>
               </div>
               <div>
-               <img src="/farmate/images/dashboard-exp.png" />
+               
                </div>
                 <div id="page-section">
-                     <a href="/farmate/register" className="btn btn-info">Register now</a>
+                     <a href="/farmate/register" id="about-button" className="btn btn-info">Register now</a>
                 </div>
+                  <div id ="page-section">
+                    <h1 className="title-color"> Watch the tutorial </h1>
+               <p>  Video goes here </p>
+               </div>
                 <div id="page-section">
-                    <h1>Background</h1>
+                    <h1 className="title-color">Background</h1>
                     <p>Farmate employs various mathematical models based on latest research to predict the current water level. A variety of APIs are used to get the necessary data for the predictions.
                     Farmate has a python based backend. The frontend is based on react.js, improving the app speed and providing an intuitive interface for the farmer. </p>
-                   <p> For detailed documentation on how Farmate was built, the flow charts explaining the formulas and to see the code please visit our </p> <a id="github" className="btn btn-info" href="https://github.com/abhishek-rs/farmate">github repository</a> 
-                    <p> We collaborated with Matti Kummu, Assistant Professor at Water development research group at Aalto University. Also, to validate our idea, we engaged in discussions in online farming forums with the farmer community.We received a lot of positive feedback on our project. </p>
-                    <h5 className="quotes">"When is this platform going to launch?"" - user from <a href="www.ozfarmer.com.au"> ozfarmer.com.au </a> </h5>
-                    <h5 className="quotes">"A system helping me keep better track of irrigation would be really useful" - user from <a href="https://thefarmingforum.co.uk/index.php"> thefarmingforum.co.uk </a> </h5>
+                   <p> For detailed documentation on how Farmate was built, the flow charts explaining the formulas and to see the code please visit our: </p>
+                    <a id="github" className="btn btn-info" href="https://github.com/abhishek-rs/farmate">Github repository</a> 
+                    <p> We collaborated with Matti Kummu, Assistant Professor at Water development research group at Aalto University. Also, to validate our idea, we engaged in discussions in online farming forums with the farmer community. We received a lot of positive feedback on our project. </p>
+                   <div className="quote-box">
+                    <h5 className="big-quote">"</h5>
+                    <div className="quote-position">
+                    <h5 className="quotes">When is this platform going to launch? - user from <a href="www.ozfarmer.com.au"> ozfarmer.com.au </a> </h5>
+                    <h5 className="quotes">A system helping me keep better track of irrigation would be really useful - user from <a href="https://thefarmingforum.co.uk/index.php"> thefarmingforum.co.uk </a> </h5>
+                    </div>
+                    </div>
                  </div>
                <div id="page-section">
-                      <h1>Who we are</h1>
+                      <h1 className="title-color">Who we are</h1>
                       <p>A group of Aalto students studying Human Computer Interaction and Design who believe that resourceful and sustainable farming is the future.
                       </p>
                      
@@ -77,7 +90,7 @@ render(){
                         <div id="person-image"> <img src="/farmate/images/mildaa.png" /> 
                         <h4 id="person-text">Milda: front-end & UX </h4></div>  
                     </div>
-                    <h1>Partners </h1>
+                    <h1 className="title-color">Partners </h1>
                 </div>
                 <div id="partners">
                 <div id="logos">

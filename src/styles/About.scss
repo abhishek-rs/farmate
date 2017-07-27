@@ -7,18 +7,27 @@ height: 120vh;
 width:100%;
 
 p{
-font-size: 15px;
+font-size: 16px;
+color: #f4f6fc !important;
 }
+}
+.sub-title{
+  font-size: 23px !important;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  color: #1A237E !important;
+
 }
 
 #about {
     width: 100%;
     background: url("/farmate/images/globe.png") no-repeat right;
     background-attachment: fixed;
-    position: relative;
+    position:relative;
     margin: 0px 0px 0px 0px;
     padding-right: 0px;
-    height: 236vh;
+    height: 275vh;
     
 }
 
@@ -59,6 +68,8 @@ font-size: 15px;
   padding-bottom: 5px;
   width: 60%;
   margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 #team{
@@ -82,13 +93,6 @@ align-self: center;
   align-self: center;
  
   }
-
-
-  .quotes{
-  font-size: 20px !important;
-  padding-top: 0px;
-  padding-bottom: 5px;
-  }
      
   .how{
    display: flex;
@@ -102,24 +106,28 @@ padding-left: 0px;
 display: flex;
 flex: 1;
 width: 100%;
+margin-bottom: 0px;
 }
 
 
 
 .how-text{
 width: 80%;
+margin-top: 25px;
+margin-left: 10px;
+
 }
 
 .number{
-font-size: 100px;
-    color: blue;
-    background-color: blue;
-    color: white;
-    border-radius: 50%;
-    margin: 10px;
-    text-align: center;
-    width: 150px;
-    padding: 10px;
+font-size: 50px;
+color: #050a3d;
+background-color: #c0d5f7;
+color: #050a3d;
+border-radius: 60%;
+margin: 10px;
+text-align: center;
+width: 90px;
+padding: 10px;
 
 }
 
@@ -142,10 +150,78 @@ font-size: 100px;
 }
 
 .welcome-title{
-  margin-top: 40px;
+  margin-top: 50px;
+  margin-bottom: 15px;
+  font-size: 45px;
+  color: white;
 }
 
 #github{
   margin-bottom: 10px;
   margin-top: 10px;
+  width: 20%;
+  background-color: #7189d6 !important;
+  border:#7189d6;
 }
+
+
+  .icon-title {
+    align-self: center;
+    padding-left: 10px;
+    padding-top: 5px;
+
+      img{
+        height: 70px;
+        }
+  }
+.welcome-wrapper{
+  display: flex;
+  flex-direction: row;
+   margin-left: 20px;
+}
+
+#about-button{
+  width: 20% !important;
+  background-color: #7189d6!important;
+  border: #7189d6 !important;
+}
+
+.quote-box{
+  background-color:rgba(192, 213, 247, 0.78);
+  margin-top: 20px;
+  padding-top: 40px;
+  padding-bottom: 0px;
+  padding-right: 10px;
+  width: 90%;
+  height: 230px;
+  color: #050a3d!important;
+  opacity: 0.7;
+  border-radius: 25px;
+  display: flex;
+  flex-direction:row;
+
+}
+
+.big-quote{
+  font-size: 250px!important;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 0px!important;
+}
+
+.quote-position{
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  padding-left: 10px;
+}
+
+
+  .quotes{
+  font-size: 23px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 30px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  }
