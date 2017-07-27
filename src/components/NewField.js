@@ -240,7 +240,7 @@ render(){
                     <a id="buttonjoy" className="btn btn-success" disabled={!this.state.doneDrawing} onClick={this.handleSubmit}>Submit</a>
 
                  </form>
-                 <a href="/dashboard" className="btn btn-danger" id="asshole">Back to Dashboard</a>
+                 <a href="/dashboard" className="btn btn-danger" id="backbutton">Back to Dashboard</a>
                   </div>
                 <br />
                 
