@@ -2,8 +2,13 @@
 padding: 0px;   
 margin: 0px;
 position: relative;
-font-family: Arial, Helvetica, sans-serif !important;
+font-family: 'PT Sans', sans-serif;
 height: 120vh;
+width:100%;
+
+p{
+font-size: 15px;
+}
 }
 
 #about {
@@ -13,8 +18,8 @@ height: 120vh;
     position: relative;
     margin: 0px 0px 0px 0px;
     padding-right: 0px;
-    height: 115vh;
-    display: flex;
+    height: 236vh;
+    
 }
 
 @media only screen and (max-width: 500px) {
@@ -27,12 +32,10 @@ height: 120vh;
   align-self: left;
   float: left;
   margin-right: 0px;
-  width: 60%;
-  padding: 20px 20px 0px 20px;
-  position: relative;
-  left: 20px;
+  width: 100%;
+  padding: 20px 0px 0px 0px;
   margin-bottom: 0px;
-  height: 70vh;
+  margin-top: 20px;
   z-index: 100;
 
 }
@@ -42,6 +45,7 @@ height: 120vh;
   flex-direction: row;
   background-color: rgba(6, 13, 79, 0.78);
    overflow: auto;
+   margin-bottom: 0px !important;
   
 }
 #logostyle{
@@ -51,19 +55,12 @@ height: 120vh;
 }
 
 #page-section {
-  padding-top: 10px;
+  padding-top: 5px;
   padding-bottom: 5px;
-}
-#background-section {
-  padding-top: 10px;
-  padding-bottom: 5px;
-  margin-right: 50px;
+  width: 60%;
+  margin-left: 20px;
 }
 
-#we {
-  width: 80%;
-  
-}
 #team{
   margin-top: 20px;
   padding-right:60px !important; 
@@ -79,58 +76,50 @@ align-self: center;
 }
 
   #person-text h4{
-  font-size: 15pt;
+  font-size: 12pt;
   color: white;
   text-align: center !important;
   align-self: center;
  
   }
 
- #bottom-page{
-  width: 100%;
-  position: absolute;
-  align-self: left;
-  float: left;
-  margin-right: 0px;
-  padding: 0px 20px 0px 20px;
-  left: 20px;
-  margin-bottom: 0px;
-  height: 60vh;
-  margin-top: 20px;
-  z-index: 100;
-    }
 
   .quotes{
-  font-size: 20px;
-  padding-top: 15px;
+  font-size: 20px !important;
+  padding-top: 0px;
   padding-bottom: 5px;
   }
      
   .how{
    display: flex;
-   flex-direction: row;
+   flex-direction: column;
 }
 
 .how-container{
 padding-top: 10px;
+margin-left: 0px;
+padding-left: 0px;
 display: flex;
-flex-direction: row;
-  justify-content: center;
-  margin-left: 0px;
-  padding-left: 0px;
-  
+flex: 1;
+width: 100%;
 }
 
 
 
 .how-text{
- padding-top: 40px;
- padding-left: 20px;
-
+width: 80%;
 }
 
 .number{
-padding-right: 10px;
+font-size: 100px;
+    color: blue;
+    background-color: blue;
+    color: white;
+    border-radius: 50%;
+    margin: 10px;
+    text-align: center;
+    width: 150px;
+    padding: 10px;
 
 }
 
@@ -142,4 +131,21 @@ padding-right: 10px;
 
 .section-title{
   padding-bottom: 20px;
+}
+
+#footer {
+  background-color: #1A237E;
+  text-align: center;
+  margin-top: 0px !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.welcome-title{
+  margin-top: 40px;
+}
+
+#github{
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
