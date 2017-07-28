@@ -10,7 +10,7 @@ background: -o-linear-gradient(left, rgba(8,39,68,1) 0%, rgba(6,25,49,1) 23%, rg
 background: -ms-linear-gradient(left, rgba(8,39,68,1) 0%, rgba(6,25,49,1) 23%, rgba(2,3,18,1) 60%, rgba(2,3,18,1) 100%);
 background: linear-gradient(to right, rgba(8,39,68,1) 0%, rgba(6,25,49,1) 23%, rgba(2,3,18,1) 60%, rgba(2,3,18,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#082744', endColorstr='#020312', GradientType=1 );
-
+background-color: black;
 
 ;
 }

@@ -4,10 +4,8 @@
     justify-content: space-between;
     align-content: space-between;
     width: 100%;
-    height: 100vh;
     text-align: center;
     margin-top: 40px !important;
-    padding-bottom: 20px;
     font-family: 'PT Sans', sans-serif;
     
     #input-ww{
@@ -15,18 +13,20 @@
         position: relative;
         align-content: center;
         justify-content: center;
-        height: 110vh;
+        height: 100%;
         display: flex;
         align-self: center;
     }
 
     #inputs{
+       display: flex;
+       flex-direction: column;
         align-self: left;
         float: left;
         margin-right: 10px;
         z-index: 100;
         width: 35%;
-        height: 100vh;
+        min-height: 90%;
         padding: 20px;
         background: rgba(6, 13, 79, 0.78);
         position: absolute;
@@ -39,6 +39,8 @@
     margin-left:10px;
     box-sizing: border-box;
     text-align: left;
+
+    
 }
    p {
     margin: 5px 0;
@@ -48,7 +50,7 @@
    }
    
   #ui-selectbutton {
-    width: 100%;
+    flex: 1;
     padding: 5px 5px;
     margin: 5px 0;
     box-sizing: border-box;
@@ -59,12 +61,17 @@
 .text {
 display: flex;
 flex-direction: row;
-width: 180px;
+flex: 1;
 }
+
+.input-class{
+   flex: 1; 
+}
+
 .calendar-text {
 display: flex;
 flex-direction: row;
-width: 145px;
+flex: 1;
 }
 
 .form-container{
@@ -86,15 +93,21 @@ margin-left: 10px;
 
 }
 
-#asshole{
+#dashboard-button{
 margin-bottom: 5px;
-margin-top: 17px;
+margin-top: 10px;
 margin-left: 5px;
-width: 40%;
+width: 40% !important;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
 }
 
 #buttonjoy{
-margin-bottom: 1px;
-width: 40% !important;
-margin-left: 3px;
-}
+    margin-bottom: 1px;
+    width: 40% !important;
+    margin-left: 3px;
+    }
+
+

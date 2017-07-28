@@ -191,24 +191,26 @@ render(){
             <Dialog header="How to plot your field" onHide={this.onDialogHide} visible={this.state.dialogVisible} width="350px" modal={true}>
                 Click or tap on the map area where you want to start plotting the first point of your field. Continue drawing by clicking on the next field corner point, until you are reach the end. You do not need to reconnect the starting and the end field points, our app will do that for you. Click 'Done drawing' to finish. You can hit 'Clear' to restart drawing anytime.   
             </Dialog>
+            
             <div id="inputs">
+                <a href="/farmate/dashboard" className="btn btn-danger" id="dashboard-button">Back to Dashboard</a>
                 <h3 className="form-title"> Add new field</h3>
                 <form id="new-form" onSubmit={this.handleSubmit}>
                     <div className="inputfield" >
                     <p className="text" data-tip="Naming your field will make it easy to identify later">Name of field </p> 
-                    <InputText value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')}/>
+                    <InputText classname="input-class" value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')}/>
                     </div>
                      <div className="inputfield" >
                     <p className="text" data-tip="Accurate area will help us improve the accuracy of the recommendations">Area (in hectares)</p> 
-                    <InputText name="area" type="number" placeholder="e.g. 20" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
+                    <InputText classname="input-class" name="area" type="number" placeholder="e.g. 20" value={this.state.formdata.area} onChange={(e) => this.handleChange(e, 'area')}/>
                     </div>
                      <div className="inputfield" >
                     <p className="text" data-tip="Height of dikes for controlling the water built around the farm, typically 40-50cm. If there are none please enter 0">Dike Height (cms): </p> 
-                    <InputText name="dike_height" type="number" placeholder="" value={this.state.formdata.dike_height} onChange={(e) => this.handleChange(e, 'dike_height')}/>
+                    <InputText classname="input-class" name="dike_height" type="number" placeholder="" value={this.state.formdata.dike_height} onChange={(e) => this.handleChange(e, 'dike_height')}/>
                     </div>
                      <div className="inputfield" >
                     <p className="text" data-tip="Typically no more than 20cm. We need to know the initial water level in the field to base the calculations on">Water level (in cm) </p> 
-                    <InputText name="HP" type="number" placeholder="" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')}/>
+                    <InputText classname="input-class" name="HP" type="number" placeholder="" value={this.state.formdata.HP} onChange={(e) => this.handleChange(e, 'HP')}/>
                     </div>
                      <div className="inputfield" >
                     <p className="text" data-tip="Soil type based on grain size. Ranging from (0) fine sand to (5) solid clay.">Soil type </p> 
@@ -216,15 +218,15 @@ render(){
                      </div>
                       <div className="inputfield" >
                     <p className="text" data-tip="Rice is the only type available now">Crop type </p> 
-                    <InputText name="crop_type" value="Rice" type="string" readOnly="true"/>
+                    <InputText classname="input-class" name="crop_type" value="Rice" type="string" readOnly="true"/>
                     </div>
                      <div className="inputfield" >
                     <p className="calendar-text" data-tip="When was the crop planted?">Plantation date </p> 
-                    <Calendar tabindex="0" placeholder="Calendar" onChange={(e) => this.handleChange(e, 'date_transplant')}></Calendar>
+                    <Calendar classname="input-class" tabindex="0" placeholder="Calendar" onChange={(e) => this.handleChange(e, 'date_transplant')}></Calendar>
                      </div>
                       <div className="inputfield" >
                     <p  className="calendar-text" data-tip="When was the last irrigation done?">Last irrigation date </p> 
-                    <Calendar tabindex="0" placeholder="Calendar" onChange={(e) => this.handleChange(e, 'date_irrigation')}></Calendar>
+                    <Calendar classname="input-class" tabindex="0" placeholder="Calendar" onChange={(e) => this.handleChange(e, 'date_irrigation')}></Calendar>
                         </div>
                     <br />
                     <br />
@@ -238,9 +240,9 @@ render(){
                     <br />
                     <br />
                     <a id="buttonjoy" className="btn btn-success" disabled={!this.state.doneDrawing} onClick={this.handleSubmit}>Submit</a>
-
+                    
                  </form>
-                 <a href="/farmate/dashboard" className="btn btn-danger" id="asshole">Back to Dashboard</a>
+                 
                   </div>
                 <br />
                 
