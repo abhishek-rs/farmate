@@ -237,6 +237,6 @@ export default class CurrentFieldDisplay extends Component{
             <span><a onClick={this.props.close} className="btn btn-danger button">Close</a></span>
             </div>
         </div>
-        );
+        );\
     }
 }
