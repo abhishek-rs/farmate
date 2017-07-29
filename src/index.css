@@ -2,5 +2,15 @@ body {
   margin: 0;
   padding: 0;
   color: white;
-  background: black;
+background: rgba(8,39,68,1);
+background: -moz-linear-gradient(left, rgba(8,39,68,1) 0%, rgba(6,25,49,1) 23%, rgba(2,3,18,1) 60%, rgba(2,3,18,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(8,39,68,1)), color-stop(23%, rgba(6,25,49,1)), color-stop(60%, rgba(2,3,18,1)), color-stop(100%, rgba(2,3,18,1)));
+background: -webkit-linear-gradient(left, rgba(8,39,68,1) 0%, rgba(6,25,49,1) 23%, rgba(2,3,18,1) 60%, rgba(2,3,18,1) 100%);
+background: -o-linear-gradient(left, rgba(8,39,68,1) 0%, rgba(6,25,49,1) 23%, rgba(2,3,18,1) 60%, rgba(2,3,18,1) 100%);
+background: -ms-linear-gradient(left, rgba(8,39,68,1) 0%, rgba(6,25,49,1) 23%, rgba(2,3,18,1) 60%, rgba(2,3,18,1) 100%);
+background: linear-gradient(to right, rgba(8,39,68,1) 0%, rgba(6,25,49,1) 23%, rgba(2,3,18,1) 60%, rgba(2,3,18,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#082744', endColorstr='#020312', GradientType=1 );
+background-color: black;
+
+;
 }

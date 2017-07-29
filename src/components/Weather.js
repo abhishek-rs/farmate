@@ -30,10 +30,10 @@ constructor() {
 
 getPosition(position){
 	this.setState({
-	//	latitude: position.coords.latitude,
-	//	longitude: position.coords.longitude
-		latitude: 12.534182, 
-		longitude: 76.876796
+		latitude: position.coords.latitude,
+		longitude: position.coords.longitude
+//		latitude: 12.534182, 
+//		longitude: 76.876796
 	});
 	this.getCurrentWeather();
 }
