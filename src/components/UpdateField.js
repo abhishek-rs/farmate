@@ -61,19 +61,16 @@ export default class UpdateField extends Component {
         let updates = {};
         let that = this;
         database.ref('main/' + this.state.fieldId).set(formdata)
-                    .then( () => 
-                        Request.get(baseUrl + that.state.fieldId)
-                        .then( (err, res) => {
-                            if(err){
-                                console.log('error in update');
+                    .then( () => {
+                    //    .then( (err, res) => {
+                    //        if(err){
                                 that.props.updateData();
-                            }
-                            else{
-                                console.log('success')
-                                that.props.updateData();
-                            }
-                        })
-        );        
+                    //        }
+                    //        else{
+                    //            that.props.updateData();
+                    //        }
+                    //    })
+        });        
         this.props.hideDialog('1');
     }
 

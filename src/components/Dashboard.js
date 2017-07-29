@@ -39,7 +39,6 @@ export default class Dashboard extends Component {
                         fieldSnapshot: snapshot,
                         }) 
         );
-        console.log('called')
     }
     
     changeSelection(fieldId){

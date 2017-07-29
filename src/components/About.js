@@ -49,7 +49,7 @@ render(){
                 <div>
                </div>
                     <div id="page-section">
-                       <a href="/farmate/register" id="about-button" className="btn btn-info">Register now</a>
+                       <a href="/farmate/register" id="about-button" className="btn btn-success">Register now</a>
                     </div>
                     <div id ="page-section">
                       <h1 className="title-color"> Watch the tutorial </h1>
@@ -76,23 +76,24 @@ render(){
                             </p>
                                 <div id="team">
                                      <div id="person-image"> <img src="/farmate/images/thomas2.png" /> 
-                                         <h4 id="person-text">Thomas: python & maths</h4> </div> 
+                                         <h4 id="person-text">Thomas: Python & Maths</h4> </div> 
                                      <div id="person-image"> <img src="/farmate/images/abhishek2.png" /> 
-                                        <h4 id="person-text">Abhishek: front-end lead</h4> </div>  
+                                        <h4 id="person-text">Abhishek: Front-end Lead</h4> </div>  
                                      <div id="person-image"> <img src="/farmate/images/mildaa.png" /> 
-                                         <h4 id="person-text">Milda: front-end & UX </h4></div>  
+                                         <h4 id="person-text">Milda: Front-end & UX </h4></div>  
                                 </div>
-                         <h1 className="title-color">Partners </h1>
                      </div>
                     <div id="partners">
+                        <h1 className="title-color">Partners </h1>
                             <div id="logos">
                                 <img id="logostyle" src="/farmate/images/aaltoo.png"/>
                                 <img id="logostyle" src="/farmate/images/EIT.png"/>
                              </div>
+                    </div>         
                     <div id="footer">
                             Farmate 2017. All rights reserved. 
                     </div>
-            </div> 
+             
         </div>
     </div>   
 )    

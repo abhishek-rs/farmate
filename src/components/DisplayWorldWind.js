@@ -25,7 +25,7 @@ export default class DisplayWorldWind extends Component {
     getPosition(position){
             let goToAnimator = new WorldWind.GoToAnimator(this.wwd);
             goToAnimator.travelTime = 7000;
-            goToAnimator.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 50000))
+            goToAnimator.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 3000))
     //     goToAnimator.goTo(new WorldWind.Position(12.534182, 76.876796, 3000));        
     }
 
@@ -123,12 +123,10 @@ export default class DisplayWorldWind extends Component {
         let ownerIds = [];
         let ids = Object.keys(snapshot.val());
         let allFieldBoundaries = [];
-        console.log(fields)
         fields.map(
             (f) => {
                 let fieldBoundaries = [];
                 let lats = f.lat_shape;
-                console.log(lats)
                 let longs = f.long_shape;
                 let alts = f.alt_shape;
                 for( let i=0; i < lats.length - 1; i++){

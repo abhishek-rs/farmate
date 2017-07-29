@@ -69,19 +69,16 @@ export default class CurrentFieldDisplay extends Component{
         let baseUrl = 'https://shekzilla.pythonanywhere.com/api/predict/single_field/';
         let that = this;
         database.ref('main/' + this.state.currentField).set(formdata)
-                    .then( () => 
-                        Request.get(baseUrl + that.state.currentField)
-                        .then( (err, res) => {
-                            if(err){
-                                console.log('error updating:', err);
+                    .then( () => {
+                    //    Request.get(baseUrl + that.state.currentField)
+                    //    .then( (err, res) => {
+                    //        if(err){
                                 that.props.updateData();
-                            }
-                            else{
-                                that.props.updateData();
-                                console.log('Updated!')
-                            }
-                        })
-        );        
+                    //        }
+                    //        else{
+                    //            that.props.updateData();                            }
+                    //    })
+        });        
         this.setState({
             messages: [{severity:'info', summary:'Success', detail: "Data for Field " + formdata.name + " has been updated!"}]
         });

@@ -7,10 +7,11 @@
     text-align: center;
     margin-top: 40px !important;
     font-family: 'PT Sans', sans-serif;
+    height: 100vh;  
     
     #input-ww{
         width: 100%;
-        position: relative;
+        position: fixed;
         align-content: center;
         justify-content: center;
         height: 100%;
@@ -96,11 +97,12 @@ margin-left: 10px;
 margin-bottom: 5px;
 margin-top: 10px;
 margin-left: 5px;
-width: 40% !important;
+width: 40%;
 display: flex;
 justify-content: center;
 align-items: center;
 text-align: center;
+align-self: center;
 }
 
 #buttonjoy{
