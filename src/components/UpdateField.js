@@ -1,6 +1,7 @@
 import React, { Component } from 'react' 
 import ReactDOM from 'react-dom'
 import Request from 'superagent';
+import ReactTooltip from 'react-tooltip'
 import { InputText } from 'primereact/components/inputtext/InputText'
 import { Calendar } from 'primereact/components/calendar/Calendar'
 import { getUserId } from '../firebaseHelpers/auth'
@@ -57,19 +58,20 @@ export default class UpdateField extends Component {
 
     handleSubmit(e) {
         let formdata = this.state.formdata;
-        let baseUrl = 'https://shekzilla.pythonanywhere.com/api/predict/single_field/';
+        let baseUrl = 'http://127.0.0.1:8000/api/predict/single_field/';
         let updates = {};
         let that = this;
         database.ref('main/' + this.state.fieldId).set(formdata)
                     .then( () => {
-                    //    .then( (err, res) => {
-                    //        if(err){
+                        Request.get(baseUrl + that.state.currentField)
+                        .then( (err, res) => {
+                            if(err){
                                 that.props.updateData();
-                    //        }
-                    //        else{
-                    //            that.props.updateData();
-                    //        }
-                    //    })
+                            }
+                            else{
+                                that.props.updateData();
+                            }
+                        })
         });        
         this.props.hideDialog('1');
     }
@@ -87,6 +89,7 @@ export default class UpdateField extends Component {
     render(){
         return (
             <form id="update-form" onSubmit={this.handleSubmit}>
+                <ReactTooltip />
                 <p data-tip="You can change the name of the field here">Name of field</p>
                 <span><InputText value={this.state.formdata.name} name="name" placeholder="e.g. My rice field" onChange={(e) => this.handleChange(e, 'name')} /></span>    
                 

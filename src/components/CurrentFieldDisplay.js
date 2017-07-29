@@ -66,18 +66,18 @@ export default class CurrentFieldDisplay extends Component{
         let area_in_m2 = parseInt(formdata.area) * 10000;
         formdata.IR_rec = -1;
         formdata.HP_list[29], formdata.HP = (parseFloat(formdata.HP_list[29]) + (formdata.IR_rec / area_in_m2) * 100).toFixed(2);
-        let baseUrl = 'https://shekzilla.pythonanywhere.com/api/predict/single_field/';
+        let baseUrl = 'http://127.0.0.1:8000/api/predict/single_field/';
         let that = this;
         database.ref('main/' + this.state.currentField).set(formdata)
                     .then( () => {
-                    //    Request.get(baseUrl + that.state.currentField)
-                    //    .then( (err, res) => {
-                    //        if(err){
+                        Request.get(baseUrl + that.state.currentField)
+                        .then( (err, res) => {
+                            if(err){
                                 that.props.updateData();
-                    //        }
-                    //        else{
-                    //            that.props.updateData();                            }
-                    //    })
+                            }
+                            else{
+                                that.props.updateData();                            }
+                        })
         });        
         this.setState({
             messages: [{severity:'info', summary:'Success', detail: "Data for Field " + formdata.name + " has been updated!"}]
