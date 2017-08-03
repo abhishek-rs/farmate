@@ -25,7 +25,11 @@ export default class DisplayWorldWind extends Component {
     getPosition(position){
             let goToAnimator = new WorldWind.GoToAnimator(this.wwd);
             goToAnimator.travelTime = 7000;
-            goToAnimator.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 3000))
+            if(position.code === 1){
+                alert("Please reload and allow location to help us customize the map for you. The map will go to default location (Helsinki) now.")
+                goToAnimator.goTo(new WorldWind.Position(60.177375, 24.803298, 3000))
+            }
+            else goToAnimator.goTo(new WorldWind.Position(position.coords.latitude, position.coords.longitude, 3000))
     //     goToAnimator.goTo(new WorldWind.Position(12.534182, 76.876796, 3000));        
     }
 
@@ -157,7 +161,7 @@ export default class DisplayWorldWind extends Component {
         this.wwd.addLayer(this.fieldsLayer);
         this.wwd.addLayer(this.textLayer);
         this.coords = new WorldWind.CoordinatesDisplayLayer(this.wwd);
-        window.navigator.geolocation.getCurrentPosition(this.getPosition);
+        window.navigator.geolocation.getCurrentPosition(this.getPosition, this.getPosition);
         //this.wwd.addLayer(this.coords);
     }
 

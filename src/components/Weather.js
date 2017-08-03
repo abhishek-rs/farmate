@@ -25,17 +25,28 @@ constructor() {
 		
 	this.getPosition = this.getPosition.bind(this);
 	this.getCurrentWeather = this.getCurrentWeather.bind(this);
-    window.navigator.geolocation.getCurrentPosition(this.getPosition);
+}
+
+componentDidMount(){
+	window.navigator.geolocation.getCurrentPosition(this.getPosition, this.getPosition);
 }
 
 getPosition(position){
-	this.setState({
+	console.log(position);
+	if(position.code === 1){
+		this.setState({
+		latitude: 60.177375,
+		longitude: 24.803298,
+//		latitude: 12.534182, 
+//		longitude: 76.876796
+	}, () => this.getCurrentWeather());
+    }
+    else this.setState({
 		latitude: position.coords.latitude,
 		longitude: position.coords.longitude
 //		latitude: 12.534182, 
 //		longitude: 76.876796
-	});
-	this.getCurrentWeather();
+	}, () => this.getCurrentWeather());
 }
 
 getCurrentWeather(){

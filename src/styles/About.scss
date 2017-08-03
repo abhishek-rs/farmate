@@ -73,6 +73,7 @@
 #page-section {
   padding-top: 5px;
   padding-bottom: 5px;
+  margin-bottom: 20px;
   width: 55%;
   margin-left: 20px;
   display: flex;
@@ -179,8 +180,14 @@
 }
 
 #about-button{
-  width: 20% !important;
+  align-self: center;
+  height: 50px;
+  width: 30%;
   margin-top: 20px;
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .quote-box{

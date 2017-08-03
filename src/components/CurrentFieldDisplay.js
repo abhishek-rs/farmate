@@ -123,7 +123,7 @@ export default class CurrentFieldDisplay extends Component{
                 margin={margins}>
                 <CartesianGrid stroke="#ccc" />
                 <XAxis dataKey="index" />
-                <YAxis label="(cms.) "/>
+                <YAxis label="cm."/>
                 <Tooltip />
                 <Area type='monotone' dataKey='WaterLevel' stroke='#FF5722' fill='#FF5722' />
             </AreaChart>
@@ -137,7 +137,7 @@ export default class CurrentFieldDisplay extends Component{
                 margin={margins}>
                 <CartesianGrid stroke="#ccc" />
                 <XAxis dataKey="index" />
-                <YAxis label="(cms.) "/>
+                <YAxis label="cm. "/>
                 <Tooltip />
                 <Area type='monotone' dataKey='Rainfall' stroke='#8884d8' fill='#8884d8' />
             </AreaChart>    
@@ -151,7 +151,7 @@ export default class CurrentFieldDisplay extends Component{
                 margin={margins}>
                 <CartesianGrid stroke="#ccc" />
                 <XAxis dataKey="index" />
-                <YAxis label="(cms.)" unit="cms" />
+                <YAxis label="cm." unit="cms" />
                 <Tooltip />
                 <Area type='monotone' dataKey='Seepage' stackId="1" stroke='#4CAF50' fill='#4CAF50' />
                 <Area type='monotone' dataKey='Evaporation' stackId="2" stroke='#3F51B5' fill='#3F51B5' />
