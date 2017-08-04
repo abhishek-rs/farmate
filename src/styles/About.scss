@@ -17,6 +17,7 @@
   padding-top: 0px;
   padding-bottom: 10px;
   padding-left: 20px;
+  margin-left: 20px;
   color: white;
 }
 
@@ -49,6 +50,7 @@
 
 #partners{
   background: #CFD8DC;
+  margin-left: 20px;
   h1{
     color: #050a3d;
     margin: 0;
@@ -73,7 +75,8 @@
 #page-section {
   padding-top: 5px;
   padding-bottom: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
+  padding-left: 20px;
   width: 55%;
   margin-left: 20px;
   display: flex;
@@ -152,6 +155,7 @@
 .welcome-title{
   margin-top: 50px;
   margin-bottom: 15px;
+  margin-left: 20px;
   font-size: 45px;
   color: white;
 }
