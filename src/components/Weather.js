@@ -30,16 +30,16 @@ constructor() {
 
 getPosition(position){
 	this.setState({
-		latitude: position.coords.latitude,
-		longitude: position.coords.longitude
-//		latitude: 12.534182, 
-//		longitude: 76.876796
+//		latitude: position.coords.latitude,
+//		longitude: position.coords.longitude
+		latitude: 12.534182, 
+		longitude: 76.876796
 	});
 	this.getCurrentWeather();
 }
 
 getCurrentWeather(){
-	let baseUrl = 'https://api.apixu.com/v1/current.json?key=5cc4c4116ec54fb98a0153211171407&q=';
+	let baseUrl = 'https://api.apixu.com/v1/current.json?key=ad1ef4e668614bfab8b113948173008&q=';
 	var that = this;
 	Request.get(baseUrl + this.state.latitude + "," + this.state.longitude)
 			.end(function(err, res){
