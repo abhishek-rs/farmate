@@ -25,7 +25,10 @@ constructor() {
 		
 	this.getPosition = this.getPosition.bind(this);
 	this.getCurrentWeather = this.getCurrentWeather.bind(this);
-    window.navigator.geolocation.getCurrentPosition(this.getPosition);
+}
+
+componentDidMount(){
+	window.navigator.geolocation.getCurrentPosition(this.getPosition, this.getPosition);
 }
 
 getPosition(position){

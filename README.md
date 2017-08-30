@@ -1,9 +1,9 @@
 # Farmate
 ##### (powered by [NASA World Wind](https://worldwind.arc.nasa.gov/) - built for the [NASA Europa Challenge 2017](http://www.nasaeuropachallenge.com/))
-![NASA Logo](https://github.com/abhishek-rs/farmate/blob/master/public/NASA_logo.png)
-![Aalto logo](https://github.com/abhishek-rs/farmate/blob/master/public/farmate/aaltoo.png)
-![EIT logo](https://github.com/abhishek-rs/farmate/blob/master/public/farmate/EIT.png)
+![NASA Logo](https://github.com/abhishek-rs/farmate/blob/master/public/farmate/images/documentation-logos.png)
 
+### [Check out the usage video here!](https://www.youtube.com/watch?v=dtH9tWK7TA4)
+ 
 ## Table of contents
 
 1. [Introduction](https://github.com/abhishek-rs/farmate#introduction)

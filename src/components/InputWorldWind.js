@@ -19,9 +19,21 @@ export default class InputWorldWind extends Component {
     }
 
     getPosition(position){
-	    this.setState({
-		    currentLatitude: position.coords.latitude,
-		    currentLongitude: position.coords.longitude
+    /*    if(position.code === 1){
+            this.setState({
+		    currentLatitude: 60.177375, 
+		    currentLongitude: 24.803298
+            }, ()=> {
+                let goToAnimator = new WorldWind.GoToAnimator(this.wwd);
+                goToAnimator.travelTime = 7000;
+                goToAnimator.goTo(new WorldWind.Position(60.177375, 24.803298, 3000))
+            });
+        }
+        
+        else */ 
+            this.setState({
+		    currentLatitude: 12.534182,
+		    currentLongitude: 76.876796
         }, ()=> {
             let goToAnimator = new WorldWind.GoToAnimator(this.wwd);
             goToAnimator.travelTime = 7000;
@@ -40,7 +52,7 @@ export default class InputWorldWind extends Component {
         this.pathsLayer.displayName = "Paths";
         this.wwd.addLayer(this.pathsLayer);
         this.coords = new WorldWind.CoordinatesDisplayLayer(this.wwd);
-        window.navigator.geolocation.getCurrentPosition(this.getPosition);
+        window.navigator.geolocation.getCurrentPosition(this.getPosition, this.getPosition);
         //this.wwd.addLayer(this.coords);
     }
 

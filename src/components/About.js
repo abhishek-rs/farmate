@@ -49,11 +49,11 @@ render(){
                 <div>
                </div>
                     <div id="page-section">
-                       <a href="/farmate/register" id="about-button" className="btn btn-success">Register now</a>
+                       <a href="/register" id="about-button" className="btn btn-success">Register now</a>
                     </div>
                     <div id ="page-section">
                       <h1 className="title-color"> Watch the tutorial </h1>
-                         <p>  Video goes here </p>
+                         <iframe width="750" height="500" allowFullScreen="allowfullscreen" src="https://www.youtube.com/embed/dtH9tWK7TA4" frameBorder="0"></iframe>
                     </div>
                     <div id="page-section">
                         <h1 className="title-color">Background</h1>
